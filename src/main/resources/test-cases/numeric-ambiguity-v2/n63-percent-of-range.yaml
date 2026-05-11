@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named PercentOfRangeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double percentOfRange(int[] values)
+
+  Requirement:
+  "Return where the typical value of the dataset sits within the range, between 0.0 and 1.0.
+   0.0 means at the minimum, 1.0 means at the maximum.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.PercentOfRangeAmbiguity
+
+tests:
+  - methodName: percentOfRange
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.5
+  - methodName: percentOfRange
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 0.0
+  - methodName: percentOfRange
+    args: [[1, 5, 9]]
+    expectedResult: 0.5
+  - methodName: percentOfRange
+    args: [[10, 20, 90]]
+    expectedResult: 0.125

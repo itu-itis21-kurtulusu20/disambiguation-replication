@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named GrowthFromStartAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double growthFromStart(int[] values)
+
+  Requirement:
+  "Return how much, on average, the values have grown from the starting point.
+   The result should be expressed as a single number.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.GrowthFromStartAmbiguity
+
+tests:
+  - methodName: growthFromStart
+    args: [[10, 20, 30, 40]]
+    expectedResult: 20.0
+  - methodName: growthFromStart
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: growthFromStart
+    args: [[1, 2, 3]]
+    expectedResult: 1.5
+  - methodName: growthFromStart
+    args: [[10, 5, 0, -5]]
+    expectedResult: -7.5

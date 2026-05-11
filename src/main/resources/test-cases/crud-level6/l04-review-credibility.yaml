@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"review\" CREATE TABLE review ( id SERIAL PRIMARY KEY, author VARCHAR(100) NOT NULL, helpful_votes INTEGER NOT NULL, total_votes INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement credibility(reviewId) which returns the credibility of the review as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.ReviewCredibilityService"
+tests:
+  - methodName: "createReview"
+    args:
+      - author: "alice"
+        helpfulVotes: 8
+        totalVotes: 10
+    expectedResult:
+      id: 1
+  - methodName: "createReview"
+    args:
+      - author: "bob"
+        helpfulVotes: 0
+        totalVotes: 5
+    expectedResult:
+      id: 2
+  - methodName: "credibility"
+    args: [1]
+    expectedResult: 8.0
+  - methodName: "credibility"
+    args: [2]
+    expectedResult: 0.0

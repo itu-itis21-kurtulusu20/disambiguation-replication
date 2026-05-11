@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"app_listing\" CREATE TABLE app_listing ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, install_count INTEGER NOT NULL, refund_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement a method trustScore(appId) that returns a double from 0 to 1, where 1 means highly trusted and 0 means not trusted at all."
+fullClassName: "com.example.llmdyn.dynamic.service.AppTrustScoreService"
+tests:
+  - methodName: "createAppListing"
+    args:
+      - name: "A1"
+        installCount: 1000
+        refundCount: 0
+    expectedResult:
+      id: 1
+  - methodName: "createAppListing"
+    args:
+      - name: "A2"
+        installCount: 1000
+        refundCount: 500
+    expectedResult:
+      id: 2
+  - methodName: "trustScore"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "trustScore"
+    args: [2]
+    expectedResult: 0.5

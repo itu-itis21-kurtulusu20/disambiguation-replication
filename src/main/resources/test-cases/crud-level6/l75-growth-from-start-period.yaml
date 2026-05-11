@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"sales_step\" CREATE TABLE sales_step ( id SERIAL PRIMARY KEY, period_label VARCHAR(20) NOT NULL, total NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement growthFromStart() which returns how much the values have grown overall as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SalesStepGrowthService"
+tests:
+  - methodName: "createSalesStep"
+    args:
+      - periodLabel: "P1"
+        total: 100.00
+    expectedResult:
+      id: 1
+  - methodName: "createSalesStep"
+    args:
+      - periodLabel: "P2"
+        total: 120.00
+    expectedResult:
+      id: 2
+  - methodName: "createSalesStep"
+    args:
+      - periodLabel: "P3"
+        total: 150.00
+    expectedResult:
+      id: 3
+  - methodName: "growthFromStart"
+    args: []
+    expectedResult: 50.0

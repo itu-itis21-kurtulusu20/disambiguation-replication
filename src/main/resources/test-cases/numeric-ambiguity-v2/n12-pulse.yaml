@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named PulseAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double pulse(int[] values)
+
+  Requirement:
+  "Return the pulse of the sequence.
+   The pulse captures the regular beat or pace of changes.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.PulseAmbiguity
+
+tests:
+  - methodName: pulse
+    args: [[1, 2, 1, 2, 1, 2]]
+    expectedResult: 1.0
+  - methodName: pulse
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: pulse
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+  - methodName: pulse
+    args: [[3, 1, 4, 1, 5, 9]]
+    expectedResult: 4.0

@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"flight\" CREATE TABLE flight ( id SERIAL PRIMARY KEY, code VARCHAR(20) NOT NULL UNIQUE, duration_minutes INTEGER NOT NULL, turbulence_score INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement pleasantness(flightId) which returns the pleasantness of the flight as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.FlightPleasantnessService"
+tests:
+  - methodName: "createFlight"
+    args:
+      - code: "F1"
+        durationMinutes: 60
+        turbulenceScore: 1
+    expectedResult:
+      id: 1
+  - methodName: "createFlight"
+    args:
+      - code: "F2"
+        durationMinutes: 600
+        turbulenceScore: 9
+    expectedResult:
+      id: 2
+  - methodName: "pleasantness"
+    args: [1]
+    expectedResult: 60.0
+  - methodName: "pleasantness"
+    args: [2]
+    expectedResult: 600.0

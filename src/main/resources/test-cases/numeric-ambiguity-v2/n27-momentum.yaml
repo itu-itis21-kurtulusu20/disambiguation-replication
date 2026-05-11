@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named MomentumAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double momentum(int[] values)
+
+  Requirement:
+  "Return the momentum of the sequence.
+   A sequence has high momentum when it has been moving in one direction with force.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.MomentumAmbiguity
+
+tests:
+  - methodName: momentum
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 4.0
+  - methodName: momentum
+    args: [[5, 4, 3, 2, 1]]
+    expectedResult: -4.0
+  - methodName: momentum
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: momentum
+    args: [[1, 5, 2, 8, 3]]
+    expectedResult: 2.0

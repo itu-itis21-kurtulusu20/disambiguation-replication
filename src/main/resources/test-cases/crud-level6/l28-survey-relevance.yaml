@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"survey_response\" CREATE TABLE survey_response ( id SERIAL PRIMARY KEY, respondent VARCHAR(100) NOT NULL, completed_questions INTEGER NOT NULL, total_questions INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement relevance(responseId) which returns the relevance of the response as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SurveyResponseRelevanceService"
+tests:
+  - methodName: "createSurveyResponse"
+    args:
+      - respondent: "alice"
+        completedQuestions: 18
+        totalQuestions: 20
+    expectedResult:
+      id: 1
+  - methodName: "createSurveyResponse"
+    args:
+      - respondent: "bob"
+        completedQuestions: 5
+        totalQuestions: 20
+    expectedResult:
+      id: 2
+  - methodName: "relevance"
+    args: [1]
+    expectedResult: 18.0
+  - methodName: "relevance"
+    args: [2]
+    expectedResult: 5.0

@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named NoveltyAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double novelty(int[] values)
+
+  Requirement:
+  "Return the novelty of the sequence.
+   Novel sequences contain values that have not been seen before.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.NoveltyAmbiguity
+
+tests:
+  - methodName: novelty
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+  - methodName: novelty
+    args: [[1, 1, 1, 1, 1]]
+    expectedResult: 0.2
+  - methodName: novelty
+    args: [[1, 2, 1, 2, 1]]
+    expectedResult: 0.4
+  - methodName: novelty
+    args: [[7, 7, 8, 9, 7]]
+    expectedResult: 0.6

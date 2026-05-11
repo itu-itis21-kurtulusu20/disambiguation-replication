@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"subscription\" CREATE TABLE subscription ( id SERIAL PRIMARY KEY, plan VARCHAR(50) NOT NULL, monthly_price NUMERIC(10,2) NOT NULL, months_active INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement value(subscriptionId) which returns the value of the subscription as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SubscriptionValueService"
+tests:
+  - methodName: "createSubscription"
+    args:
+      - plan: "PRO"
+        monthlyPrice: 30.00
+        monthsActive: 12
+    expectedResult:
+      id: 1
+  - methodName: "createSubscription"
+    args:
+      - plan: "BASIC"
+        monthlyPrice: 5.00
+        monthsActive: 1
+    expectedResult:
+      id: 2
+  - methodName: "value"
+    args: [1]
+    expectedResult: 360.0
+  - methodName: "value"
+    args: [2]
+    expectedResult: 5.0

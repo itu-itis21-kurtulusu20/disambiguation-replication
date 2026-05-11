@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named RichnessAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double richness(int[] values)
+
+  Requirement:
+  "Return the richness of the dataset, defined as
+   the COUNT OF DISTINCT (unique) values present in the array.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.RichnessAmbiguity
+
+tests:
+  - methodName: richness
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 5.0
+  - methodName: richness
+    args: [[1, 1, 1, 1, 1]]
+    expectedResult: 1.0
+  - methodName: richness
+    args: [[1, 2, 1, 2, 1, 2]]
+    expectedResult: 2.0
+  - methodName: richness
+    args: [[7]]
+    expectedResult: 1.0

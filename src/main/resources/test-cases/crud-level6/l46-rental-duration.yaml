@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"rental\" CREATE TABLE rental ( id SERIAL PRIMARY KEY, item VARCHAR(100) NOT NULL, start_date DATE NOT NULL, end_date DATE NOT NULL ); and repository service and controller for crud operations. Also implement durationDays(rentalId) which returns the duration of the rental as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.RentalDurationService"
+tests:
+  - methodName: "createRental"
+    args:
+      - item: "Bike"
+        startDate: "2026-05-01"
+        endDate: "2026-05-01"
+    expectedResult:
+      id: 1
+  - methodName: "createRental"
+    args:
+      - item: "Car"
+        startDate: "2026-05-01"
+        endDate: "2026-05-08"
+    expectedResult:
+      id: 2
+  - methodName: "durationDays"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "durationDays"
+    args: [2]
+    expectedResult: 8.0

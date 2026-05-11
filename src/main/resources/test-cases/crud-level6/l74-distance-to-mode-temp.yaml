@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"reading_temp\" CREATE TABLE reading_temp ( id SERIAL PRIMARY KEY, station VARCHAR(50) NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement distanceToMode(station, observed) which returns how far observed is from the mode of the readings at that station as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.ReadingTempModeDistService"
+tests:
+  - methodName: "createReadingTemp"
+    args:
+      - station: "S"
+        value: 20
+    expectedResult:
+      id: 1
+  - methodName: "createReadingTemp"
+    args:
+      - station: "S"
+        value: 20
+    expectedResult:
+      id: 2
+  - methodName: "createReadingTemp"
+    args:
+      - station: "S"
+        value: 20
+    expectedResult:
+      id: 3
+  - methodName: "createReadingTemp"
+    args:
+      - station: "S"
+        value: 50
+    expectedResult:
+      id: 4
+  - methodName: "distanceToMode"
+    args: ["S", 25]
+    expectedResult: 5.0

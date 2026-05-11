@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named AvgMagnitudeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double averageMagnitude(int[] values)
+
+  Requirement:
+  "Return the average magnitude of the values. Magnitude should always be positive regardless of the sign of individual values. If fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AvgMagnitudeAmbiguity
+
+tests:
+  - methodName: averageMagnitude
+    args: [[-3, 4, -5]]
+    expectedResult: 4.08248290463863
+
+  - methodName: averageMagnitude
+    args: [[1, -1, 1, -1]]
+    expectedResult: 1.0
+
+  - methodName: averageMagnitude
+    args: [[0, 0, 10]]
+    expectedResult: 5.773502691896258
+
+  - methodName: averageMagnitude
+    args: [[3, 4, 0]]
+    expectedResult: 2.886751345948129
+

@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"borrower\" CREATE TABLE borrower ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, credit_score INTEGER NOT NULL, debt_ratio_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement defaultProbability(borrowerId) which returns the default probability of the borrower as a single double between 0 and 1."
+fullClassName: "com.example.llmdyn.dynamic.service.BorrowerDefaultService"
+tests:
+  - methodName: "createBorrower"
+    args:
+      - name: "Alice"
+        creditScore: 800
+        debtRatioPct: 10
+    expectedResult:
+      id: 1
+  - methodName: "createBorrower"
+    args:
+      - name: "Bob"
+        creditScore: 400
+        debtRatioPct: 90
+    expectedResult:
+      id: 2
+  - methodName: "defaultProbability"
+    args: [1]
+    expectedResult: 0.0
+  - methodName: "defaultProbability"
+    args: [2]
+    expectedResult: 1.0

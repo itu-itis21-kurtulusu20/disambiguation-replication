@@ -1,0 +1,27 @@
+prompt: "Write a JPA entity class for a table called \"forecast_entry\" CREATE TABLE forecast_entry ( id SERIAL PRIMARY KEY, item VARCHAR(50) NOT NULL, predicted INTEGER NOT NULL, actual INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement aggregateError() which returns the aggregate error across all forecasts as a single double, where larger errors weigh more."
+fullClassName: "com.example.llmdyn.dynamic.service.ForecastErrorService"
+tests:
+  - methodName: "createForecastEntry"
+    args:
+      - item: "A"
+        predicted: 100
+        actual: 100
+    expectedResult:
+      id: 1
+  - methodName: "createForecastEntry"
+    args:
+      - item: "B"
+        predicted: 100
+        actual: 110
+    expectedResult:
+      id: 2
+  - methodName: "createForecastEntry"
+    args:
+      - item: "C"
+        predicted: 100
+        actual: 90
+    expectedResult:
+      id: 3
+  - methodName: "aggregateError"
+    args: []
+    expectedResult: 8.165

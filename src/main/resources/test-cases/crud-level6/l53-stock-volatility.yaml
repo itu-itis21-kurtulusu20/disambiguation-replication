@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"price_history\" CREATE TABLE price_history ( id SERIAL PRIMARY KEY, symbol VARCHAR(10) NOT NULL, price NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement volatility(symbol) which returns the volatility of the price series for that symbol as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.PriceVolatilityService"
+tests:
+  - methodName: "createPriceHistory"
+    args:
+      - symbol: "X"
+        price: 100.00
+    expectedResult:
+      id: 1
+  - methodName: "createPriceHistory"
+    args:
+      - symbol: "X"
+        price: 110.00
+    expectedResult:
+      id: 2
+  - methodName: "createPriceHistory"
+    args:
+      - symbol: "X"
+        price: 90.00
+    expectedResult:
+      id: 3
+  - methodName: "createPriceHistory"
+    args:
+      - symbol: "X"
+        price: 105.00
+    expectedResult:
+      id: 4
+  - methodName: "volatility"
+    args: ["X"]
+    expectedResult: 11.667

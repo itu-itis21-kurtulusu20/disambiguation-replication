@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named BalancedMeanAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double balancedMean(int[] values)
+
+  Requirement:
+  "Return a balanced mean of the values that is not unduly influenced by extremes.
+   If the array has fewer than 4 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.BalancedMeanAmbiguity
+
+tests:
+  - methodName: balancedMean
+    args: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
+    expectedResult: 5.5
+  - methodName: balancedMean
+    args: [[1, 2, 3, 4, 100]]
+    expectedResult: 3.0
+  - methodName: balancedMean
+    args: [[5, 5, 5, 5, 5]]
+    expectedResult: 5.0
+  - methodName: balancedMean
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 1.0

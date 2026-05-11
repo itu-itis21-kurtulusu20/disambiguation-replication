@@ -1,0 +1,20 @@
+prompt: "Write a JPA entity class for a table called \"product_rating\" CREATE TABLE product_rating ( id SERIAL PRIMARY KEY, sku VARCHAR(50) NOT NULL, rating INTEGER NOT NULL, weight INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement aggregateRating(sku) which returns the aggregate rating for that sku as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.ProductRatingAggregateService"
+tests:
+  - methodName: "createProductRating"
+    args:
+      - sku: "X"
+        rating: 5
+        weight: 1
+    expectedResult:
+      id: 1
+  - methodName: "createProductRating"
+    args:
+      - sku: "X"
+        rating: 1
+        weight: 99
+    expectedResult:
+      id: 2
+  - methodName: "aggregateRating"
+    args: ["X"]
+    expectedResult: 3.0

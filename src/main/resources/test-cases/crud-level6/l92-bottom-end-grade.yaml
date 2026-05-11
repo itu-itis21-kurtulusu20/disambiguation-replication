@@ -1,0 +1,54 @@
+prompt: "Write a JPA entity class for a table called \"student_grade\" CREATE TABLE student_grade ( id SERIAL PRIMARY KEY, student VARCHAR(100) NOT NULL, score INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement bottomEnd() which returns the typical value of the bottom end of all grades as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.StudentGradeBottomService"
+tests:
+  - methodName: "createStudentGrade"
+    args:
+      - student: "A"
+        score: 50
+    expectedResult:
+      id: 1
+  - methodName: "createStudentGrade"
+    args:
+      - student: "B"
+        score: 60
+    expectedResult:
+      id: 2
+  - methodName: "createStudentGrade"
+    args:
+      - student: "C"
+        score: 70
+    expectedResult:
+      id: 3
+  - methodName: "createStudentGrade"
+    args:
+      - student: "D"
+        score: 80
+    expectedResult:
+      id: 4
+  - methodName: "createStudentGrade"
+    args:
+      - student: "E"
+        score: 90
+    expectedResult:
+      id: 5
+  - methodName: "createStudentGrade"
+    args:
+      - student: "F"
+        score: 100
+    expectedResult:
+      id: 6
+  - methodName: "createStudentGrade"
+    args:
+      - student: "G"
+        score: 100
+    expectedResult:
+      id: 7
+  - methodName: "createStudentGrade"
+    args:
+      - student: "H"
+        score: 100
+    expectedResult:
+      id: 8
+  - methodName: "bottomEnd"
+    args: []
+    expectedResult: 55.0

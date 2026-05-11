@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named TempoAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double tempo(int[] values)
+
+  Requirement:
+  "Return the tempo of the sequence.
+   A faster tempo means values move through changes more quickly.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.TempoAmbiguity
+
+tests:
+  - methodName: tempo
+    args: [[1, 2, 3, 4]]
+    expectedResult: 1.0
+  - methodName: tempo
+    args: [[1, 10, 100]]
+    expectedResult: 54.5
+  - methodName: tempo
+    args: [[5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: tempo
+    args: [[10, 0, 20, 5]]
+    expectedResult: 11.667

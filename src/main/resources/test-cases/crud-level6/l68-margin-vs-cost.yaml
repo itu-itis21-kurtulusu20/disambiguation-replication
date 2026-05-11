@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"sale_record\" CREATE TABLE sale_record ( id SERIAL PRIMARY KEY, sku VARCHAR(50) NOT NULL, revenue NUMERIC(10,2) NOT NULL, cost NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement marginPercent(saleId) which returns the margin percent of the sale as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SaleMarginPctService"
+tests:
+  - methodName: "createSaleRecord"
+    args:
+      - sku: "X"
+        revenue: 100.00
+        cost: 60.00
+    expectedResult:
+      id: 1
+  - methodName: "createSaleRecord"
+    args:
+      - sku: "Y"
+        revenue: 100.00
+        cost: 75.00
+    expectedResult:
+      id: 2
+  - methodName: "marginPercent"
+    args: [1]
+    expectedResult: 66.667
+  - methodName: "marginPercent"
+    args: [2]
+    expectedResult: 33.333

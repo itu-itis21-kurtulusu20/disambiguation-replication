@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named PercentChangeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double percentChange(int[] values)
+
+  Requirement:
+  "Return the average per-step percent change in the sequence.
+   The result should be in the same units as a percentage (e.g., 5 means 5 percent).
+   If the array has fewer than 2 elements or any value is zero, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.PercentChangeAmbiguity
+
+tests:
+  - methodName: percentChange
+    args: [[100, 110, 121]]
+    expectedResult: 10.0
+  - methodName: percentChange
+    args: [[100, 100, 100]]
+    expectedResult: 0.0
+  - methodName: percentChange
+    args: [[100, 200, 100]]
+    expectedResult: 0.0
+  - methodName: percentChange
+    args: [[10, 20, 40, 80]]
+    expectedResult: 100.0

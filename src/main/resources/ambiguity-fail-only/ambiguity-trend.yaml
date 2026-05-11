@@ -1,0 +1,43 @@
+prompt: >
+  Create a Java utility class named TrendAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double trendStrength(int[] values)
+
+  Requirement:
+  "Return a score representing how strongly the sequence is moving
+   in a consistent direction relative to its own scale.
+   An increasing sequence returns a positive score, decreasing returns negative.
+   A flat sequence returns 0.0.
+   The score should be independent of the magnitude of the values —
+   a sequence of [100,200,300] and [1,2,3] should feel equally trended."
+
+  Notes:
+  - If null or empty, return 0.0
+  - If all values are equal, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.TrendAmbiguity
+
+tests:
+  - methodName: trendStrength
+    args: [[1,2,3,4,5]]
+    expectedResult: 0.3333333333333333
+
+  - methodName: trendStrength
+    args: [[5,4,3,2,1]]
+    expectedResult: -0.3333333333333333
+
+  - methodName: trendStrength
+    args: [[1,1,1,1]]
+    expectedResult: 0.0
+
+  - methodName: trendStrength
+    args: [[1,3,2,4,3,5]]
+    expectedResult: 0.20952380952380953
+
+  - methodName: trendStrength
+    args: [[10,20,15,25,20,30]]
+    expectedResult: 0.15714285714285714

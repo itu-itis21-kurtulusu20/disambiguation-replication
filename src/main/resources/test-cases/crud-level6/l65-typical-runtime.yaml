@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"job_runtime\" CREATE TABLE job_runtime ( id SERIAL PRIMARY KEY, job_name VARCHAR(100) NOT NULL, ms_value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement typicalRuntime(jobName) which returns the typical runtime for that job as a single double, robust against outliers."
+fullClassName: "com.example.llmdyn.dynamic.service.JobRuntimeTypicalService"
+tests:
+  - methodName: "createJobRuntime"
+    args:
+      - jobName: "J"
+        msValue: 100
+    expectedResult:
+      id: 1
+  - methodName: "createJobRuntime"
+    args:
+      - jobName: "J"
+        msValue: 110
+    expectedResult:
+      id: 2
+  - methodName: "createJobRuntime"
+    args:
+      - jobName: "J"
+        msValue: 120
+    expectedResult:
+      id: 3
+  - methodName: "createJobRuntime"
+    args:
+      - jobName: "J"
+        msValue: 9999
+    expectedResult:
+      id: 4
+  - methodName: "typicalRuntime"
+    args: ["J"]
+    expectedResult: 115.0

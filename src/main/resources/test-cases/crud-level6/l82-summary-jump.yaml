@@ -1,0 +1,36 @@
+prompt: "Write a JPA entity class for a table called \"daily_quote\" CREATE TABLE daily_quote ( id SERIAL PRIMARY KEY, symbol VARCHAR(10) NOT NULL, price INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement summaryJump(symbol) which returns the typical jump in price between consecutive days as a single double, ignoring rare extreme jumps."
+fullClassName: "com.example.llmdyn.dynamic.service.DailyQuoteJumpService"
+tests:
+  - methodName: "createDailyQuote"
+    args:
+      - symbol: "X"
+        price: 100
+    expectedResult:
+      id: 1
+  - methodName: "createDailyQuote"
+    args:
+      - symbol: "X"
+        price: 101
+    expectedResult:
+      id: 2
+  - methodName: "createDailyQuote"
+    args:
+      - symbol: "X"
+        price: 102
+    expectedResult:
+      id: 3
+  - methodName: "createDailyQuote"
+    args:
+      - symbol: "X"
+        price: 103
+    expectedResult:
+      id: 4
+  - methodName: "createDailyQuote"
+    args:
+      - symbol: "X"
+        price: 999
+    expectedResult:
+      id: 5
+  - methodName: "summaryJump"
+    args: ["X"]
+    expectedResult: 1.0

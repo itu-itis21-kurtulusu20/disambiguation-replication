@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named ElevationAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double elevation(int[] values)
+
+  Requirement:
+  "Return the elevation of the dataset.
+   Higher elevation means the values sit at greater heights.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ElevationAmbiguity
+
+tests:
+  - methodName: elevation
+    args: [[10, 10, 10, 10]]
+    expectedResult: 10.0
+  - methodName: elevation
+    args: [[1, 5, 9]]
+    expectedResult: 9.0
+  - methodName: elevation
+    args: [[5, 5, 5]]
+    expectedResult: 5.0
+  - methodName: elevation
+    args: [[-3, 0, 3]]
+    expectedResult: 3.0

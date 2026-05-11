@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named StretchAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double stretch(int[] values)
+
+  Requirement:
+  "Return how stretched out the values are. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.StretchAmbiguity
+
+tests:
+  - methodName: stretch
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+
+  - methodName: stretch
+    args: [[1, 100]]
+    expectedResult: 99.0
+
+  - methodName: stretch
+    args: [[1, 1, 1, 10]]
+    expectedResult: 9.0
+
+  - methodName: stretch
+    args: [[1, 5, 6, 100]]
+    expectedResult: 94.0
+

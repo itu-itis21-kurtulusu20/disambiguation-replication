@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named ResonanceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double resonance(int[] values)
+
+  Requirement:
+  "Return the resonance of the sequence.
+   Strong resonance amplifies the recurring patterns within the data.
+   If the array has fewer than 4 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ResonanceAmbiguity
+
+tests:
+  - methodName: resonance
+    args: [[1, 2, 1, 2, 1, 2]]
+    expectedResult: 6.0
+  - methodName: resonance
+    args: [[1, 2, 3, 4, 5, 6]]
+    expectedResult: 0.0
+  - methodName: resonance
+    args: [[3, 3, 3, 3, 3, 3]]
+    expectedResult: 0.0
+  - methodName: resonance
+    args: [[5, 1, 5, 1, 5, 1]]
+    expectedResult: 24.0

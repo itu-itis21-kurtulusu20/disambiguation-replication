@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"funnel_step\" CREATE TABLE funnel_step ( id SERIAL PRIMARY KEY, step_name VARCHAR(50) NOT NULL, conversion_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement blendedConversion() which returns the blended conversion across all steps as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.FunnelBlendedService"
+tests:
+  - methodName: "createFunnelStep"
+    args:
+      - stepName: "view"
+        conversionPct: 50
+    expectedResult:
+      id: 1
+  - methodName: "createFunnelStep"
+    args:
+      - stepName: "click"
+        conversionPct: 50
+    expectedResult:
+      id: 2
+  - methodName: "createFunnelStep"
+    args:
+      - stepName: "buy"
+        conversionPct: 50
+    expectedResult:
+      id: 3
+  - methodName: "blendedConversion"
+    args: []
+    expectedResult: 12.5

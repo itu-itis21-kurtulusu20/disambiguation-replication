@@ -1,0 +1,38 @@
+prompt: >
+  Create a Java utility class named ElasticityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double sensitivity(int[] prices, int[] quantities)
+
+  Requirement:
+  "Return a score representing how sensitively the quantities respond
+   to changes in price.
+   When price goes up and quantity goes down proportionally,
+   the score should be negative.
+   The result should be based on proportional changes, not absolute ones.
+   If arrays are null, empty, or have fewer than 2 elements, return 0.0."
+
+  Notes:
+  - Compute the average sensitivity across all consecutive price-quantity pairs
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ElasticityAmbiguity
+
+tests:
+  - methodName: sensitivity
+    args: [[10,20,30],[100,80,60]]
+    expectedResult: -0.35
+
+  - methodName: sensitivity
+    args: [[5,10],[200,100]]
+    expectedResult: -0.5
+
+  - methodName: sensitivity
+    args: [[10,20,40],[100,90,81]]
+    expectedResult: -0.1
+
+  - methodName: sensitivity
+    args: [[100,110,120],[500,450,400]]
+    expectedResult: -1.1111111111111112

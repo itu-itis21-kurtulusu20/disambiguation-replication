@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named DensityRatioAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double densityRatio(int[] values)
+
+  Requirement:
+  "Return the density of the values. How tightly packed they are. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DensityRatioAmbiguity
+
+tests:
+  - methodName: densityRatio
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+
+  - methodName: densityRatio
+    args: [[1, 100]]
+    expectedResult: 0.010101010101010102
+
+  - methodName: densityRatio
+    args: [[1, 1, 1, 1, 10]]
+    expectedResult: 0.4444444444444444
+
+  - methodName: densityRatio
+    args: [[10, 11, 12]]
+    expectedResult: 1.0
+

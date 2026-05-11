@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named DropRateAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double dropRate(int[] values)
+
+  Requirement:
+  "Return the overall rate at which values drop in the sequence. Consider only the decreasing steps. If there are no decreases or fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DropRateAmbiguity
+
+tests:
+  - methodName: dropRate
+    args: [[10, 8, 6, 4, 2]]
+    expectedResult: -2.0
+
+  - methodName: dropRate
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+
+  - methodName: dropRate
+    args: [[10, 5, 8, 3, 7]]
+    expectedResult: -2.5
+
+  - methodName: dropRate
+    args: [[100, 50, 50, 50]]
+    expectedResult: -16.666666666666668
+

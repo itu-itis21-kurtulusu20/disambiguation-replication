@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"team\" CREATE TABLE team ( id SERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, wins INTEGER NOT NULL, losses INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement strength(teamId) which returns the strength of the team as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.TeamStrengthService"
+tests:
+  - methodName: "createTeam"
+    args:
+      - name: "Reds"
+        wins: 18
+        losses: 2
+    expectedResult:
+      id: 1
+  - methodName: "createTeam"
+    args:
+      - name: "Blues"
+        wins: 5
+        losses: 15
+    expectedResult:
+      id: 2
+  - methodName: "strength"
+    args: [1]
+    expectedResult: 18.0
+  - methodName: "strength"
+    args: [2]
+    expectedResult: 5.0

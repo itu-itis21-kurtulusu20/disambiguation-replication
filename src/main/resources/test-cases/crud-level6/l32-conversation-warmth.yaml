@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"conversation\" CREATE TABLE conversation ( id SERIAL PRIMARY KEY, topic VARCHAR(150) NOT NULL, message_count INTEGER NOT NULL, participants INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement warmth(conversationId) which returns the warmth of the conversation as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.ConversationWarmthService"
+tests:
+  - methodName: "createConversation"
+    args:
+      - topic: "T1"
+        messageCount: 200
+        participants: 5
+    expectedResult:
+      id: 1
+  - methodName: "createConversation"
+    args:
+      - topic: "T2"
+        messageCount: 5
+        participants: 2
+    expectedResult:
+      id: 2
+  - methodName: "warmth"
+    args: [1]
+    expectedResult: 200.0
+  - methodName: "warmth"
+    args: [2]
+    expectedResult: 5.0

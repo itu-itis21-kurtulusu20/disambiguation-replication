@@ -1,0 +1,35 @@
+prompt: >
+  Create a Java utility class named AmplitudeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double amplitude(int[] values)
+
+  Requirement:
+  "Return the amplitude of the sequence.
+   Amplitude measures the typical distance of values from the center.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AmplitudeAmbiguity
+
+tests:
+  - methodName: amplitude
+    args: [[1, 5, 1, 5, 1]]
+    expectedResult: 1.92
+  - methodName: amplitude
+    args: [[10, 10, 10, 10]]
+    expectedResult: 0.0
+  - methodName: amplitude
+    args: [[-3, 3, -3, 3]]
+    expectedResult: 3.0
+  - methodName: amplitude
+    args: [[0, 10, 0, 10]]
+    expectedResult: 5.0
+  - methodName: amplitude
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.2

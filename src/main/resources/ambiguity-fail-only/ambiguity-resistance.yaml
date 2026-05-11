@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named ResistanceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double resistance(int[] values)
+
+  Requirement:
+  "Return the resistance of the sequence to change. Higher means less change. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ResistanceAmbiguity
+
+tests:
+  - methodName: resistance
+    args: [[5, 5, 5, 5]]
+    expectedResult: 1.0
+
+  - methodName: resistance
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.5
+
+  - methodName: resistance
+    args: [[1, 100, 1, 100]]
+    expectedResult: 0.01
+
+  - methodName: resistance
+    args: [[10, 10, 11, 10]]
+    expectedResult: 0.5997001499250375
+

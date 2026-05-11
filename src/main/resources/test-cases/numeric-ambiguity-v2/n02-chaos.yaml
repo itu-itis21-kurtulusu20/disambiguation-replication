@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named ChaosAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double chaos(int[] values)
+
+  Requirement:
+  "Return the chaos of the sequence.
+   A perfectly ordered sequence has zero chaos.
+   The more disordered the sequence, the higher the chaos.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ChaosAmbiguity
+
+tests:
+  - methodName: chaos
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+  - methodName: chaos
+    args: [[5, 4, 3, 2, 1]]
+    expectedResult: 0.0
+  - methodName: chaos
+    args: [[3, 1, 4, 1, 5, 9, 2, 6]]
+    expectedResult: 6.0
+  - methodName: chaos
+    args: [[7, 7, 7, 7]]
+    expectedResult: 0.0

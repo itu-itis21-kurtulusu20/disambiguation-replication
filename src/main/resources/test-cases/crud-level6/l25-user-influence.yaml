@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"user_profile\" CREATE TABLE user_profile ( id SERIAL PRIMARY KEY, handle VARCHAR(50) NOT NULL UNIQUE, follower_count INTEGER NOT NULL, post_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement influence(profileId) which returns the influence of the user as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.UserProfileInfluenceService"
+tests:
+  - methodName: "createUserProfile"
+    args:
+      - handle: "alice"
+        followerCount: 10000
+        postCount: 200
+    expectedResult:
+      id: 1
+  - methodName: "createUserProfile"
+    args:
+      - handle: "bob"
+        followerCount: 50
+        postCount: 5
+    expectedResult:
+      id: 2
+  - methodName: "influence"
+    args: [1]
+    expectedResult: 10000.0
+  - methodName: "influence"
+    args: [2]
+    expectedResult: 50.0

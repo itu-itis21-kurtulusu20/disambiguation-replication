@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"customer\" CREATE TABLE customer ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, total_spend NUMERIC(12,2) NOT NULL, order_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement loyalty(customerId) which returns the loyalty score of the customer as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.CustomerLoyaltyService"
+tests:
+  - methodName: "createCustomer"
+    args:
+      - name: "Alice"
+        totalSpend: 1000.00
+        orderCount: 10
+    expectedResult:
+      id: 1
+  - methodName: "createCustomer"
+    args:
+      - name: "Bob"
+        totalSpend: 200.00
+        orderCount: 1
+    expectedResult:
+      id: 2
+  - methodName: "loyalty"
+    args: [1]
+    expectedResult: 10.0
+  - methodName: "loyalty"
+    args: [2]
+    expectedResult: 1.0

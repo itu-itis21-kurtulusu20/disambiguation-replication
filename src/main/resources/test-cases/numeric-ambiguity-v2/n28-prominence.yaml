@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named ProminenceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double prominence(int[] values)
+
+  Requirement:
+  "Return the prominence of the sequence.
+   Prominence measures how much one feature stands out from its surroundings.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ProminenceAmbiguity
+
+tests:
+  - methodName: prominence
+    args: [[1, 100, 1]]
+    expectedResult: 99.0
+  - methodName: prominence
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: prominence
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+  - methodName: prominence
+    args: [[3, 7, 2, 8, 1]]
+    expectedResult: 5.0

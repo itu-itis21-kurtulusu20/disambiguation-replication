@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"store_hour\" CREATE TABLE store_hour ( id SERIAL PRIMARY KEY, day_label VARCHAR(20) NOT NULL, customer_count INTEGER NOT NULL, transaction_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement a method busyness(hourId) that returns a double from 0 to 1, where 1 means extremely busy. Hours with more customers and more transactions should rate higher."
+fullClassName: "com.example.llmdyn.dynamic.service.StoreHourBusynessService"
+tests:
+  - methodName: "createStoreHour"
+    args:
+      - dayLabel: "Sat-12pm"
+        customerCount: 100
+        transactionCount: 80
+    expectedResult:
+      id: 1
+  - methodName: "createStoreHour"
+    args:
+      - dayLabel: "Mon-3am"
+        customerCount: 0
+        transactionCount: 0
+    expectedResult:
+      id: 2
+  - methodName: "busyness"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "busyness"
+    args: [2]
+    expectedResult: 0.0

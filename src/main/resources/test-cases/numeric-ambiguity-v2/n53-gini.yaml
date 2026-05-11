@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named GiniAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double giniIndex(int[] values)
+
+  Requirement:
+  "Return a Gini index measuring inequality across the values.
+   0 means perfect equality. Higher values mean greater inequality.
+   If the array has fewer than 2 elements or all values are zero, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.GiniAmbiguity
+
+tests:
+  - methodName: giniIndex
+    args: [[1, 1, 1, 1]]
+    expectedResult: 0.0
+  - methodName: giniIndex
+    args: [[1, 2, 3, 4]]
+    expectedResult: 0.25
+  - methodName: giniIndex
+    args: [[0, 0, 0, 100]]
+    expectedResult: 0.75
+  - methodName: giniIndex
+    args: [[10, 10, 10, 10, 60]]
+    expectedResult: 0.4

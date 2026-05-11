@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named RadianceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double radiance(int[] values)
+
+  Requirement:
+  "Return the radiance of the dataset.
+   Radiance grows with the brightness and reach of the values from a center.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.RadianceAmbiguity
+
+tests:
+  - methodName: radiance
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 6.0
+  - methodName: radiance
+    args: [[5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: radiance
+    args: [[10, 0, 10, 0]]
+    expectedResult: 20.0
+  - methodName: radiance
+    args: [[1, 1, 1, 100]]
+    expectedResult: 99.0

@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named ShiftFromBaselineAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double shiftFromBaseline(int[] values)
+
+  Requirement:
+  "Return how much the typical value of the dataset has shifted from the baseline value.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ShiftFromBaselineAmbiguity
+
+tests:
+  - methodName: shiftFromBaseline
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 2.0
+  - methodName: shiftFromBaseline
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: shiftFromBaseline
+    args: [[10, 12, 14]]
+    expectedResult: 2.0
+  - methodName: shiftFromBaseline
+    args: [[100, 100, 100, 100]]
+    expectedResult: 0.0

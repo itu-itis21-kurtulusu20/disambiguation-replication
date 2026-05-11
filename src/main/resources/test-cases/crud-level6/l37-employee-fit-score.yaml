@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"applicant\" CREATE TABLE applicant ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, years_experience INTEGER NOT NULL, skill_match_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement a method fitScore(applicantId) that returns a double from 0 to 1, where 1 is a perfect fit. Higher experience and higher skill match should produce a higher score."
+fullClassName: "com.example.llmdyn.dynamic.service.ApplicantFitScoreService"
+tests:
+  - methodName: "createApplicant"
+    args:
+      - name: "Alice"
+        yearsExperience: 10
+        skillMatchPct: 100
+    expectedResult:
+      id: 1
+  - methodName: "createApplicant"
+    args:
+      - name: "Bob"
+        yearsExperience: 0
+        skillMatchPct: 0
+    expectedResult:
+      id: 2
+  - methodName: "fitScore"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "fitScore"
+    args: [2]
+    expectedResult: 0.0

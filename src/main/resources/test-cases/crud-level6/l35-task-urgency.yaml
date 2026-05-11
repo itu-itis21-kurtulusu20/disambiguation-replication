@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"task_item\" CREATE TABLE task_item ( id SERIAL PRIMARY KEY, title VARCHAR(200) NOT NULL, days_to_deadline INTEGER NOT NULL, importance_level INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement a method urgency(taskId) that returns a double from 0 to 1, where 1 is most urgent. Tasks closer to the deadline should be more urgent."
+fullClassName: "com.example.llmdyn.dynamic.service.TaskUrgencyService"
+tests:
+  - methodName: "createTaskItem"
+    args:
+      - title: "T1"
+        daysToDeadline: 0
+        importanceLevel: 5
+    expectedResult:
+      id: 1
+  - methodName: "createTaskItem"
+    args:
+      - title: "T2"
+        daysToDeadline: 30
+        importanceLevel: 1
+    expectedResult:
+      id: 2
+  - methodName: "urgency"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "urgency"
+    args: [2]
+    expectedResult: 0.0

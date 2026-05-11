@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named RelativeRangeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double relativeRange(int[] values)
+
+  Requirement:
+  "Return the range of the data expressed relative to its typical value. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.RelativeRangeAmbiguity
+
+tests:
+  - methodName: relativeRange
+    args: [[10, 20, 30, 40, 50]]
+    expectedResult: 0.6666666666666666
+
+  - methodName: relativeRange
+    args: [[1, 1, 1, 100, 200]]
+    expectedResult: 99.0
+
+  - methodName: relativeRange
+    args: [[100, 100, 100, 100]]
+    expectedResult: 0.0
+
+  - methodName: relativeRange
+    args: [[2, 4, 6, 8, 10]]
+    expectedResult: 0.6666666666666666
+

@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"listing\" CREATE TABLE listing ( id SERIAL PRIMARY KEY, title VARCHAR(200) NOT NULL, days_on_market INTEGER NOT NULL, view_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement freshness(listingId) which returns the freshness of the listing as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.ListingFreshnessService"
+tests:
+  - methodName: "createListing"
+    args:
+      - title: "Brand New"
+        daysOnMarket: 1
+        viewCount: 50
+    expectedResult:
+      id: 1
+  - methodName: "createListing"
+    args:
+      - title: "Stale"
+        daysOnMarket: 90
+        viewCount: 5
+    expectedResult:
+      id: 2
+  - methodName: "freshness"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "freshness"
+    args: [2]
+    expectedResult: 90.0

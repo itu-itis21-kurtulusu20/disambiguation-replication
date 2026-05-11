@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named BaselineDistanceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double distanceFromBaseline(int[] values)
+
+  Requirement:
+  "Return the overall distance of the values from zero. This measures how far the entire dataset sits from the baseline. If fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.BaselineDistanceAmbiguity
+
+tests:
+  - methodName: distanceFromBaseline
+    args: [[3, 4]]
+    expectedResult: 5.0
+
+  - methodName: distanceFromBaseline
+    args: [[1, 1, 1, 1]]
+    expectedResult: 2.0
+
+  - methodName: distanceFromBaseline
+    args: [[0, 0, 0, 5]]
+    expectedResult: 5.0
+
+  - methodName: distanceFromBaseline
+    args: [[1, 2, 3]]
+    expectedResult: 3.7416573867739413
+

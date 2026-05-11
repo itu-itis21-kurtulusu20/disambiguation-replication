@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named SimilarityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double similarity(int[] a, int[] b)
+
+  Requirement:
+  "Return a similarity score between 0.0 and 1.0 between two sets of integers.
+   Higher means more similar.
+   If either array is null or empty, return 0.0."
+
+  Notes:
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.SimilarityAmbiguity
+
+tests:
+  - methodName: similarity
+    args: [[1, 2, 3], [1, 2, 3]]
+    expectedResult: 1.0
+  - methodName: similarity
+    args: [[1, 2, 3], [4, 5, 6]]
+    expectedResult: 0.0
+  - methodName: similarity
+    args: [[1, 2, 3, 4], [3, 4, 5, 6]]
+    expectedResult: 0.333
+  - methodName: similarity
+    args: [[1, 2], [1, 2, 3, 4]]
+    expectedResult: 0.5

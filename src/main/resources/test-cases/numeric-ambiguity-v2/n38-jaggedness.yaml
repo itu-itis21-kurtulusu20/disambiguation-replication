@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named JaggednessAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double jaggedness(int[] values)
+
+  Requirement:
+  "Return a jaggedness score for the sequence.
+   A perfectly straight line has zero jaggedness.
+   The more sharp turns the sequence makes, the higher the jaggedness.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.JaggednessAmbiguity
+
+tests:
+  - methodName: jaggedness
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+  - methodName: jaggedness
+    args: [[1, 5, 1, 5, 1]]
+    expectedResult: 1.0
+  - methodName: jaggedness
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: jaggedness
+    args: [[1, 3, 2, 4, 3, 5]]
+    expectedResult: 0.8

@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named AggregateErrorAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double aggregateError(int[] predicted, int[] actual)
+
+  Requirement:
+  "Return an aggregate error between predicted and actual sequences.
+   Larger individual errors should weigh more in the aggregate.
+   The result should be expressed in the same units as the inputs.
+   If arrays are null, empty, or different lengths, return 0.0."
+
+  Notes:
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AggregateErrorAmbiguity
+
+tests:
+  - methodName: aggregateError
+    args: [[1, 2, 3], [1, 2, 3]]
+    expectedResult: 0.0
+  - methodName: aggregateError
+    args: [[1, 2, 3], [2, 3, 4]]
+    expectedResult: 1.0
+  - methodName: aggregateError
+    args: [[10, 10, 10], [10, 10, 20]]
+    expectedResult: 5.774
+  - methodName: aggregateError
+    args: [[1, 2, 3, 4], [3, 4, 5, 6]]
+    expectedResult: 2.0

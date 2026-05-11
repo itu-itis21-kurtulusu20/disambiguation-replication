@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named GrowthFactorAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double growthFactor(int[] values)
+
+  Requirement:
+  "Return the average growth factor between consecutive values. A factor of 2.0 means values double on average. If fewer than 2 elements or any value is zero, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.GrowthFactorAmbiguity
+
+tests:
+  - methodName: growthFactor
+    args: [[1, 2, 8]]
+    expectedResult: 2.8284271247461903
+
+  - methodName: growthFactor
+    args: [[10, 20, 10]]
+    expectedResult: 1.0
+
+  - methodName: growthFactor
+    args: [[1, 4, 16]]
+    expectedResult: 4.0
+
+  - methodName: growthFactor
+    args: [[100, 200, 100]]
+    expectedResult: 1.0
+

@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"data_point\" CREATE TABLE data_point ( id SERIAL PRIMARY KEY, cluster_label VARCHAR(50) NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement tightness(clusterLabel) which returns how tight the cluster is as a single double from 0 to 1."
+fullClassName: "com.example.llmdyn.dynamic.service.DataPointTightnessService"
+tests:
+  - methodName: "createDataPoint"
+    args:
+      - clusterLabel: "C"
+        value: 5
+    expectedResult:
+      id: 1
+  - methodName: "createDataPoint"
+    args:
+      - clusterLabel: "C"
+        value: 5
+    expectedResult:
+      id: 2
+  - methodName: "createDataPoint"
+    args:
+      - clusterLabel: "C"
+        value: 5
+    expectedResult:
+      id: 3
+  - methodName: "tightness"
+    args: ["C"]
+    expectedResult: 1.0

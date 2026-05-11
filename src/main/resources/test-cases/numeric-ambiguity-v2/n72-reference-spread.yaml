@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named ReferenceSpreadAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double referenceSpread(int[] values)
+
+  Requirement:
+  "Return how spread out the values are around the reference point of the dataset.
+   The reference should be the natural reference point of the data.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ReferenceSpreadAmbiguity
+
+tests:
+  - methodName: referenceSpread
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 2.0
+  - methodName: referenceSpread
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: referenceSpread
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 0.8
+  - methodName: referenceSpread
+    args: [[10, 20, 30, 40]]
+    expectedResult: 15.0

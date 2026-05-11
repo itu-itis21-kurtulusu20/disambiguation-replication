@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"sensor_value\" CREATE TABLE sensor_value ( id SERIAL PRIMARY KEY, sensor_code VARCHAR(50) NOT NULL, reading INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement biasFromTarget(sensorCode) which returns the bias of the sensor's readings relative to the target as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SensorBiasService"
+tests:
+  - methodName: "createSensorValue"
+    args:
+      - sensorCode: "S1"
+        reading: 10
+    expectedResult:
+      id: 1
+  - methodName: "createSensorValue"
+    args:
+      - sensorCode: "S1"
+        reading: 14
+    expectedResult:
+      id: 2
+  - methodName: "createSensorValue"
+    args:
+      - sensorCode: "S1"
+        reading: 18
+    expectedResult:
+      id: 3
+  - methodName: "biasFromTarget"
+    args: ["S1"]
+    expectedResult: 0.0

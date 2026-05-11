@@ -1,0 +1,27 @@
+prompt: "Write a JPA entity class for a table called \"daily_temp\" CREATE TABLE daily_temp ( id SERIAL PRIMARY KEY, day_label VARCHAR(20) NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement percentOfRange(observed) which returns where observed falls within the range of all stored values as a single double from 0 to 1."
+fullClassName: "com.example.llmdyn.dynamic.service.DailyTempRangeService"
+tests:
+  - methodName: "createDailyTemp"
+    args:
+      - dayLabel: "D1"
+        value: 0
+    expectedResult:
+      id: 1
+  - methodName: "createDailyTemp"
+    args:
+      - dayLabel: "D2"
+        value: 50
+    expectedResult:
+      id: 2
+  - methodName: "createDailyTemp"
+    args:
+      - dayLabel: "D3"
+        value: 100
+    expectedResult:
+      id: 3
+  - methodName: "percentOfRange"
+    args: [50]
+    expectedResult: 0.5
+  - methodName: "percentOfRange"
+    args: [25]
+    expectedResult: 0.25

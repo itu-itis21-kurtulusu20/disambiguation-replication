@@ -1,0 +1,18 @@
+prompt: "Write a JPA entity class for a table called \"period_return\" CREATE TABLE period_return ( id SERIAL PRIMARY KEY, period_label VARCHAR(20) NOT NULL, return_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement effectiveRate() which returns the effective compound rate produced by chaining all per-period returns as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.PeriodEffectiveRateService"
+tests:
+  - methodName: "createPeriodReturn"
+    args:
+      - periodLabel: "P1"
+        returnPct: 10
+    expectedResult:
+      id: 1
+  - methodName: "createPeriodReturn"
+    args:
+      - periodLabel: "P2"
+        returnPct: 10
+    expectedResult:
+      id: 2
+  - methodName: "effectiveRate"
+    args: []
+    expectedResult: 10.0

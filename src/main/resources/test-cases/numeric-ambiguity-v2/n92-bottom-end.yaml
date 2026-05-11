@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named BottomEndAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double bottomEnd(int[] values)
+
+  Requirement:
+  "Return the typical value of the bottom end of the dataset.
+   The bottom end represents the lower portion of the values.
+   If the array has fewer than 4 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.BottomEndAmbiguity
+
+tests:
+  - methodName: bottomEnd
+    args: [[1, 2, 3, 4, 5, 6, 7, 8]]
+    expectedResult: 2.5
+  - methodName: bottomEnd
+    args: [[10, 20, 30, 40]]
+    expectedResult: 15.0
+  - methodName: bottomEnd
+    args: [[5, 5, 5, 5]]
+    expectedResult: 5.0
+  - methodName: bottomEnd
+    args: [[1, 2, 3, 4, 100]]
+    expectedResult: 1.5

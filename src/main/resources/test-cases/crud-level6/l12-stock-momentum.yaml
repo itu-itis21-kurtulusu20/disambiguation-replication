@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"stock_quote\" CREATE TABLE stock_quote ( id SERIAL PRIMARY KEY, symbol VARCHAR(10) NOT NULL UNIQUE, price_today NUMERIC(10,2) NOT NULL, price_yesterday NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement momentum(quoteId) which returns the momentum of the stock as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.StockMomentumService"
+tests:
+  - methodName: "createStockQuote"
+    args:
+      - symbol: "ABC"
+        priceToday: 110.00
+        priceYesterday: 100.00
+    expectedResult:
+      id: 1
+  - methodName: "createStockQuote"
+    args:
+      - symbol: "XYZ"
+        priceToday: 90.00
+        priceYesterday: 100.00
+    expectedResult:
+      id: 2
+  - methodName: "momentum"
+    args: [1]
+    expectedResult: 10.0
+  - methodName: "momentum"
+    args: [2]
+    expectedResult: -10.0

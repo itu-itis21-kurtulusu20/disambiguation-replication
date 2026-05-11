@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"portfolio\" CREATE TABLE portfolio ( id SERIAL PRIMARY KEY, owner VARCHAR(150) NOT NULL, asset_count INTEGER NOT NULL, top_holding_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement diversity(portfolioId) which returns the diversity of the portfolio as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.PortfolioDiversityService"
+tests:
+  - methodName: "createPortfolio"
+    args:
+      - owner: "Alice"
+        assetCount: 20
+        topHoldingPct: 5
+    expectedResult:
+      id: 1
+  - methodName: "createPortfolio"
+    args:
+      - owner: "Bob"
+        assetCount: 2
+        topHoldingPct: 80
+    expectedResult:
+      id: 2
+  - methodName: "diversity"
+    args: [1]
+    expectedResult: 20.0
+  - methodName: "diversity"
+    args: [2]
+    expectedResult: 2.0

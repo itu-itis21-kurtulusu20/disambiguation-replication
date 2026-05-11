@@ -1,0 +1,40 @@
+prompt: >
+  Create a Java utility class named OscillationAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+  public static double oscillationScore(int[] values)
+
+  Requirement:
+  "Return a score representing how much the sequence oscillates.
+   A sequence that alternates up and down repeatedly should score high.
+   A sequence that moves in one direction should score low.
+   The score should capture the intensity of the oscillations,
+   not just their frequency."
+
+  Notes:
+  - If null, empty, or fewer than 3 elements, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.OscillationAmbiguity
+
+tests:
+  - methodName: oscillationScore
+    args: [[1, 3, 1, 3, 1]]
+    expectedResult: 4.0
+
+  - methodName: oscillationScore
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+
+  - methodName: oscillationScore
+    args: [[2, 4, 2, 4, 2, 4]]
+    expectedResult: 4.0
+
+  - methodName: oscillationScore
+    args: [[1, 5, 2, 8, 3, 9, 4]]
+    expectedResult: 9.929753269845127
+
+  - methodName: oscillationScore
+    args: [[10, 10, 10, 10]]
+    expectedResult: 0.0

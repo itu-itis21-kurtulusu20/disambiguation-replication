@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named SpreadAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double spread(int[] values)
+
+  Requirement:
+  "Return the spread of the values.
+   The spread should not be unduly influenced by a single extreme value.
+   If the array has fewer than 4 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.SpreadAmbiguity
+
+tests:
+  - methodName: spread
+    args: [[1, 2, 3, 4, 5, 6, 7, 8]]
+    expectedResult: 4.0
+  - methodName: spread
+    args: [[5, 5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: spread
+    args: [[1, 2, 3, 4, 5, 100]]
+    expectedResult: 2.5
+  - methodName: spread
+    args: [[10, 20, 30, 40]]
+    expectedResult: 15.0

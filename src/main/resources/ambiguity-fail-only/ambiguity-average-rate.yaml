@@ -1,0 +1,40 @@
+prompt: >
+  Create a Java utility class named AverageRateAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double averageRate(int[] rates)
+
+  Requirement:
+  "Return the average of the given rate values.
+   Each value represents a speed measured over an equal-length segment of a route.
+   The result should represent the effective overall speed for the entire journey.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AverageRateAmbiguity
+
+tests:
+  - methodName: averageRate
+    args: [[30,60]]
+    expectedResult: 40.0
+
+  - methodName: averageRate
+    args: [[10,20,30]]
+    expectedResult: 16.363636363636363
+
+  - methodName: averageRate
+    args: [[60,60]]
+    expectedResult: 60.0
+
+  - methodName: averageRate
+    args: [[10,1000]]
+    expectedResult: 19.801980198019802
+
+  - methodName: averageRate
+    args: [[40,60,80]]
+    expectedResult: 55.38461538461539

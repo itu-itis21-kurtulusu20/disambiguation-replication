@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"order_item\" CREATE TABLE order_item ( id SERIAL PRIMARY KEY, customer_tier INTEGER NOT NULL, total_amount NUMERIC(10,2) NOT NULL, age_hours INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement priority(orderId) which returns the priority of the order as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.OrderPriorityService"
+tests:
+  - methodName: "createOrderItem"
+    args:
+      - customerTier: 3
+        totalAmount: 1000.00
+        ageHours: 1
+    expectedResult:
+      id: 1
+  - methodName: "createOrderItem"
+    args:
+      - customerTier: 1
+        totalAmount: 50.00
+        ageHours: 0
+    expectedResult:
+      id: 2
+  - methodName: "priority"
+    args: [1]
+    expectedResult: 3.0
+  - methodName: "priority"
+    args: [2]
+    expectedResult: 1.0

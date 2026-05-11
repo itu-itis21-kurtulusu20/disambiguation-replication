@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named NoiseAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double noise(int[] values)
+
+  Requirement:
+  "Return the noise level of the sequence. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.NoiseAmbiguity
+
+tests:
+  - methodName: noise
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+
+  - methodName: noise
+    args: [[1, 10, 1, 10, 1]]
+    expectedResult: 9.0
+
+  - methodName: noise
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+
+  - methodName: noise
+    args: [[1, 2, 1, 2, 1]]
+    expectedResult: 1.0
+

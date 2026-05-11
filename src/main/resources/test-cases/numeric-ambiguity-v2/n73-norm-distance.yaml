@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named NormDistanceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double normDistance(int[] values)
+
+  Requirement:
+  "Return the distance of the values from their norm.
+   Use the natural norm appropriate to the data.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.NormDistanceAmbiguity
+
+tests:
+  - methodName: normDistance
+    args: [[3, 4]]
+    expectedResult: 5.0
+  - methodName: normDistance
+    args: [[1, 1, 1, 1]]
+    expectedResult: 2.0
+  - methodName: normDistance
+    args: [[0, 0, 0]]
+    expectedResult: 0.0
+  - methodName: normDistance
+    args: [[5, 5, 5]]
+    expectedResult: 8.66

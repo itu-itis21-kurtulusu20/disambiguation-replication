@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named OpacityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double opacity(int[] values)
+
+  Requirement:
+  "Return the opacity of the dataset.
+   Opaque datasets reveal little structure to a casual observer.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.OpacityAmbiguity
+
+tests:
+  - methodName: opacity
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+  - methodName: opacity
+    args: [[3, 1, 4, 1, 5, 9, 2, 6]]
+    expectedResult: 0.875
+  - methodName: opacity
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: opacity
+    args: [[7, 3, 8, 2, 9]]
+    expectedResult: 1.0

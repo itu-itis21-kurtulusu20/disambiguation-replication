@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"vehicle\" CREATE TABLE vehicle ( id SERIAL PRIMARY KEY, plate VARCHAR(20) NOT NULL UNIQUE, mileage_km INTEGER NOT NULL, age_years INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement wear(vehicleId) which returns the wear of the vehicle as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.VehicleWearService"
+tests:
+  - methodName: "createVehicle"
+    args:
+      - plate: "AAA-001"
+        mileageKm: 100000
+        ageYears: 5
+    expectedResult:
+      id: 1
+  - methodName: "createVehicle"
+    args:
+      - plate: "BBB-002"
+        mileageKm: 10000
+        ageYears: 1
+    expectedResult:
+      id: 2
+  - methodName: "wear"
+    args: [1]
+    expectedResult: 500000.0
+  - methodName: "wear"
+    args: [2]
+    expectedResult: 10000.0

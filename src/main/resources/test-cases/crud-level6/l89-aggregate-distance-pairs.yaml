@@ -1,0 +1,18 @@
+prompt: "Write a JPA entity class for a table called \"point_diff\" CREATE TABLE point_diff ( id SERIAL PRIMARY KEY, group_label VARCHAR(50) NOT NULL, diff INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement aggregateDistance(groupLabel) which returns the aggregate distance contributed by the group's diffs as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.PointDiffAggService"
+tests:
+  - methodName: "createPointDiff"
+    args:
+      - groupLabel: "G"
+        diff: 3
+    expectedResult:
+      id: 1
+  - methodName: "createPointDiff"
+    args:
+      - groupLabel: "G"
+        diff: 4
+    expectedResult:
+      id: 2
+  - methodName: "aggregateDistance"
+    args: ["G"]
+    expectedResult: 7.0

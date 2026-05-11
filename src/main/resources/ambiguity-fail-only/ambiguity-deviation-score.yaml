@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named DeviationScoreAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double deviationScore(int[] values)
+
+  Requirement:
+  "Return a score measuring how far the values deviate from the center on average, normalized by the scale of the data. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DeviationScoreAmbiguity
+
+tests:
+  - methodName: deviationScore
+    args: [[10, 20, 30]]
+    expectedResult: 0.3333333333333333
+
+  - methodName: deviationScore
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 1.5230769230769232
+
+  - methodName: deviationScore
+    args: [[100, 100, 100]]
+    expectedResult: 0.0
+
+  - methodName: deviationScore
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.4
+

@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"bonus_step\" CREATE TABLE bonus_step ( id SERIAL PRIMARY KEY, step_name VARCHAR(50) NOT NULL, multiplier_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement cumulativeEffect() which returns the combined effect of all bonus steps applied as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.BonusStepCumService"
+tests:
+  - methodName: "createBonusStep"
+    args:
+      - stepName: "S1"
+        multiplierPct: 10
+    expectedResult:
+      id: 1
+  - methodName: "createBonusStep"
+    args:
+      - stepName: "S2"
+        multiplierPct: 20
+    expectedResult:
+      id: 2
+  - methodName: "createBonusStep"
+    args:
+      - stepName: "S3"
+        multiplierPct: 30
+    expectedResult:
+      id: 3
+  - methodName: "cumulativeEffect"
+    args: []
+    expectedResult: 1.716

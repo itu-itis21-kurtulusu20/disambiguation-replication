@@ -1,0 +1,40 @@
+prompt: >
+  Create a Java utility class named PositionalMedianAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double positionalMedian(int[] values)
+
+  Requirement:
+  "Return the middle value of the dataset, where later positions
+   carry more importance than earlier ones.
+   The first position has weight 1, the second has weight 2,
+   and so on.
+   If null or empty, return 0.0."
+
+  Notes:
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.PositionalMedianAmbiguity
+
+tests:
+  - methodName: positionalMedian
+    args: [[1,2,3,4,5]]
+    expectedResult: 4.0
+
+  - methodName: positionalMedian
+    args: [[3,1,2]]
+    expectedResult: 2.0
+
+  - methodName: positionalMedian
+    args: [[10,1,1,1,1]]
+    expectedResult: 1.0
+
+  - methodName: positionalMedian
+    args: [[2,4,6,8,10]]
+    expectedResult: 8.0
+
+  - methodName: positionalMedian
+    args: [[5,3,1,2,4]]
+    expectedResult: 2.0

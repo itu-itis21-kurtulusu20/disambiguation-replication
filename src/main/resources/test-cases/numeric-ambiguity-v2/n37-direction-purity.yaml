@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named DirectionPurityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double directionPurity(int[] values)
+
+  Requirement:
+  "Return a score from -1.0 to 1.0 measuring directional purity.
+   1.0 means every step is positive; -1.0 means every step is negative;
+   0.0 means an equal mix of positive and negative steps.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DirectionPurityAmbiguity
+
+tests:
+  - methodName: directionPurity
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+  - methodName: directionPurity
+    args: [[5, 4, 3, 2, 1]]
+    expectedResult: -1.0
+  - methodName: directionPurity
+    args: [[1, 2, 1, 2, 1, 2]]
+    expectedResult: 0.0
+  - methodName: directionPurity
+    args: [[1, 2, 3, 2, 1]]
+    expectedResult: 0.0

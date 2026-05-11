@@ -1,0 +1,39 @@
+prompt: >
+  Create a Java utility class named RangeRatioAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+  public static double relativeSpread(int[] values)
+
+  Requirement:
+  "Return a score representing how spread out the values are
+   relative to the scale of the data.
+   The spread should be expressed as a ratio, so that
+   multiplying all values by a constant does not change the result."
+
+  Notes:
+  - If null, empty, or all values are zero, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.RangeRatioAmbiguity
+
+tests:
+  - methodName: relativeSpread
+    args: [[10, 20, 30]]
+    expectedResult: 1.0
+
+  - methodName: relativeSpread
+    args: [[5, 10, 15, 20]]
+    expectedResult: 1.2
+
+  - methodName: relativeSpread
+    args: [[100, 200]]
+    expectedResult: 0.6666666666666666
+
+  - methodName: relativeSpread
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.3333333333333333
+
+  - methodName: relativeSpread
+    args: [[10, 10, 10, 50]]
+    expectedResult: 2.0

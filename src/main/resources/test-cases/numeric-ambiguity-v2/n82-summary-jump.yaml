@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named SummaryJumpAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double summaryJump(int[] values)
+
+  Requirement:
+  "Return a summary measure of the jumps between consecutive values.
+   Choose a measure that reflects what most jumps look like.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.SummaryJumpAmbiguity
+
+tests:
+  - methodName: summaryJump
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+  - methodName: summaryJump
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: summaryJump
+    args: [[1, 2, 3, 4, 100]]
+    expectedResult: 2.0
+  - methodName: summaryJump
+    args: [[10, 5, 0, -5]]
+    expectedResult: -5.0

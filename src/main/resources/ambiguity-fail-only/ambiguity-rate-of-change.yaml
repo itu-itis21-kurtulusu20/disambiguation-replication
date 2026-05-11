@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named RateOfChangeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double rateOfChange(int[] values)
+
+  Requirement:
+  "Return the rate of change of the sequence. The rate should account for all values, not just the endpoints. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.RateOfChangeAmbiguity
+
+tests:
+  - methodName: rateOfChange
+    args: [[1, 10, 2, 9]]
+    expectedResult: 1.6
+
+  - methodName: rateOfChange
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+
+  - methodName: rateOfChange
+    args: [[10, 1, 10, 1]]
+    expectedResult: -1.8
+
+  - methodName: rateOfChange
+    args: [[1, 1, 1, 10]]
+    expectedResult: 2.7
+

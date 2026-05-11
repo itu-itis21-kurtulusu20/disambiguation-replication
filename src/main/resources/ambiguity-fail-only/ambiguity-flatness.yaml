@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named FlatnessAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double flatness(int[] values)
+
+  Requirement:
+  "Return a flatness score. A perfectly flat sequence scores 1.0. The more variation, the lower the score. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.FlatnessAmbiguity
+
+tests:
+  - methodName: flatness
+    args: [[5, 5, 5, 5]]
+    expectedResult: 1.0
+
+  - methodName: flatness
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.6796227589829592
+
+  - methodName: flatness
+    args: [[1, 1, 1, 100]]
+    expectedResult: 0.37543678717975815
+
+  - methodName: flatness
+    args: [[10, 10, 11, 10]]
+    expectedResult: 0.9594178403100093
+

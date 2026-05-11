@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named VolatilityIndexAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double volatilityIndex(int[] values)
+
+  Requirement:
+  "Return the volatility index. A measure of how rapidly and by how much the values change. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.VolatilityIndexAmbiguity
+
+tests:
+  - methodName: volatilityIndex
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+
+  - methodName: volatilityIndex
+    args: [[1, 10, 1, 10]]
+    expectedResult: 8.48528137423857
+
+  - methodName: volatilityIndex
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+
+  - methodName: volatilityIndex
+    args: [[1, 1, 1, 100]]
+    expectedResult: 46.6690477916298
+

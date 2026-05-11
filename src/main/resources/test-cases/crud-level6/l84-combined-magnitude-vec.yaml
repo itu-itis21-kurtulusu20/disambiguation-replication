@@ -1,0 +1,18 @@
+prompt: "Write a JPA entity class for a table called \"vector_comp\" CREATE TABLE vector_comp ( id SERIAL PRIMARY KEY, vector_id INTEGER NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement combinedMagnitude(vectorId) which returns the combined magnitude of all components in the vector as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.VectorCompMagnitudeService"
+tests:
+  - methodName: "createVectorComp"
+    args:
+      - vectorId: 1
+        value: 3
+    expectedResult:
+      id: 1
+  - methodName: "createVectorComp"
+    args:
+      - vectorId: 1
+        value: 4
+    expectedResult:
+      id: 2
+  - methodName: "combinedMagnitude"
+    args: [1]
+    expectedResult: 5.0

@@ -1,0 +1,41 @@
+prompt: >
+  Create a Java utility class named ConsistencyAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double consistencyScore(int[] values)
+
+  Requirement (intentionally ambiguous):
+
+  "Return a score that represents how consistent the values are.
+   The more spread out they are, the less consistent they are.
+   Return a single numeric score."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ConsistencyAmbiguity
+
+tests:
+  # We enforce RANGE = max - min
+  - methodName: consistencyScore
+    args: [[1,2,3,4,5]]
+    expectedResult: 4.0
+
+  - methodName: consistencyScore
+    args: [[10,10,10]]
+    expectedResult: 0.0
+
+  - methodName: consistencyScore
+    args: [[5,20,15]]
+    expectedResult: 15.0
+
+  - methodName: consistencyScore
+    args: [[-5,5]]
+    expectedResult: 10.0
+
+  - methodName: consistencyScore
+    args: [[100,50,75,25]]
+    expectedResult: 75.0

@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"policy_doc\" CREATE TABLE policy_doc ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, page_count INTEGER NOT NULL, exception_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement clarity(policyId) which returns the clarity of the policy as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.PolicyDocClarityService"
+tests:
+  - methodName: "createPolicyDoc"
+    args:
+      - name: "P1"
+        pageCount: 5
+        exceptionCount: 0
+    expectedResult:
+      id: 1
+  - methodName: "createPolicyDoc"
+    args:
+      - name: "P2"
+        pageCount: 100
+        exceptionCount: 50
+    expectedResult:
+      id: 2
+  - methodName: "clarity"
+    args: [1]
+    expectedResult: 5.0
+  - methodName: "clarity"
+    args: [2]
+    expectedResult: 100.0

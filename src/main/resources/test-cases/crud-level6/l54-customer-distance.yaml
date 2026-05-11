@@ -1,0 +1,25 @@
+prompt: "Write a JPA entity class for a table called \"customer_pair\" CREATE TABLE customer_pair ( id SERIAL PRIMARY KEY, x1 INTEGER NOT NULL, y1 INTEGER NOT NULL, x2 INTEGER NOT NULL, y2 INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement distance(pairId) which returns the distance between the two points as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.CustomerPairDistService"
+tests:
+  - methodName: "createCustomerPair"
+    args:
+      - x1: 0
+        y1: 0
+        x2: 3
+        y2: 4
+    expectedResult:
+      id: 1
+  - methodName: "createCustomerPair"
+    args:
+      - x1: 0
+        y1: 0
+        x2: 0
+        y2: 5
+    expectedResult:
+      id: 2
+  - methodName: "distance"
+    args: [1]
+    expectedResult: 7.0
+  - methodName: "distance"
+    args: [2]
+    expectedResult: 5.0

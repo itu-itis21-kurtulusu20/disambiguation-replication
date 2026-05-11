@@ -1,0 +1,35 @@
+prompt: >
+  Create a Java utility class named AccelerationScoreAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double accelerationScore(int[] values)
+
+  Requirement:
+  "Compute the per-step ratio r[i] = values[i+1] / values[i] for i = 0..n-2,
+   skipping any step where values[i] = 0.
+   If r is monotonically increasing (each r[i+1] >= r[i]) and not constant, return 1.0.
+   If r is monotonically decreasing (each r[i+1] <= r[i]) and not constant, return -1.0.
+   Otherwise return 0.0.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AccelerationScoreAmbiguity
+
+tests:
+  - methodName: accelerationScore
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+  - methodName: accelerationScore
+    args: [[1, 2, 4, 8, 16]]
+    expectedResult: 1.0
+  - methodName: accelerationScore
+    args: [[16, 8, 4, 2, 1]]
+    expectedResult: -1.0
+  - methodName: accelerationScore
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0

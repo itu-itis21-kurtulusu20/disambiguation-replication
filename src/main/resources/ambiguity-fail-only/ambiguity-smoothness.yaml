@@ -1,0 +1,36 @@
+prompt: >
+  Create a Java utility class named SmoothnessAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double smoothness(int[] values)
+
+  Requirement:
+  "Return a score from 0 to 1 measuring how smooth the sequence is.
+   A monotonically increasing or decreasing sequence is perfectly smooth (1.0).
+   A wildly oscillating sequence has low smoothness (close to 0.0).
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.SmoothnessAmbiguity
+
+tests:
+  - methodName: smoothness
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+  - methodName: smoothness
+    args: [[5, 4, 3, 2, 1]]
+    expectedResult: 1.0
+  - methodName: smoothness
+    args: [[1, 3, 1, 3, 1]]
+    expectedResult: 0.0
+  - methodName: smoothness
+    args: [[1, 2, 1, 2, 1, 2]]
+    expectedResult: 0.0
+  - methodName: smoothness
+    args: [[1, 2, 3, 2, 4]]
+    expectedResult: 0.3333333333333333

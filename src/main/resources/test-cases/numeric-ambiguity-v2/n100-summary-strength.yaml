@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named SummaryStrengthAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double summaryStrength(int[] values)
+
+  Requirement:
+  "Return a single number summarizing the strength of the dataset.
+   The result should reflect how dominant the values are taken together.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.SummaryStrengthAmbiguity
+
+tests:
+  - methodName: summaryStrength
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 5.0
+  - methodName: summaryStrength
+    args: [[5, 5, 5, 5]]
+    expectedResult: 5.0
+  - methodName: summaryStrength
+    args: [[10, 10, 10]]
+    expectedResult: 10.0
+  - methodName: summaryStrength
+    args: [[-5, 0, 5]]
+    expectedResult: 5.0

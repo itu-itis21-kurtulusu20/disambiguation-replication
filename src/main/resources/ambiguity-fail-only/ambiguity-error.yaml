@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named ErrorAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double error(int[] values)
+
+  Requirement:
+  "Return the average error of the values compared to zero. If fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ErrorAmbiguity
+
+tests:
+  - methodName: error
+    args: [[-3, 3, -3, 3]]
+    expectedResult: 0.0
+
+  - methodName: error
+    args: [[1, 2, 3]]
+    expectedResult: 2.0
+
+  - methodName: error
+    args: [[-5, 10]]
+    expectedResult: 2.5
+
+  - methodName: error
+    args: [[0, 0, 0, 0]]
+    expectedResult: 0.0
+

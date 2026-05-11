@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named TrendConfidenceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double trendConfidence(int[] values)
+
+  Requirement:
+  "Return a confidence score from 0.0 to 1.0 in whether the sequence has a clear trend.
+   A perfectly noisy random walk should score near 0.0.
+   A clean monotonic line should score near 1.0.
+   If the array has fewer than 4 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.TrendConfidenceAmbiguity
+
+tests:
+  - methodName: trendConfidence
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+  - methodName: trendConfidence
+    args: [[5, 4, 3, 2, 1]]
+    expectedResult: 1.0
+  - methodName: trendConfidence
+    args: [[1, 5, 2, 8, 3, 7]]
+    expectedResult: 0.4
+  - methodName: trendConfidence
+    args: [[5, 5, 5, 5, 5]]
+    expectedResult: 0.0

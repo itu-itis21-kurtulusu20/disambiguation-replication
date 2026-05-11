@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"budget_item\" CREATE TABLE budget_item ( id SERIAL PRIMARY KEY, line_item VARCHAR(100) NOT NULL, amount INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement elevation() which returns the elevation of the budget items as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.BudgetElevationService"
+tests:
+  - methodName: "createBudgetItem"
+    args:
+      - lineItem: "A"
+        amount: 10
+    expectedResult:
+      id: 1
+  - methodName: "createBudgetItem"
+    args:
+      - lineItem: "B"
+        amount: 20
+    expectedResult:
+      id: 2
+  - methodName: "createBudgetItem"
+    args:
+      - lineItem: "C"
+        amount: 30
+    expectedResult:
+      id: 3
+  - methodName: "elevation"
+    args: []
+    expectedResult: 30.0

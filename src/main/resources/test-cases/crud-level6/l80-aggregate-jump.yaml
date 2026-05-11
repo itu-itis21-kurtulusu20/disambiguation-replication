@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"trade_tick\" CREATE TABLE trade_tick ( id SERIAL PRIMARY KEY, symbol VARCHAR(10) NOT NULL, price INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement aggregateJump(symbol) which returns the aggregate jump across consecutive trades for that symbol as a single double, where larger jumps weigh more."
+fullClassName: "com.example.llmdyn.dynamic.service.TradeJumpService"
+tests:
+  - methodName: "createTradeTick"
+    args:
+      - symbol: "X"
+        price: 100
+    expectedResult:
+      id: 1
+  - methodName: "createTradeTick"
+    args:
+      - symbol: "X"
+        price: 101
+    expectedResult:
+      id: 2
+  - methodName: "createTradeTick"
+    args:
+      - symbol: "X"
+        price: 102
+    expectedResult:
+      id: 3
+  - methodName: "createTradeTick"
+    args:
+      - symbol: "X"
+        price: 200
+    expectedResult:
+      id: 4
+  - methodName: "aggregateJump"
+    args: ["X"]
+    expectedResult: 56.586

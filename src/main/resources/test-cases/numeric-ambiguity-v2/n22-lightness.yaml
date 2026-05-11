@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named LightnessAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double lightness(int[] values)
+
+  Requirement:
+  "Return the lightness of the dataset.
+   A light dataset feels airy and free of heavy concentrations.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.LightnessAmbiguity
+
+tests:
+  - methodName: lightness
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+  - methodName: lightness
+    args: [[100, 100, 100, 100]]
+    expectedResult: 0.0
+  - methodName: lightness
+    args: [[1, 1, 1, 100]]
+    expectedResult: 0.25
+  - methodName: lightness
+    args: [[5, 10, 15, 20]]
+    expectedResult: 0.75

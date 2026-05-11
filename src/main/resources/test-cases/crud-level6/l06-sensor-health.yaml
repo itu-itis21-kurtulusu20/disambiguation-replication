@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"sensor\" CREATE TABLE sensor ( id SERIAL PRIMARY KEY, code VARCHAR(50) NOT NULL UNIQUE, error_count INTEGER NOT NULL, total_readings INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement health(sensorId) which returns the health of the sensor as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SensorHealthService"
+tests:
+  - methodName: "createSensor"
+    args:
+      - code: "S-001"
+        errorCount: 0
+        totalReadings: 1000
+    expectedResult:
+      id: 1
+  - methodName: "createSensor"
+    args:
+      - code: "S-002"
+        errorCount: 50
+        totalReadings: 100
+    expectedResult:
+      id: 2
+  - methodName: "health"
+    args: [1]
+    expectedResult: 1000.0
+  - methodName: "health"
+    args: [2]
+    expectedResult: 50.0

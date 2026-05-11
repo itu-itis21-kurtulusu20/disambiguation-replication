@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named ErrorMetricAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double errorMetric(int[] predicted, int[] actual)
+
+  Requirement:
+  "Return an error metric comparing predicted to actual values.
+   The metric should be expressed in the same units as the inputs.
+   Larger errors should contribute more, but the metric must remain interpretable as an average error.
+   If arrays are null, empty, or different lengths, return 0.0."
+
+  Notes:
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ErrorMetricAmbiguity
+
+tests:
+  - methodName: errorMetric
+    args: [[1, 2, 3], [1, 2, 3]]
+    expectedResult: 0.0
+  - methodName: errorMetric
+    args: [[1, 2, 3], [2, 3, 4]]
+    expectedResult: 1.0
+  - methodName: errorMetric
+    args: [[10, 20, 30], [12, 18, 33]]
+    expectedResult: 2.333
+  - methodName: errorMetric
+    args: [[5, 5, 5], [0, 5, 10]]
+    expectedResult: 3.333

@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named CleanlinessScoreAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double cleanlinessScore(int[] values)
+
+  Requirement:
+  "Define an outlier as any value v with |v - median| > 2 * MAD,
+   where MAD = median(|v_i - median|).
+   Return 1.0 - (outlier_count / array_length), rounded to 3 decimals.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.CleanlinessScoreAmbiguity
+
+tests:
+  - methodName: cleanlinessScore
+    args: [[5, 5, 5, 5, 5]]
+    expectedResult: 1.0
+  - methodName: cleanlinessScore
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.0
+  - methodName: cleanlinessScore
+    args: [[1, 2, 3, 100, 4, 5]]
+    expectedResult: 0.833
+  - methodName: cleanlinessScore
+    args: [[1, 1, 1, 1, 999]]
+    expectedResult: 0.8

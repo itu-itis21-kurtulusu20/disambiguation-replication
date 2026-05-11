@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named EnergyAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double energy(int[] values)
+
+  Requirement:
+  "Return the energy of the dataset.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.EnergyAmbiguity
+
+tests:
+  - methodName: energy
+    args: [[1, 2, 3]]
+    expectedResult: 6.0
+  - methodName: energy
+    args: [[-1, 1, -1, 1]]
+    expectedResult: 4.0
+  - methodName: energy
+    args: [[10]]
+    expectedResult: 10.0
+  - methodName: energy
+    args: [[0, 0, 0]]
+    expectedResult: 0.0

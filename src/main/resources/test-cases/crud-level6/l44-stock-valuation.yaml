@@ -1,0 +1,20 @@
+prompt: "Write a JPA entity class for a table called \"stock_lot\" CREATE TABLE stock_lot ( id SERIAL PRIMARY KEY, sku VARCHAR(50) NOT NULL, units INTEGER NOT NULL, unit_cost NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement consumeAndValue(sku, units) which removes units from stock for that sku and returns the cost of the units consumed as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.StockLotValuationService"
+tests:
+  - methodName: "createStockLot"
+    args:
+      - sku: "A"
+        units: 10
+        unitCost: 5.00
+    expectedResult:
+      id: 1
+  - methodName: "createStockLot"
+    args:
+      - sku: "A"
+        units: 10
+        unitCost: 7.00
+    expectedResult:
+      id: 2
+  - methodName: "consumeAndValue"
+    args: ["A", 5]
+    expectedResult: 25.0

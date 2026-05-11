@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named AverageSpeedAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double averageSpeed(int[] values)
+
+  Requirement:
+  "Return the average speed given speeds for equal-distance segments. If fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AverageSpeedAmbiguity
+
+tests:
+  - methodName: averageSpeed
+    args: [[60, 40]]
+    expectedResult: 48.0
+
+  - methodName: averageSpeed
+    args: [[30, 60, 90]]
+    expectedResult: 49.09090909090909
+
+  - methodName: averageSpeed
+    args: [[100, 100]]
+    expectedResult: 100.0
+
+  - methodName: averageSpeed
+    args: [[10, 1000]]
+    expectedResult: 19.801980198019802
+

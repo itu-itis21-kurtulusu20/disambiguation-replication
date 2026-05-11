@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named HarmonyAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double harmony(int[] values)
+
+  Requirement:
+  "Return the harmony of the sequence.
+   A harmonious sequence shows pleasant proportions between consecutive values.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.HarmonyAmbiguity
+
+tests:
+  - methodName: harmony
+    args: [[2, 4, 8, 16]]
+    expectedResult: 1.0
+  - methodName: harmony
+    args: [[1, 2, 3, 4]]
+    expectedResult: 0.5
+  - methodName: harmony
+    args: [[1, 100, 2, 99]]
+    expectedResult: 0.0
+  - methodName: harmony
+    args: [[3, 3, 3]]
+    expectedResult: 1.0

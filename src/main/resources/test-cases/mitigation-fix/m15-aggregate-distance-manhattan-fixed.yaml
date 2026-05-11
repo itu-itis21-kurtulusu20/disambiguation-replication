@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named AggregateDistanceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double aggregateDistance(int[] a, int[] b)
+
+  Requirement:
+  "Return the MANHATTAN (L1) distance between two equal-length sequences:
+   sum over i of |a[i] - b[i]|.
+   If arrays are null, empty, or different lengths, return 0.0."
+
+  Notes:
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AggregateDistanceAmbiguity
+
+tests:
+  - methodName: aggregateDistance
+    args: [[0, 0, 0], [3, 4, 0]]
+    expectedResult: 7.0
+  - methodName: aggregateDistance
+    args: [[1, 2, 3], [1, 2, 3]]
+    expectedResult: 0.0
+  - methodName: aggregateDistance
+    args: [[0, 0], [3, 4]]
+    expectedResult: 7.0
+  - methodName: aggregateDistance
+    args: [[5, 5, 5], [10, 10, 10]]
+    expectedResult: 15.0

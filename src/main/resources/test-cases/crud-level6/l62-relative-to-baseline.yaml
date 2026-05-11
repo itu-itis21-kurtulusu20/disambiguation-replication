@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"metric_sample\" CREATE TABLE metric_sample ( id SERIAL PRIMARY KEY, metric_name VARCHAR(50) NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement relativeToBaseline(metricName, observed) which returns observed compared to the baseline as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.MetricBaselineService"
+tests:
+  - methodName: "createMetricSample"
+    args:
+      - metricName: "M"
+        value: 80
+    expectedResult:
+      id: 1
+  - methodName: "createMetricSample"
+    args:
+      - metricName: "M"
+        value: 100
+    expectedResult:
+      id: 2
+  - methodName: "createMetricSample"
+    args:
+      - metricName: "M"
+        value: 120
+    expectedResult:
+      id: 3
+  - methodName: "relativeToBaseline"
+    args: ["M", 110]
+    expectedResult: 10.0

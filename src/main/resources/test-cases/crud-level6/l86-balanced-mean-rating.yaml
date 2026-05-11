@@ -1,0 +1,36 @@
+prompt: "Write a JPA entity class for a table called \"judge_score\" CREATE TABLE judge_score ( id SERIAL PRIMARY KEY, contestant VARCHAR(100) NOT NULL, score INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement balancedMean(contestant) which returns the balanced mean score for that contestant as a single double, ignoring the most extreme values."
+fullClassName: "com.example.llmdyn.dynamic.service.JudgeBalancedMeanService"
+tests:
+  - methodName: "createJudgeScore"
+    args:
+      - contestant: "A"
+        score: 7
+    expectedResult:
+      id: 1
+  - methodName: "createJudgeScore"
+    args:
+      - contestant: "A"
+        score: 8
+    expectedResult:
+      id: 2
+  - methodName: "createJudgeScore"
+    args:
+      - contestant: "A"
+        score: 9
+    expectedResult:
+      id: 3
+  - methodName: "createJudgeScore"
+    args:
+      - contestant: "A"
+        score: 1
+    expectedResult:
+      id: 4
+  - methodName: "createJudgeScore"
+    args:
+      - contestant: "A"
+        score: 10
+    expectedResult:
+      id: 5
+  - methodName: "balancedMean"
+    args: ["A"]
+    expectedResult: 8.0

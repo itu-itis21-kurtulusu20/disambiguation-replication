@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named AggregateJumpAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double aggregateJump(int[] values)
+
+  Requirement:
+  "Return the MAXIMUM ABSOLUTE jump between consecutive values:
+   max over i of |values[i+1] - values[i]|.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AggregateJumpAmbiguity
+
+tests:
+  - methodName: aggregateJump
+    args: [[1, 2, 3, 4]]
+    expectedResult: 1.0
+  - methodName: aggregateJump
+    args: [[1, 1, 1, 1]]
+    expectedResult: 0.0
+  - methodName: aggregateJump
+    args: [[1, 5, 1, 5, 1]]
+    expectedResult: 4.0
+  - methodName: aggregateJump
+    args: [[1, 100, 1]]
+    expectedResult: 99.0

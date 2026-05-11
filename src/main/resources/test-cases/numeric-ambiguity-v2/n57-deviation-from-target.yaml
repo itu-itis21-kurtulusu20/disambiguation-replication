@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named DeviationFromTargetAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double deviationFromTarget(int[] values)
+
+  Requirement:
+  "Return how much, on average, the values deviate from the target value of the dataset.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DeviationFromTargetAmbiguity
+
+tests:
+  - methodName: deviationFromTarget
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: deviationFromTarget
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.2
+  - methodName: deviationFromTarget
+    args: [[10, 10, 10, 100]]
+    expectedResult: 22.5
+  - methodName: deviationFromTarget
+    args: [[3, 3, 3, 3]]
+    expectedResult: 0.0

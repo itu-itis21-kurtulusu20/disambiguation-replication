@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named MeanDeviationAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double averageDeviation(int[] values)
+
+  Requirement:
+  "Return the average absolute deviation of the values from their center.
+   This measures how far, on average, each value is from the middle of the dataset.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.MeanDeviationAmbiguity
+
+tests:
+  - methodName: averageDeviation
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.2
+  - methodName: averageDeviation
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 19.8
+  - methodName: averageDeviation
+    args: [[10, 20, 30, 40, 50]]
+    expectedResult: 12.0
+  - methodName: averageDeviation
+    args: [[1, 2, 3, 100]]
+    expectedResult: 25.0

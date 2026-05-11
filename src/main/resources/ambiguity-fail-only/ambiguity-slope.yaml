@@ -1,0 +1,40 @@
+prompt: >
+  Create a Java utility class named SlopeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+  public static double averageSlope(int[] values)
+
+  Requirement:
+  "Return the average rate of change of the sequence.
+   The result should account for all values in the sequence,
+   not just the first and last.
+   An increasing sequence returns a positive value,
+   a decreasing sequence returns a negative value."
+
+  Notes:
+  - If null, empty, or single element, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.SlopeAmbiguity
+
+tests:
+  - methodName: averageSlope
+    args: [[0, 0, 0, 10]]
+    expectedResult: 3.0
+
+  - methodName: averageSlope
+    args: [[3, 3, 3, 3, 3]]
+    expectedResult: 0.0
+
+  - methodName: averageSlope
+    args: [[10, 8, 6, 4, 2]]
+    expectedResult: -2.0
+
+  - methodName: averageSlope
+    args: [[1, 3, 2, 4, 3, 5]]
+    expectedResult: 0.6285714285714286
+
+  - methodName: averageSlope
+    args: [[0, 10]]
+    expectedResult: 10.0

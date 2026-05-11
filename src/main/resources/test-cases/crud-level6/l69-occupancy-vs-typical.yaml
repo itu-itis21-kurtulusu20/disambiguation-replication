@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"hotel_night\" CREATE TABLE hotel_night ( id SERIAL PRIMARY KEY, hotel VARCHAR(100) NOT NULL, occupancy_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement abnormalNights(hotel) which returns the count of nights whose occupancy is far from the typical pattern as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.HotelOccupancyAbnormalService"
+tests:
+  - methodName: "createHotelNight"
+    args:
+      - hotel: "H"
+        occupancyPct: 80
+    expectedResult:
+      id: 1
+  - methodName: "createHotelNight"
+    args:
+      - hotel: "H"
+        occupancyPct: 82
+    expectedResult:
+      id: 2
+  - methodName: "createHotelNight"
+    args:
+      - hotel: "H"
+        occupancyPct: 78
+    expectedResult:
+      id: 3
+  - methodName: "createHotelNight"
+    args:
+      - hotel: "H"
+        occupancyPct: 20
+    expectedResult:
+      id: 4
+  - methodName: "abnormalNights"
+    args: ["H"]
+    expectedResult: 1.0

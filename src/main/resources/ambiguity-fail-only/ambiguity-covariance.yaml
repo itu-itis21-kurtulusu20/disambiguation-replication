@@ -1,0 +1,30 @@
+prompt: >
+  Create a Java utility class named CovarianceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double covariance(int[] values)
+
+  Requirement:
+  "Return the covariance between the first half and second half of the array. This measures how they co-vary. If the array has fewer than 4 elements or odd length, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.CovarianceAmbiguity
+
+tests:
+  - methodName: covariance
+    args: [[1, 2, 3, 4, 10, 20, 30, 40]]
+    expectedResult: 12.5
+
+  - methodName: covariance
+    args: [[1, 1, 1, 1, 5, 5, 5, 5]]
+    expectedResult: 0.0
+
+  - methodName: covariance
+    args: [[10, 20, 30, 40, 40, 30, 20, 10]]
+    expectedResult: -12.5
+

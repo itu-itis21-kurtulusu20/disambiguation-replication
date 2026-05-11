@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"hourly_traffic\" CREATE TABLE hourly_traffic ( id SERIAL PRIMARY KEY, hour_of_day INTEGER NOT NULL, visits INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement peakPosition() which returns the position of the peak in the dataset as a single double from 0 to 1."
+fullClassName: "com.example.llmdyn.dynamic.service.HourlyTrafficPeakService"
+tests:
+  - methodName: "createHourlyTraffic"
+    args:
+      - hourOfDay: 0
+        visits: 10
+    expectedResult:
+      id: 1
+  - methodName: "createHourlyTraffic"
+    args:
+      - hourOfDay: 1
+        visits: 20
+    expectedResult:
+      id: 2
+  - methodName: "createHourlyTraffic"
+    args:
+      - hourOfDay: 2
+        visits: 100
+    expectedResult:
+      id: 3
+  - methodName: "createHourlyTraffic"
+    args:
+      - hourOfDay: 3
+        visits: 30
+    expectedResult:
+      id: 4
+  - methodName: "peakPosition"
+    args: []
+    expectedResult: 0.667

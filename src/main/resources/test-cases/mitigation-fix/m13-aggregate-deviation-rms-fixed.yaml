@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named AggregateDeviationAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double aggregateDeviation(int[] values)
+
+  Requirement:
+  "Return the ROOT MEAN SQUARE deviation from the mean:
+   sqrt( (1/n) * sum((x_i - mean)^2) ),
+   i.e., the POPULATION standard deviation.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AggregateDeviationAmbiguity
+
+tests:
+  - methodName: aggregateDeviation
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.581
+  - methodName: aggregateDeviation
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: aggregateDeviation
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 39.6
+  - methodName: aggregateDeviation
+    args: [[10, 20, 30, 40]]
+    expectedResult: 11.18

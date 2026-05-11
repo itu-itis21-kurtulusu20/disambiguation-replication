@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"property\" CREATE TABLE property ( id SERIAL PRIMARY KEY, address VARCHAR(255) NOT NULL, view_count INTEGER NOT NULL, save_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement attractiveness(propertyId) which returns the attractiveness of the property as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.PropertyAttractivenessService"
+tests:
+  - methodName: "createProperty"
+    args:
+      - address: "1 Elm"
+        viewCount: 200
+        saveCount: 10
+    expectedResult:
+      id: 1
+  - methodName: "createProperty"
+    args:
+      - address: "2 Oak"
+        viewCount: 50
+        saveCount: 25
+    expectedResult:
+      id: 2
+  - methodName: "attractiveness"
+    args: [1]
+    expectedResult: 200.0
+  - methodName: "attractiveness"
+    args: [2]
+    expectedResult: 50.0

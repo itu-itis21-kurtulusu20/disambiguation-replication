@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"server\" CREATE TABLE server ( id SERIAL PRIMARY KEY, hostname VARCHAR(100) NOT NULL UNIQUE, cpu_pct INTEGER NOT NULL, mem_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement load(serverId) which returns the load of the server as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.ServerLoadService"
+tests:
+  - methodName: "createServer"
+    args:
+      - hostname: "h1"
+        cpuPct: 80
+        memPct: 60
+    expectedResult:
+      id: 1
+  - methodName: "createServer"
+    args:
+      - hostname: "h2"
+        cpuPct: 20
+        memPct: 90
+    expectedResult:
+      id: 2
+  - methodName: "load"
+    args: [1]
+    expectedResult: 80.0
+  - methodName: "load"
+    args: [2]
+    expectedResult: 90.0

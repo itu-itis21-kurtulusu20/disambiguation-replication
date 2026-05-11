@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named PeakDeviationAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double peakDeviation(int[] values)
+
+  Requirement:
+  "Return the deviation of the peak value from the typical value of the dataset.
+   The peak is the most prominent value in the sequence.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.PeakDeviationAmbiguity
+
+tests:
+  - methodName: peakDeviation
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 2.0
+  - methodName: peakDeviation
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 99.0
+  - methodName: peakDeviation
+    args: [[5, 10, 5, 3, 8]]
+    expectedResult: 5.0
+  - methodName: peakDeviation
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0

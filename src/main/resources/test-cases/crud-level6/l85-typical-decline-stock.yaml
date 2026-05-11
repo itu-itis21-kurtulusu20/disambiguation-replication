@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"daily_close\" CREATE TABLE daily_close ( id SERIAL PRIMARY KEY, symbol VARCHAR(10) NOT NULL, price INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement typicalDecline(symbol) which returns the typical size of declining steps in the symbol's price series as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.DailyCloseDeclineService"
+tests:
+  - methodName: "createDailyClose"
+    args:
+      - symbol: "X"
+        price: 100
+    expectedResult:
+      id: 1
+  - methodName: "createDailyClose"
+    args:
+      - symbol: "X"
+        price: 95
+    expectedResult:
+      id: 2
+  - methodName: "createDailyClose"
+    args:
+      - symbol: "X"
+        price: 92
+    expectedResult:
+      id: 3
+  - methodName: "createDailyClose"
+    args:
+      - symbol: "X"
+        price: 100
+    expectedResult:
+      id: 4
+  - methodName: "typicalDecline"
+    args: ["X"]
+    expectedResult: 4.0

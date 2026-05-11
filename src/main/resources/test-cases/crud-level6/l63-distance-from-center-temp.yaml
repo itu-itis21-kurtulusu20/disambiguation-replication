@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"temp_sample\" CREATE TABLE temp_sample ( id SERIAL PRIMARY KEY, room VARCHAR(50) NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement distanceFromCenter(room, observed) which returns how far the observed value is from the center of the room's samples as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.TempCenterService"
+tests:
+  - methodName: "createTempSample"
+    args:
+      - room: "R"
+        value: 18
+    expectedResult:
+      id: 1
+  - methodName: "createTempSample"
+    args:
+      - room: "R"
+        value: 20
+    expectedResult:
+      id: 2
+  - methodName: "createTempSample"
+    args:
+      - room: "R"
+        value: 22
+    expectedResult:
+      id: 3
+  - methodName: "createTempSample"
+    args:
+      - room: "R"
+        value: 100
+    expectedResult:
+      id: 4
+  - methodName: "distanceFromCenter"
+    args: ["R", 21]
+    expectedResult: 0.0

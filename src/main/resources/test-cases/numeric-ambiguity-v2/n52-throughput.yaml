@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named ThroughputAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double throughput(int[] eventsPerSecond)
+
+  Requirement:
+  "Return the typical throughput represented by the per-second event counts.
+   The result should reflect the rate observed across the entire window.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ThroughputAmbiguity
+
+tests:
+  - methodName: throughput
+    args: [[10, 20, 30]]
+    expectedResult: 1200.0
+  - methodName: throughput
+    args: [[5, 5, 5]]
+    expectedResult: 300.0
+  - methodName: throughput
+    args: [[100, 0, 100]]
+    expectedResult: 4000.0
+  - methodName: throughput
+    args: [[1, 1, 1, 1, 1, 1]]
+    expectedResult: 60.0

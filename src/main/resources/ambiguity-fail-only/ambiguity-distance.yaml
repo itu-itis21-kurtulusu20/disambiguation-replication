@@ -1,0 +1,39 @@
+prompt: >
+  Create a Java utility class named DistanceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double distance(int[] a, int[] b)
+
+  Requirement:
+  "Return a single number measuring how far apart two sequences of numbers are.
+   The distance should consider the difference at each position.
+   Larger individual differences should contribute to a larger overall distance.
+   If arrays are null, empty, or different lengths, return 0.0."
+
+  Notes:
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DistanceAmbiguity
+
+tests:
+  - methodName: distance
+    args: [[1,5,3],[4,1,7]]
+    expectedResult: 11.0
+
+  - methodName: distance
+    args: [[10,20,30],[15,25,35]]
+    expectedResult: 15.0
+
+  - methodName: distance
+    args: [[0,0,0],[3,4,0]]
+    expectedResult: 7.0
+
+  - methodName: distance
+    args: [[1,1,1,1],[5,5,5,5]]
+    expectedResult: 16.0
+
+  - methodName: distance
+    args: [[10,0],[0,10]]
+    expectedResult: 20.0

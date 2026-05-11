@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"weather_obs\" CREATE TABLE weather_obs ( id SERIAL PRIMARY KEY, city VARCHAR(50) NOT NULL, temp INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement typicalDeviation(city) which returns the typical deviation of temps for that city as a single double, robust against outliers."
+fullClassName: "com.example.llmdyn.dynamic.service.WeatherTypicalDevService"
+tests:
+  - methodName: "createWeatherObs"
+    args:
+      - city: "C"
+        temp: 18
+    expectedResult:
+      id: 1
+  - methodName: "createWeatherObs"
+    args:
+      - city: "C"
+        temp: 20
+    expectedResult:
+      id: 2
+  - methodName: "createWeatherObs"
+    args:
+      - city: "C"
+        temp: 22
+    expectedResult:
+      id: 3
+  - methodName: "createWeatherObs"
+    args:
+      - city: "C"
+        temp: 100
+    expectedResult:
+      id: 4
+  - methodName: "typicalDeviation"
+    args: ["C"]
+    expectedResult: 2.0

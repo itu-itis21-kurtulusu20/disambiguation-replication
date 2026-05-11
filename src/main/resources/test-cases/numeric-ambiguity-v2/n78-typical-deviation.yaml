@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named TypicalDeviationAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double typicalDeviation(int[] values)
+
+  Requirement:
+  "Return a typical deviation of the values from their mean.
+   Larger individual deviations should not dominate the result.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.TypicalDeviationAmbiguity
+
+tests:
+  - methodName: typicalDeviation
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.2
+  - methodName: typicalDeviation
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: typicalDeviation
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 31.68
+  - methodName: typicalDeviation
+    args: [[10, 20, 30, 40]]
+    expectedResult: 10.0

@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"podcast_episode\" CREATE TABLE podcast_episode ( id SERIAL PRIMARY KEY, title VARCHAR(200) NOT NULL, length_minutes INTEGER NOT NULL, num_guests INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement richness(episodeId) which returns the richness of the episode as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.PodcastRichnessService"
+tests:
+  - methodName: "createPodcastEpisode"
+    args:
+      - title: "EP1"
+        lengthMinutes: 60
+        numGuests: 2
+    expectedResult:
+      id: 1
+  - methodName: "createPodcastEpisode"
+    args:
+      - title: "EP2"
+        lengthMinutes: 30
+        numGuests: 0
+    expectedResult:
+      id: 2
+  - methodName: "richness"
+    args: [1]
+    expectedResult: 60.0
+  - methodName: "richness"
+    args: [2]
+    expectedResult: 30.0

@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"product\" CREATE TABLE product ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, price NUMERIC(10,2) NOT NULL, units_sold INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement popularity(productId) which returns the popularity of the product as a single double value."
+fullClassName: "com.example.llmdyn.dynamic.service.ProductPopularityService"
+tests:
+  - methodName: "createProduct"
+    args:
+      - name: "A"
+        price: 10.00
+        unitsSold: 100
+    expectedResult:
+      id: 1
+      name: "A"
+  - methodName: "createProduct"
+    args:
+      - name: "B"
+        price: 5.00
+        unitsSold: 50
+    expectedResult:
+      id: 2
+  - methodName: "popularity"
+    args: [1]
+    expectedResult: 100.0
+  - methodName: "popularity"
+    args: [2]
+    expectedResult: 50.0

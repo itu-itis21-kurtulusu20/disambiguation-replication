@@ -1,0 +1,19 @@
+prompt: "Write a JPA entity class for a table called \"search_product\" CREATE TABLE search_product ( id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL ); and repository service and controller for crud operations. Also implement searchScore(productId, query) which returns a relevance score from 0 to 1 between the product name and the query."
+fullClassName: "com.example.llmdyn.dynamic.service.SearchProductScoreService"
+tests:
+  - methodName: "createSearchProduct"
+    args:
+      - name: "iphone 15"
+    expectedResult:
+      id: 1
+  - methodName: "createSearchProduct"
+    args:
+      - name: "iphone case"
+    expectedResult:
+      id: 2
+  - methodName: "searchScore"
+    args: [1, "iphone"]
+    expectedResult: 1.0
+  - methodName: "searchScore"
+    args: [2, "iphone"]
+    expectedResult: 1.0

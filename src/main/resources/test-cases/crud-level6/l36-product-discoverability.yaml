@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"shop_item\" CREATE TABLE shop_item ( id SERIAL PRIMARY KEY, name VARCHAR(200) NOT NULL, search_rank INTEGER NOT NULL, click_rate INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement a method discoverability(itemId) that returns a double from 0 to 1, where 1 means highly discoverable. Items with better search rank and higher click rates should score higher."
+fullClassName: "com.example.llmdyn.dynamic.service.ShopItemDiscoverabilityService"
+tests:
+  - methodName: "createShopItem"
+    args:
+      - name: "Top"
+        searchRank: 1
+        clickRate: 100
+    expectedResult:
+      id: 1
+  - methodName: "createShopItem"
+    args:
+      - name: "Hidden"
+        searchRank: 100
+        clickRate: 1
+    expectedResult:
+      id: 2
+  - methodName: "discoverability"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "discoverability"
+    args: [2]
+    expectedResult: 0.01

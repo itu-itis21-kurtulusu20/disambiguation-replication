@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named TippingTendencyAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double tippingTendency(int[] values)
+
+  Requirement:
+  "Return a score reflecting how prone the sequence is to tipping over a threshold.
+   A perfectly stable sequence scores 0.0.
+   A sequence that swings widely above and below typical scores higher.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.TippingTendencyAmbiguity
+
+tests:
+  - methodName: tippingTendency
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: tippingTendency
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.5
+  - methodName: tippingTendency
+    args: [[1, 100, 1, 100]]
+    expectedResult: 49.5
+  - methodName: tippingTendency
+    args: [[3, 4, 5, 6, 7]]
+    expectedResult: 1.5

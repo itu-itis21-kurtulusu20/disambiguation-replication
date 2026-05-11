@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"article\" CREATE TABLE article ( id SERIAL PRIMARY KEY, title VARCHAR(255) NOT NULL, word_count INTEGER NOT NULL, citations INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement complexity(articleId) which returns the complexity of the article as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.ArticleComplexityService"
+tests:
+  - methodName: "createArticle"
+    args:
+      - title: "A"
+        wordCount: 1000
+        citations: 5
+    expectedResult:
+      id: 1
+  - methodName: "createArticle"
+    args:
+      - title: "B"
+        wordCount: 5000
+        citations: 50
+    expectedResult:
+      id: 2
+  - methodName: "complexity"
+    args: [1]
+    expectedResult: 1000.0
+  - methodName: "complexity"
+    args: [2]
+    expectedResult: 5000.0

@@ -1,0 +1,41 @@
+prompt: >
+  Create a Java utility class named EntropyAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double entropy(int[] values)
+
+  Requirement:
+  "Return the entropy of the sequence, measuring how disordered
+   or unpredictable the distribution of values is.
+   Higher entropy means more disorder.
+   If all values are the same, entropy is 0.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.EntropyAmbiguity
+
+tests:
+  - methodName: entropy
+    args: [[1,1,2,2,3,3]]
+    expectedResult: 1.0986122886681098
+
+  - methodName: entropy
+    args: [[1,1,1,2,3]]
+    expectedResult: 0.9502705392332347
+
+  - methodName: entropy
+    args: [[1,1,1,1,1]]
+    expectedResult: 0.0
+
+  - methodName: entropy
+    args: [[1,2,3,4,5]]
+    expectedResult: 1.6094379124341003
+
+  - methodName: entropy
+    args: [[1,1,2,3,3,3]]
+    expectedResult: 1.0114042647073518

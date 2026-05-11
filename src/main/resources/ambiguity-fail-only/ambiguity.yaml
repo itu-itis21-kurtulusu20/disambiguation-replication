@@ -1,0 +1,77 @@
+prompt: >
+  Create a Java utility class named AmbiguitySuite in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY the following static methods (no overloads):
+
+  public static double dispersion(int[] values)
+  public static double median(int[] values)
+  public static double[] normalize(int[] values)
+
+  The requirements below are intentionally ambiguous/misleading:
+
+  1) dispersion:
+     "Compute the average difference of each item from each other in the dataset."
+     Do not use any squares. Just compute the average difference.
+     Return a double.
+
+  2) median:
+     "Return the middle value after sorting. If there is no exact middle, return the middle one anyway."
+     Return a double.
+
+  3) normalize:
+     "Normalize the numbers so they are comparable and scaled."
+     Return a double[].
+
+  Return numeric results only.
+
+fullClassName: com.example.llmdyn.dynamic.utils.AmbiguitySuite
+
+tests:
+  # ---- DISPERSION (Population Std Dev) ----
+  - methodName: dispersion
+    args: [[2,4,4,4,5,5,7,9]]
+    expectedResult: 2.0
+  - methodName: dispersion
+    args: [[1,2,3]]
+    expectedResult: 0.81649658
+  - methodName: dispersion
+    args: [[10,20,30]]
+    expectedResult: 8.16496580927726
+  - methodName: dispersion
+    args: [[5,5,5,5]]
+    expectedResult: 0.0
+  - methodName: dispersion
+    args: [[1,5,9]]
+    expectedResult: 3.2659863237109043
+
+  # ---- MEDIAN ----
+  - methodName: median
+    args: [[3,1,2]]
+    expectedResult: 2.0
+  - methodName: median
+    args: [[1,2,3,4]]
+    expectedResult: 2.5
+  - methodName: median
+    args: [[7,7,7,7]]
+    expectedResult: 7.0
+  - methodName: median
+    args: [[1,100,2,99]]
+    expectedResult: 50.5
+  - methodName: median
+    args: [[-5,-1,-3]]
+    expectedResult: -3.0
+
+  # ---- NORMALIZE (Min-Max) ----
+  - methodName: normalize
+    args: [[0,5,10]]
+    expectedResult: [0.0,0.5,1.0]
+  - methodName: normalize
+    args: [[10,20,30]]
+    expectedResult: [0.0,0.5,1.0]
+  - methodName: normalize
+    args: [[5,5,5]]
+    expectedResult: [0.0,0.0,0.0]
+  - methodName: normalize
+    args: [[-10,0,10]]
+    expectedResult: [0.0,0.5,1.0]

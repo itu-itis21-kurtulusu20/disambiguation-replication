@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"employee\" CREATE TABLE employee ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, hours_logged INTEGER NOT NULL, projects_done INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement engagement(employeeId) which returns the engagement of the employee as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.EmployeeEngagementService"
+tests:
+  - methodName: "createEmployee"
+    args:
+      - name: "Alice"
+        hoursLogged: 160
+        projectsDone: 4
+    expectedResult:
+      id: 1
+  - methodName: "createEmployee"
+    args:
+      - name: "Bob"
+        hoursLogged: 80
+        projectsDone: 2
+    expectedResult:
+      id: 2
+  - methodName: "engagement"
+    args: [1]
+    expectedResult: 4.0
+  - methodName: "engagement"
+    args: [2]
+    expectedResult: 2.0

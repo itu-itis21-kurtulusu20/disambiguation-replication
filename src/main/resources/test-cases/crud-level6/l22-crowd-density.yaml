@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"venue_event\" CREATE TABLE venue_event ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, attendance INTEGER NOT NULL, capacity INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement density(eventId) which returns the density of the event as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.VenueEventDensityService"
+tests:
+  - methodName: "createVenueEvent"
+    args:
+      - name: "Concert"
+        attendance: 500
+        capacity: 1000
+    expectedResult:
+      id: 1
+  - methodName: "createVenueEvent"
+    args:
+      - name: "Conference"
+        attendance: 100
+        capacity: 100
+    expectedResult:
+      id: 2
+  - methodName: "density"
+    args: [1]
+    expectedResult: 500.0
+  - methodName: "density"
+    args: [2]
+    expectedResult: 100.0

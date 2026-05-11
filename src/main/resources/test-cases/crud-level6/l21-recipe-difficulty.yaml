@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"recipe\" CREATE TABLE recipe ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, ingredient_count INTEGER NOT NULL, prep_minutes INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement difficulty(recipeId) which returns the difficulty of the recipe as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.RecipeDifficultyService"
+tests:
+  - methodName: "createRecipe"
+    args:
+      - name: "Pasta"
+        ingredientCount: 5
+        prepMinutes: 15
+    expectedResult:
+      id: 1
+  - methodName: "createRecipe"
+    args:
+      - name: "Wellington"
+        ingredientCount: 25
+        prepMinutes: 180
+    expectedResult:
+      id: 2
+  - methodName: "difficulty"
+    args: [1]
+    expectedResult: 5.0
+  - methodName: "difficulty"
+    args: [2]
+    expectedResult: 25.0

@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"trip\" CREATE TABLE trip ( id SERIAL PRIMARY KEY, route VARCHAR(150) NOT NULL, distance_km INTEGER NOT NULL, stops INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement comfort(tripId) which returns the comfort of the trip as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.TripComfortService"
+tests:
+  - methodName: "createTrip"
+    args:
+      - route: "A-B"
+        distanceKm: 100
+        stops: 0
+    expectedResult:
+      id: 1
+  - methodName: "createTrip"
+    args:
+      - route: "C-D"
+        distanceKm: 100
+        stops: 10
+    expectedResult:
+      id: 2
+  - methodName: "comfort"
+    args: [1]
+    expectedResult: 100.0
+  - methodName: "comfort"
+    args: [2]
+    expectedResult: 10.0

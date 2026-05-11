@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"server_metric\" CREATE TABLE server_metric ( id SERIAL PRIMARY KEY, server_name VARCHAR(50) NOT NULL, latency_ms INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement shiftFromNorm(serverName, observed) which returns how much observed deviates from the norm as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.ServerMetricShiftService"
+tests:
+  - methodName: "createServerMetric"
+    args:
+      - serverName: "S"
+        latencyMs: 90
+    expectedResult:
+      id: 1
+  - methodName: "createServerMetric"
+    args:
+      - serverName: "S"
+        latencyMs: 100
+    expectedResult:
+      id: 2
+  - methodName: "createServerMetric"
+    args:
+      - serverName: "S"
+        latencyMs: 110
+    expectedResult:
+      id: 3
+  - methodName: "shiftFromNorm"
+    args: ["S", 130]
+    expectedResult: 30.0

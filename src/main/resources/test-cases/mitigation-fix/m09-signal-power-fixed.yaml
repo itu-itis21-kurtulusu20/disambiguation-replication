@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named SignalPowerAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double signalPower(int[] values)
+
+  Requirement:
+  "Return the ROOT MEAN SQUARE (RMS) of the values:
+   sqrt( (sum of squared values) / n ).
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.SignalPowerAmbiguity
+
+tests:
+  - methodName: signalPower
+    args: [[3, 4]]
+    expectedResult: 5.0
+  - methodName: signalPower
+    args: [[1, 1, 1, 1]]
+    expectedResult: 1.0
+  - methodName: signalPower
+    args: [[2, 2, 2, 2]]
+    expectedResult: 4.0
+  - methodName: signalPower
+    args: [[-3, -4]]
+    expectedResult: 5.0

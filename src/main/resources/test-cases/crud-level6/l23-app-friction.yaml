@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"signup_flow\" CREATE TABLE signup_flow ( id SERIAL PRIMARY KEY, app_name VARCHAR(100) NOT NULL, steps INTEGER NOT NULL, drop_off_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement friction(flowId) which returns the friction of the signup flow as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SignupFlowFrictionService"
+tests:
+  - methodName: "createSignupFlow"
+    args:
+      - appName: "AppA"
+        steps: 3
+        dropOffPct: 20
+    expectedResult:
+      id: 1
+  - methodName: "createSignupFlow"
+    args:
+      - appName: "AppB"
+        steps: 8
+        dropOffPct: 70
+    expectedResult:
+      id: 2
+  - methodName: "friction"
+    args: [1]
+    expectedResult: 3.0
+  - methodName: "friction"
+    args: [2]
+    expectedResult: 8.0

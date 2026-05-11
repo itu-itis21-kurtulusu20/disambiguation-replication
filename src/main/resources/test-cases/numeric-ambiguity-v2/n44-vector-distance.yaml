@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named VectorDistanceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double vectorDistance(int[] a, int[] b)
+
+  Requirement:
+  "Return the distance between two equal-length integer vectors.
+   The result must satisfy the triangle inequality.
+   If either array is null, empty, or different lengths, return 0.0."
+
+  Notes:
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.VectorDistanceAmbiguity
+
+tests:
+  - methodName: vectorDistance
+    args: [[0, 0], [3, 4]]
+    expectedResult: 7.0
+  - methodName: vectorDistance
+    args: [[1, 2, 3], [1, 2, 3]]
+    expectedResult: 0.0
+  - methodName: vectorDistance
+    args: [[0, 0, 0], [1, 1, 1]]
+    expectedResult: 3.0
+  - methodName: vectorDistance
+    args: [[5, 5], [10, 5]]
+    expectedResult: 5.0

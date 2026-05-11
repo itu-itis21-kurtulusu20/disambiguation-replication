@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"market_price\" CREATE TABLE market_price ( id SERIAL PRIMARY KEY, sku VARCHAR(50) NOT NULL, price NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement distanceFromTypicalPrice(sku, queryPrice) which returns how far queryPrice is from the typical price for that sku as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.MarketPriceDistService"
+tests:
+  - methodName: "createMarketPrice"
+    args:
+      - sku: "P"
+        price: 90.00
+    expectedResult:
+      id: 1
+  - methodName: "createMarketPrice"
+    args:
+      - sku: "P"
+        price: 100.00
+    expectedResult:
+      id: 2
+  - methodName: "createMarketPrice"
+    args:
+      - sku: "P"
+        price: 110.00
+    expectedResult:
+      id: 3
+  - methodName: "distanceFromTypicalPrice"
+    args: ["P", 130.00]
+    expectedResult: 30.0

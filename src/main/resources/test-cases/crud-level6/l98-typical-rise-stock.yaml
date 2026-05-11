@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"daily_open\" CREATE TABLE daily_open ( id SERIAL PRIMARY KEY, symbol VARCHAR(10) NOT NULL, price INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement typicalRise(symbol) which returns the typical size of rising steps in the symbol's price series as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.DailyOpenRiseService"
+tests:
+  - methodName: "createDailyOpen"
+    args:
+      - symbol: "X"
+        price: 100
+    expectedResult:
+      id: 1
+  - methodName: "createDailyOpen"
+    args:
+      - symbol: "X"
+        price: 105
+    expectedResult:
+      id: 2
+  - methodName: "createDailyOpen"
+    args:
+      - symbol: "X"
+        price: 95
+    expectedResult:
+      id: 3
+  - methodName: "createDailyOpen"
+    args:
+      - symbol: "X"
+        price: 100
+    expectedResult:
+      id: 4
+  - methodName: "typicalRise"
+    args: ["X"]
+    expectedResult: 5.0

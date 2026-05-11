@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named MagnitudeScaleAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double magnitudeScale(int[] values)
+
+  Requirement:
+  "Return the order of magnitude or scale of the dataset. This should capture the general size of the values. If fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.MagnitudeScaleAmbiguity
+
+tests:
+  - methodName: magnitudeScale
+    args: [[1, 2, 3]]
+    expectedResult: 1.8171205928321397
+
+  - methodName: magnitudeScale
+    args: [[100, 200, 300]]
+    expectedResult: 181.71205928321396
+
+  - methodName: magnitudeScale
+    args: [[1000, 2000, 3000]]
+    expectedResult: 1817.1205928321397
+
+  - methodName: magnitudeScale
+    args: [[1, 10, 100]]
+    expectedResult: 10.0
+

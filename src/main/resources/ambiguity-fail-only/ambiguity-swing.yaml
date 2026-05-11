@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named SwingAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double swing(int[] values)
+
+  Requirement:
+  "Return the swing of the sequence. Swing measures the extent of back-and-forth movement. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.SwingAmbiguity
+
+tests:
+  - methodName: swing
+    args: [[1, 5, 1, 5, 1]]
+    expectedResult: 16.0
+
+  - methodName: swing
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+
+  - methodName: swing
+    args: [[10, 1, 10]]
+    expectedResult: 18.0
+
+  - methodName: swing
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+

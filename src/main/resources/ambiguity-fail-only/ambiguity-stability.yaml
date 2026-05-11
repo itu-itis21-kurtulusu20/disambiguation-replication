@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named StabilityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double stabilityIndex(int[] values)
+
+  Requirement:
+  "Return a stability index for the values.
+   More stable data should have a higher index.
+   Highly variable data should have a low index.
+   If all values are identical, return the maximum stability.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.StabilityAmbiguity
+
+tests:
+  - methodName: stabilityIndex
+    args: [[10, 10, 10, 10]]
+    expectedResult: 1.0
+  - methodName: stabilityIndex
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.4142135623730951
+  - methodName: stabilityIndex
+    args: [[100, 1, 100, 1]]
+    expectedResult: 0.019801980198019802
+  - methodName: stabilityIndex
+    args: [[50, 49, 51, 50]]
+    expectedResult: 0.585786437626905

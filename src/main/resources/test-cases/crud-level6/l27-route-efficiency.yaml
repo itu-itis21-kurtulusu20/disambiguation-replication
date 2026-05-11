@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"delivery_route\" CREATE TABLE delivery_route ( id SERIAL PRIMARY KEY, code VARCHAR(50) NOT NULL UNIQUE, distance_km INTEGER NOT NULL, stops INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement efficiency(routeId) which returns the efficiency of the route as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.DeliveryRouteEfficiencyService"
+tests:
+  - methodName: "createDeliveryRoute"
+    args:
+      - code: "R1"
+        distanceKm: 100
+        stops: 20
+    expectedResult:
+      id: 1
+  - methodName: "createDeliveryRoute"
+    args:
+      - code: "R2"
+        distanceKm: 200
+        stops: 5
+    expectedResult:
+      id: 2
+  - methodName: "efficiency"
+    args: [1]
+    expectedResult: 5.0
+  - methodName: "efficiency"
+    args: [2]
+    expectedResult: 40.0

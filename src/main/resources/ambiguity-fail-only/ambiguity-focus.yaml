@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named FocusAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double focus(int[] values)
+
+  Requirement:
+  "Return a score measuring how focused the values are around a single point. 1.0 means all values are at one point. Lower means more spread. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.FocusAmbiguity
+
+tests:
+  - methodName: focus
+    args: [[5, 5, 5, 5]]
+    expectedResult: 1.0
+
+  - methodName: focus
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.2
+
+  - methodName: focus
+    args: [[1, 1, 1, 100]]
+    expectedResult: 0.75
+
+  - methodName: focus
+    args: [[10, 10, 11, 10]]
+    expectedResult: 0.75
+

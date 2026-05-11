@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"region_sales\" CREATE TABLE region_sales ( id SERIAL PRIMARY KEY, region VARCHAR(50) NOT NULL, sales NUMERIC(12,2) NOT NULL ); and repository service and controller for crud operations. Also implement imbalanceFromEqual() which returns how unequal the sales are across regions as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.RegionImbalanceService"
+tests:
+  - methodName: "createRegionSales"
+    args:
+      - region: "EU"
+        sales: 100.00
+    expectedResult:
+      id: 1
+  - methodName: "createRegionSales"
+    args:
+      - region: "US"
+        sales: 100.00
+    expectedResult:
+      id: 2
+  - methodName: "createRegionSales"
+    args:
+      - region: "ASIA"
+        sales: 100.00
+    expectedResult:
+      id: 3
+  - methodName: "createRegionSales"
+    args:
+      - region: "AFRICA"
+        sales: 1000.00
+    expectedResult:
+      id: 4
+  - methodName: "imbalanceFromEqual"
+    args: []
+    expectedResult: 1350.0

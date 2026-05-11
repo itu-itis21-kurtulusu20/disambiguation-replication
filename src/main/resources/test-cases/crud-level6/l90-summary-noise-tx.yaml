@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"tx_amount\" CREATE TABLE tx_amount ( id SERIAL PRIMARY KEY, account VARCHAR(50) NOT NULL, amount INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement summaryNoise(account) which returns a single summary number reflecting the noise present in the account's amounts."
+fullClassName: "com.example.llmdyn.dynamic.service.TxAmountNoiseService"
+tests:
+  - methodName: "createTxAmount"
+    args:
+      - account: "A"
+        amount: 10
+    expectedResult:
+      id: 1
+  - methodName: "createTxAmount"
+    args:
+      - account: "A"
+        amount: 11
+    expectedResult:
+      id: 2
+  - methodName: "createTxAmount"
+    args:
+      - account: "A"
+        amount: 12
+    expectedResult:
+      id: 3
+  - methodName: "createTxAmount"
+    args:
+      - account: "A"
+        amount: 13
+    expectedResult:
+      id: 4
+  - methodName: "summaryNoise"
+    args: ["A"]
+    expectedResult: 1.291

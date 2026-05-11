@@ -1,0 +1,36 @@
+prompt: "Write a JPA entity class for a table called \"perf_score\" CREATE TABLE perf_score ( id SERIAL PRIMARY KEY, candidate VARCHAR(100) NOT NULL, score INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement aggregateDeviation() which returns how much the scores deviate from their mean as a single aggregate double, where larger deviations contribute more."
+fullClassName: "com.example.llmdyn.dynamic.service.PerfScoreDeviationService"
+tests:
+  - methodName: "createPerfScore"
+    args:
+      - candidate: "A"
+        score: 1
+    expectedResult:
+      id: 1
+  - methodName: "createPerfScore"
+    args:
+      - candidate: "B"
+        score: 2
+    expectedResult:
+      id: 2
+  - methodName: "createPerfScore"
+    args:
+      - candidate: "C"
+        score: 3
+    expectedResult:
+      id: 3
+  - methodName: "createPerfScore"
+    args:
+      - candidate: "D"
+        score: 4
+    expectedResult:
+      id: 4
+  - methodName: "createPerfScore"
+    args:
+      - candidate: "E"
+        score: 5
+    expectedResult:
+      id: 5
+  - methodName: "aggregateDeviation"
+    args: []
+    expectedResult: 1.581

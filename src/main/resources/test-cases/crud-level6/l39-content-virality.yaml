@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"social_post\" CREATE TABLE social_post ( id SERIAL PRIMARY KEY, body VARCHAR(500) NOT NULL, share_count INTEGER NOT NULL, hour_age INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement a method virality(postId) that returns a double from 0 to 1 indicating how viral the post is. New posts that have spread quickly should score higher than old posts that have spread slowly."
+fullClassName: "com.example.llmdyn.dynamic.service.SocialPostViralityService"
+tests:
+  - methodName: "createSocialPost"
+    args:
+      - body: "P1"
+        shareCount: 1000
+        hourAge: 1
+    expectedResult:
+      id: 1
+  - methodName: "createSocialPost"
+    args:
+      - body: "P2"
+        shareCount: 5
+        hourAge: 100
+    expectedResult:
+      id: 2
+  - methodName: "virality"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "virality"
+    args: [2]
+    expectedResult: 0.0

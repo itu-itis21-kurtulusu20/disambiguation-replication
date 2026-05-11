@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named ComparisonBaselineAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double aboveBaseline(int[] values)
+
+  Requirement:
+  "Return the count of values strictly above the baseline of the dataset.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ComparisonBaselineAmbiguity
+
+tests:
+  - methodName: aboveBaseline
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 2.0
+  - methodName: aboveBaseline
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: aboveBaseline
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 1.0
+  - methodName: aboveBaseline
+    args: [[10, 20, 30, 40]]
+    expectedResult: 2.0

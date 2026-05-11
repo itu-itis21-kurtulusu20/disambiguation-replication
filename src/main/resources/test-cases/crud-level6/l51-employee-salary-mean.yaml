@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"emp_salary\" CREATE TABLE emp_salary ( id SERIAL PRIMARY KEY, department VARCHAR(50) NOT NULL, salary NUMERIC(12,2) NOT NULL ); and repository service and controller for crud operations. Also implement averageSalary(department) which returns the average salary for that department as a single double, robust to extreme outliers."
+fullClassName: "com.example.llmdyn.dynamic.service.EmpSalaryAvgService"
+tests:
+  - methodName: "createEmpSalary"
+    args:
+      - department: "ENG"
+        salary: 50000.00
+    expectedResult:
+      id: 1
+  - methodName: "createEmpSalary"
+    args:
+      - department: "ENG"
+        salary: 60000.00
+    expectedResult:
+      id: 2
+  - methodName: "createEmpSalary"
+    args:
+      - department: "ENG"
+        salary: 70000.00
+    expectedResult:
+      id: 3
+  - methodName: "createEmpSalary"
+    args:
+      - department: "ENG"
+        salary: 1000000.00
+    expectedResult:
+      id: 4
+  - methodName: "averageSalary"
+    args: ["ENG"]
+    expectedResult: 60000.0

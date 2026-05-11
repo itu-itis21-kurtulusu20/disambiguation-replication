@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"price_quote\" CREATE TABLE price_quote ( id SERIAL PRIMARY KEY, supplier VARCHAR(100) NOT NULL, price NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement majorPrice() which returns the major price across all suppliers as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.MajorPriceService"
+tests:
+  - methodName: "createPriceQuote"
+    args:
+      - supplier: "A"
+        price: 100.00
+    expectedResult:
+      id: 1
+  - methodName: "createPriceQuote"
+    args:
+      - supplier: "B"
+        price: 100.00
+    expectedResult:
+      id: 2
+  - methodName: "createPriceQuote"
+    args:
+      - supplier: "C"
+        price: 100.00
+    expectedResult:
+      id: 3
+  - methodName: "createPriceQuote"
+    args:
+      - supplier: "D"
+        price: 250.00
+    expectedResult:
+      id: 4
+  - methodName: "majorPrice"
+    args: []
+    expectedResult: 100.0

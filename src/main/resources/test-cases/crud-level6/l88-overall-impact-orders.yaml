@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"order_impact\" CREATE TABLE order_impact ( id SERIAL PRIMARY KEY, store VARCHAR(50) NOT NULL, revenue NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement overallImpact(store) which returns the overall impact of all orders for that store as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.OrderImpactService"
+tests:
+  - methodName: "createOrderImpact"
+    args:
+      - store: "S"
+        revenue: 100.00
+    expectedResult:
+      id: 1
+  - methodName: "createOrderImpact"
+    args:
+      - store: "S"
+        revenue: 200.00
+    expectedResult:
+      id: 2
+  - methodName: "createOrderImpact"
+    args:
+      - store: "S"
+        revenue: 300.00
+    expectedResult:
+      id: 3
+  - methodName: "overallImpact"
+    args: ["S"]
+    expectedResult: 200.0

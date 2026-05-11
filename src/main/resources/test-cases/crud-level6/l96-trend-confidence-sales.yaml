@@ -1,0 +1,36 @@
+prompt: "Write a JPA entity class for a table called \"weekly_sales\" CREATE TABLE weekly_sales ( id SERIAL PRIMARY KEY, week_label VARCHAR(20) NOT NULL, sales INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement trendConfidence() which returns the confidence in the trend across all weeks as a single double from 0 to 1."
+fullClassName: "com.example.llmdyn.dynamic.service.WeeklySalesTrendConfService"
+tests:
+  - methodName: "createWeeklySales"
+    args:
+      - weekLabel: "W1"
+        sales: 100
+    expectedResult:
+      id: 1
+  - methodName: "createWeeklySales"
+    args:
+      - weekLabel: "W2"
+        sales: 110
+    expectedResult:
+      id: 2
+  - methodName: "createWeeklySales"
+    args:
+      - weekLabel: "W3"
+        sales: 120
+    expectedResult:
+      id: 3
+  - methodName: "createWeeklySales"
+    args:
+      - weekLabel: "W4"
+        sales: 130
+    expectedResult:
+      id: 4
+  - methodName: "createWeeklySales"
+    args:
+      - weekLabel: "W5"
+        sales: 140
+    expectedResult:
+      id: 5
+  - methodName: "trendConfidence"
+    args: []
+    expectedResult: 1.0

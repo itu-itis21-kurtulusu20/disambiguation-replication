@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named ExtremityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double extremity(int[] values)
+
+  Requirement:
+  "Return how extreme the dataset is. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ExtremityAmbiguity
+
+tests:
+  - methodName: extremity
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 1.6666666666666667
+
+  - methodName: extremity
+    args: [[1, 1, 1, 100]]
+    expectedResult: 3.8834951456310676
+
+  - methodName: extremity
+    args: [[50, 50, 50, 50]]
+    expectedResult: 1.0
+
+  - methodName: extremity
+    args: [[0, 0, 0, 1000]]
+    expectedResult: 4.0
+

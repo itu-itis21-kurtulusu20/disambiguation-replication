@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named MovingAverageAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double movingAverage(int[] values)
+
+  Requirement:
+  "Return the smoothed average of a sequence using a moving window.
+   The result should reflect a typical smoothed value of the recent observations.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.MovingAverageAmbiguity
+
+tests:
+  - methodName: movingAverage
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 4.0
+  - methodName: movingAverage
+    args: [[10, 10, 10, 10]]
+    expectedResult: 10.0
+  - methodName: movingAverage
+    args: [[1, 5, 10, 50, 100]]
+    expectedResult: 53.333
+  - methodName: movingAverage
+    args: [[5, 5, 5]]
+    expectedResult: 5.0

@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"event_post\" CREATE TABLE event_post ( id SERIAL PRIMARY KEY, title VARCHAR(200) NOT NULL, likes INTEGER NOT NULL, shares INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement buzz(postId) which returns the buzz of the post as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.EventPostBuzzService"
+tests:
+  - methodName: "createEventPost"
+    args:
+      - title: "Concert"
+        likes: 1000
+        shares: 100
+    expectedResult:
+      id: 1
+  - methodName: "createEventPost"
+    args:
+      - title: "Picnic"
+        likes: 10
+        shares: 0
+    expectedResult:
+      id: 2
+  - methodName: "buzz"
+    args: [1]
+    expectedResult: 1000.0
+  - methodName: "buzz"
+    args: [2]
+    expectedResult: 10.0

@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named AggregatePullAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double aggregatePull(int[] values)
+
+  Requirement:
+  "Return the aggregate pull of the values toward the central tendency.
+   Stronger pull means values cluster more tightly around the center.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AggregatePullAmbiguity
+
+tests:
+  - methodName: aggregatePull
+    args: [[5, 5, 5, 5]]
+    expectedResult: 1.0
+  - methodName: aggregatePull
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.6
+  - methodName: aggregatePull
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 0.04
+  - methodName: aggregatePull
+    args: [[10, 10, 10, 10, 10]]
+    expectedResult: 1.0

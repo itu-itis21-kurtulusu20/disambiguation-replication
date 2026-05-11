@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"sales_discount\" CREATE TABLE sales_discount ( id SERIAL PRIMARY KEY, store VARCHAR(100) NOT NULL, percent_off INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement typicalDiscount(store) which returns the typical discount value for that store as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SalesDiscountTypicalService"
+tests:
+  - methodName: "createSalesDiscount"
+    args:
+      - store: "S"
+        percentOff: 10
+    expectedResult:
+      id: 1
+  - methodName: "createSalesDiscount"
+    args:
+      - store: "S"
+        percentOff: 20
+    expectedResult:
+      id: 2
+  - methodName: "createSalesDiscount"
+    args:
+      - store: "S"
+        percentOff: 30
+    expectedResult:
+      id: 3
+  - methodName: "createSalesDiscount"
+    args:
+      - store: "S"
+        percentOff: 90
+    expectedResult:
+      id: 4
+  - methodName: "typicalDiscount"
+    args: ["S"]
+    expectedResult: 25.0

@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named BurstinessAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double burstiness(int[] values)
+
+  Requirement:
+  "Return a burstiness score measuring how much the changes come in bursts rather than being evenly distributed. 0 means perfectly even, higher means more bursty. If fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.BurstinessAmbiguity
+
+tests:
+  - methodName: burstiness
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+
+  - methodName: burstiness
+    args: [[1, 1, 1, 10, 11]]
+    expectedResult: 1.5099668870541494
+
+  - methodName: burstiness
+    args: [[1, 5, 6, 7, 100]]
+    expectedResult: 1.5921420728498286
+
+  - methodName: burstiness
+    args: [[1, 1, 10, 1, 1]]
+    expectedResult: 1.0
+

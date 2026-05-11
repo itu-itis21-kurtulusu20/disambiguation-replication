@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named KurtosisAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double kurtosis(int[] values)
+
+  Requirement:
+  "Return the SAMPLE EXCESS KURTOSIS using the standard formula:
+   g2 = (1/n) * sum((x_i - mean)^4) / (variance^2) - 3,
+   where variance is the POPULATION variance (divide by n).
+   If the array has fewer than 4 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.KurtosisAmbiguity
+
+tests:
+  - methodName: kurtosis
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: -1.3
+  - methodName: kurtosis
+    args: [[5, 5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: kurtosis
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 2.0
+  - methodName: kurtosis
+    args: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
+    expectedResult: -1.224

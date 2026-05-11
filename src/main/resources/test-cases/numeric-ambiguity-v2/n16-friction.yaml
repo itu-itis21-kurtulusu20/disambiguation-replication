@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named FrictionAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double friction(int[] values)
+
+  Requirement:
+  "Return the friction within the sequence.
+   Friction resists smooth movement and shows up as drag in the data flow.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.FrictionAmbiguity
+
+tests:
+  - methodName: friction
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+  - methodName: friction
+    args: [[5, 4, 3, 2, 1]]
+    expectedResult: 4.0
+  - methodName: friction
+    args: [[1, 3, 2, 4, 3, 5]]
+    expectedResult: 2.0
+  - methodName: friction
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0

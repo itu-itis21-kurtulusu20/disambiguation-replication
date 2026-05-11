@@ -1,0 +1,41 @@
+prompt: >
+  Create a Java utility class named DominanceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double dominance(int[] values)
+
+  Requirement:
+  "Return a score from 0 to 1 measuring how much the largest value
+   dominates over the rest of the dataset.
+   A score of 0 means no single value stands out.
+   A score close to 1 means one value overwhelmingly dominates.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DominanceAmbiguity
+
+tests:
+  - methodName: dominance
+    args: [[10,1,1,1,1]]
+    expectedResult: 0.9
+
+  - methodName: dominance
+    args: [[5,5,5,5]]
+    expectedResult: 0.0
+
+  - methodName: dominance
+    args: [[100,50,25]]
+    expectedResult: 0.5
+
+  - methodName: dominance
+    args: [[90,10]]
+    expectedResult: 0.8888888888888888
+
+  - methodName: dominance
+    args: [[50,40,30,20,10]]
+    expectedResult: 0.2

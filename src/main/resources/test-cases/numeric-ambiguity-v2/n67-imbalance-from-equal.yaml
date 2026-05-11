@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named ImbalanceFromEqualAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double imbalanceFromEqual(int[] values)
+
+  Requirement:
+  "Return how much the values differ from being equally distributed.
+   A perfectly equal distribution scores 0.0.
+   The more uneven, the higher the score.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ImbalanceFromEqualAmbiguity
+
+tests:
+  - methodName: imbalanceFromEqual
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: imbalanceFromEqual
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 158.4
+  - methodName: imbalanceFromEqual
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 6.0
+  - methodName: imbalanceFromEqual
+    args: [[10, 10, 10, 10]]
+    expectedResult: 0.0

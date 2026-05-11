@@ -1,0 +1,41 @@
+prompt: >
+  Create a Java utility class named RelativeChangeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+  public static double relativeChange(int[] values)
+
+  Requirement:
+  "Return a score representing how much the sequence changed
+   from its first value to its last value, expressed proportionally.
+   The result should be positive if the sequence increased overall,
+   negative if it decreased.
+   The result should be independent of whether the values are
+   large or small in absolute terms."
+
+  Notes:
+  - If null, empty, or fewer than 2 elements, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.RelativeChangeAmbiguity
+
+tests:
+  - methodName: relativeChange
+    args: [[10, 15, 20]]
+    expectedResult: 0.6666666666666666
+
+  - methodName: relativeChange
+    args: [[100, 80, 60]]
+    expectedResult: -0.5
+
+  - methodName: relativeChange
+    args: [[5, 5, 5]]
+    expectedResult: 0.0
+
+  - methodName: relativeChange
+    args: [[10, 30, 20]]
+    expectedResult: 0.5
+
+  - methodName: relativeChange
+    args: [[2, 4, 8, 16]]
+    expectedResult: 1.8666666666666667

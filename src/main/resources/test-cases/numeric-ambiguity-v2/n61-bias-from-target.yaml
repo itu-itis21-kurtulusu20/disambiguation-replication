@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named BiasFromTargetAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double biasFromTarget(int[] values)
+
+  Requirement:
+  "Return the average bias of the values relative to the target.
+   Positive means the values exceed the target, negative means they fall short.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.BiasFromTargetAmbiguity
+
+tests:
+  - methodName: biasFromTarget
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+  - methodName: biasFromTarget
+    args: [[3, 5, 7, 9]]
+    expectedResult: 1.0
+  - methodName: biasFromTarget
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: biasFromTarget
+    args: [[10, 20, 30]]
+    expectedResult: 0.0

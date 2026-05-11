@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named VariabilityIndexAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double variabilityIndex(int[] values)
+
+  Requirement:
+  "Return a relative measure of variability. The result should be scale-invariant. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.VariabilityIndexAmbiguity
+
+tests:
+  - methodName: variabilityIndex
+    args: [[10, 20, 30]]
+    expectedResult: 0.3333333333333333
+
+  - methodName: variabilityIndex
+    args: [[1, 1, 1, 100]]
+    expectedResult: 24.75
+
+  - methodName: variabilityIndex
+    args: [[100, 100, 100]]
+    expectedResult: 0.0
+
+  - methodName: variabilityIndex
+    args: [[2, 4, 6, 8]]
+    expectedResult: 0.4
+

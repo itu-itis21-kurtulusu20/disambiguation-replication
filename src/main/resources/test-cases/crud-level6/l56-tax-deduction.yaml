@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"taxable_income\" CREATE TABLE taxable_income ( id SERIAL PRIMARY KEY, taxpayer VARCHAR(100) NOT NULL, gross_income NUMERIC(12,2) NOT NULL, deductions NUMERIC(12,2) NOT NULL ); and repository service and controller for crud operations. Also implement taxableAmount(incomeId) which returns the taxable amount as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.TaxableIncomeService"
+tests:
+  - methodName: "createTaxableIncome"
+    args:
+      - taxpayer: "Alice"
+        grossIncome: 100000.00
+        deductions: 20000.00
+    expectedResult:
+      id: 1
+  - methodName: "createTaxableIncome"
+    args:
+      - taxpayer: "Bob"
+        grossIncome: 50000.00
+        deductions: 5000.00
+    expectedResult:
+      id: 2
+  - methodName: "taxableAmount"
+    args: [1]
+    expectedResult: 80000.0
+  - methodName: "taxableAmount"
+    args: [2]
+    expectedResult: 45000.0

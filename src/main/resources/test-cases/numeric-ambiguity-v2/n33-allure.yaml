@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named AllureAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double allure(int[] values)
+
+  Requirement:
+  "Return the allure of the sequence.
+   Alluring sequences combine the right amount of contrast with overall balance.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AllureAmbiguity
+
+tests:
+  - methodName: allure
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.6
+  - methodName: allure
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: allure
+    args: [[1, 100, 1, 100]]
+    expectedResult: 0.0
+  - methodName: allure
+    args: [[3, 5, 4, 6, 5]]
+    expectedResult: 0.8

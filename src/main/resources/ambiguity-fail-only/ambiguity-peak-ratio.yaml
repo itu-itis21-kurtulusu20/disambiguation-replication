@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named PeakRatioAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double peakRatio(int[] values)
+
+  Requirement:
+  "Return the ratio of the peak value to the next highest value. This measures how dominant the peak is. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.PeakRatioAmbiguity
+
+tests:
+  - methodName: peakRatio
+    args: [[1, 2, 3, 4, 100]]
+    expectedResult: 25.0
+
+  - methodName: peakRatio
+    args: [[10, 10, 10, 10]]
+    expectedResult: 1.0
+
+  - methodName: peakRatio
+    args: [[5, 5, 5, 10]]
+    expectedResult: 2.0
+
+  - methodName: peakRatio
+    args: [[1, 50, 100]]
+    expectedResult: 2.0
+

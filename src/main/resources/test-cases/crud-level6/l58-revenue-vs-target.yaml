@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"sales_period\" CREATE TABLE sales_period ( id SERIAL PRIMARY KEY, period_label VARCHAR(20) NOT NULL, revenue NUMERIC(12,2) NOT NULL, target NUMERIC(12,2) NOT NULL ); and repository service and controller for crud operations. Also implement performanceVsTarget(periodId) which returns the performance vs target as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SalesPerformanceService"
+tests:
+  - methodName: "createSalesPeriod"
+    args:
+      - periodLabel: "Q1"
+        revenue: 110.00
+        target: 100.00
+    expectedResult:
+      id: 1
+  - methodName: "createSalesPeriod"
+    args:
+      - periodLabel: "Q2"
+        revenue: 90.00
+        target: 100.00
+    expectedResult:
+      id: 2
+  - methodName: "performanceVsTarget"
+    args: [1]
+    expectedResult: 10.0
+  - methodName: "performanceVsTarget"
+    args: [2]
+    expectedResult: -10.0

@@ -1,0 +1,30 @@
+prompt: >
+  Create a Java utility class named NormalizedSpreadAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double normalizedSpread(int[] values)
+
+  Requirement:
+  "Return the range of the data normalized by a typical measure of spread. This indicates how many spread-units wide the data is. If fewer than 4 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.NormalizedSpreadAmbiguity
+
+tests:
+  - methodName: normalizedSpread
+    args: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
+    expectedResult: 3.1333978072025612
+
+  - methodName: normalizedSpread
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 2.82842712474619
+
+  - methodName: normalizedSpread
+    args: [[10, 20, 30, 40, 50]]
+    expectedResult: 2.82842712474619
+

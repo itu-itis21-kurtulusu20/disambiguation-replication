@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"sale_log\" CREATE TABLE sale_log ( id SERIAL PRIMARY KEY, product VARCHAR(100) NOT NULL, units INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement summaryStrength(product) which returns a single number summarizing the strength of sales for that product as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SaleLogStrengthService"
+tests:
+  - methodName: "createSaleLog"
+    args:
+      - product: "P"
+        units: 10
+    expectedResult:
+      id: 1
+  - methodName: "createSaleLog"
+    args:
+      - product: "P"
+        units: 20
+    expectedResult:
+      id: 2
+  - methodName: "createSaleLog"
+    args:
+      - product: "P"
+        units: 30
+    expectedResult:
+      id: 3
+  - methodName: "summaryStrength"
+    args: ["P"]
+    expectedResult: 60.0

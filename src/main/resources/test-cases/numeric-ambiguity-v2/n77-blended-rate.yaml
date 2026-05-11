@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named BlendedRateAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double blendedRate(int[] rates)
+
+  Requirement:
+  "Return a blended rate from a sequence of per-segment rates.
+   The blended result should reflect the effective overall rate when each segment contributes equally.
+   If the array has fewer than 1 element or contains zero, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.BlendedRateAmbiguity
+
+tests:
+  - methodName: blendedRate
+    args: [[60, 30]]
+    expectedResult: 40.0
+  - methodName: blendedRate
+    args: [[10, 10, 10]]
+    expectedResult: 10.0
+  - methodName: blendedRate
+    args: [[10, 90]]
+    expectedResult: 18.0
+  - methodName: blendedRate
+    args: [[5, 10, 15]]
+    expectedResult: 8.182

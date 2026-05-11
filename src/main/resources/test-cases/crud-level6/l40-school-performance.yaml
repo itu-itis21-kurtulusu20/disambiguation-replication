@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"class_section\" CREATE TABLE class_section ( id SERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, students_passing INTEGER NOT NULL, total_students INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement a method performance(sectionId) that returns a double from 0 to 1, where 1 means perfect performance. Sections with more passing students should score higher."
+fullClassName: "com.example.llmdyn.dynamic.service.ClassSectionPerformanceService"
+tests:
+  - methodName: "createClassSection"
+    args:
+      - name: "C1"
+        studentsPassing: 30
+        totalStudents: 30
+    expectedResult:
+      id: 1
+  - methodName: "createClassSection"
+    args:
+      - name: "C2"
+        studentsPassing: 0
+        totalStudents: 30
+    expectedResult:
+      id: 2
+  - methodName: "performance"
+    args: [1]
+    expectedResult: 1.0
+  - methodName: "performance"
+    args: [2]
+    expectedResult: 0.0

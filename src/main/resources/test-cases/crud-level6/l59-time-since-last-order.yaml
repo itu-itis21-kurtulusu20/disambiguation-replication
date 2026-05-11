@@ -1,0 +1,18 @@
+prompt: "Write a JPA entity class for a table called \"customer_order_log\" CREATE TABLE customer_order_log ( id SERIAL PRIMARY KEY, customer_id INTEGER NOT NULL, order_date DATE NOT NULL ); and repository service and controller for crud operations. Also implement daysSinceLastOrder(customerId, asOfDate) which returns the days since the customer's last order as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.CustomerOrderLastService"
+tests:
+  - methodName: "createCustomerOrderLog"
+    args:
+      - customerId: 1
+        orderDate: "2026-04-01"
+    expectedResult:
+      id: 1
+  - methodName: "createCustomerOrderLog"
+    args:
+      - customerId: 1
+        orderDate: "2026-05-01"
+    expectedResult:
+      id: 2
+  - methodName: "daysSinceLastOrder"
+    args: [1, "2026-05-11"]
+    expectedResult: 10.0

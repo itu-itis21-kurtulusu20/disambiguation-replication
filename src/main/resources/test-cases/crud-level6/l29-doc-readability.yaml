@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"document\" CREATE TABLE document ( id SERIAL PRIMARY KEY, title VARCHAR(200) NOT NULL, sentence_count INTEGER NOT NULL, syllable_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement readability(docId) which returns the readability of the document as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.DocumentReadabilityService"
+tests:
+  - methodName: "createDocument"
+    args:
+      - title: "Easy"
+        sentenceCount: 100
+        syllableCount: 200
+    expectedResult:
+      id: 1
+  - methodName: "createDocument"
+    args:
+      - title: "Hard"
+        sentenceCount: 50
+        syllableCount: 1000
+    expectedResult:
+      id: 2
+  - methodName: "readability"
+    args: [1]
+    expectedResult: 100.0
+  - methodName: "readability"
+    args: [2]
+    expectedResult: 50.0

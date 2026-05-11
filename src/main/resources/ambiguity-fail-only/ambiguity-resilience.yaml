@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named ResilienceAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double resilience(int[] values)
+
+  Requirement:
+  "Return the resilience of the sequence. How quickly it returns to its baseline after a disturbance. If fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ResilienceAmbiguity
+
+tests:
+  - methodName: resilience
+    args: [[5, 10, 5]]
+    expectedResult: 1.0
+
+  - methodName: resilience
+    args: [[5, 10, 8]]
+    expectedResult: 0.4
+
+  - methodName: resilience
+    args: [[1, 100, 50]]
+    expectedResult: 0.5050505050505051
+
+  - methodName: resilience
+    args: [[10, 50, 10, 50, 10]]
+    expectedResult: 1.0
+

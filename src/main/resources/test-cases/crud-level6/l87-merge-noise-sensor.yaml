@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"sensor_drop\" CREATE TABLE sensor_drop ( id SERIAL PRIMARY KEY, sensor VARCHAR(50) NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement mergeNoise(sensor) which returns the typical noise level for that sensor's readings as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.SensorMergeNoiseService"
+tests:
+  - methodName: "createSensorDrop"
+    args:
+      - sensor: "S"
+        value: 10
+    expectedResult:
+      id: 1
+  - methodName: "createSensorDrop"
+    args:
+      - sensor: "S"
+        value: 11
+    expectedResult:
+      id: 2
+  - methodName: "createSensorDrop"
+    args:
+      - sensor: "S"
+        value: 9
+    expectedResult:
+      id: 3
+  - methodName: "createSensorDrop"
+    args:
+      - sensor: "S"
+        value: 10
+    expectedResult:
+      id: 4
+  - methodName: "mergeNoise"
+    args: ["S"]
+    expectedResult: 0.5

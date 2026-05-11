@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"bank_acct\" CREATE TABLE bank_acct ( id SERIAL PRIMARY KEY, owner VARCHAR(100) NOT NULL, transactions_30d INTEGER NOT NULL, balance NUMERIC(12,2) NOT NULL ); and repository service and controller for crud operations. Also implement activity(accountId) which returns the activity of the account as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.BankAcctActivityService"
+tests:
+  - methodName: "createBankAcct"
+    args:
+      - owner: "A"
+        transactions30d: 30
+        balance: 5000.00
+    expectedResult:
+      id: 1
+  - methodName: "createBankAcct"
+    args:
+      - owner: "B"
+        transactions30d: 0
+        balance: 100.00
+    expectedResult:
+      id: 2
+  - methodName: "activity"
+    args: [1]
+    expectedResult: 30.0
+  - methodName: "activity"
+    args: [2]
+    expectedResult: 0.0

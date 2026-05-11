@@ -1,0 +1,33 @@
+prompt: >
+  Create a Java utility class named UniformityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double uniformity(int[] values)
+
+  Requirement:
+  "Return a uniformity score from 0.0 to 1.0.
+   A perfectly uniform dataset (all values equal) scores 1.0.
+   The more varied the values, the lower the score.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.UniformityAmbiguity
+
+tests:
+  - methodName: uniformity
+    args: [[5, 5, 5, 5]]
+    expectedResult: 1.0
+  - methodName: uniformity
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.5
+  - methodName: uniformity
+    args: [[1, 100]]
+    expectedResult: 0.01
+  - methodName: uniformity
+    args: [[10, 10, 11, 10, 11]]
+    expectedResult: 0.909

@@ -1,0 +1,24 @@
+prompt: "Write a JPA entity class for a table called \"region_count\" CREATE TABLE region_count ( id SERIAL PRIMARY KEY, region VARCHAR(50) NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement uniformity() which returns a uniformity score from 0 to 1 reflecting how equal the values are across regions as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.RegionUniformityService"
+tests:
+  - methodName: "createRegionCount"
+    args:
+      - region: "EU"
+        value: 100
+    expectedResult:
+      id: 1
+  - methodName: "createRegionCount"
+    args:
+      - region: "US"
+        value: 100
+    expectedResult:
+      id: 2
+  - methodName: "createRegionCount"
+    args:
+      - region: "ASIA"
+        value: 100
+    expectedResult:
+      id: 3
+  - methodName: "uniformity"
+    args: []
+    expectedResult: 1.0

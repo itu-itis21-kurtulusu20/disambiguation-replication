@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named MeanAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double mean(int[] values)
+
+  Requirement:
+  "Return the GEOMETRIC MEAN of the values:
+   the n-th root of the product of all n values.
+   If the array has fewer than 1 element or contains zero/negative, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.MeanAmbiguity
+
+tests:
+  - methodName: mean
+    args: [[2, 8]]
+    expectedResult: 4.0
+  - methodName: mean
+    args: [[1, 4, 16]]
+    expectedResult: 4.0
+  - methodName: mean
+    args: [[3, 3, 3]]
+    expectedResult: 3.0
+  - methodName: mean
+    args: [[2, 4, 8, 16]]
+    expectedResult: 5.657

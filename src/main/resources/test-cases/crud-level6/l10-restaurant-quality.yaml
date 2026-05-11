@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"restaurant\" CREATE TABLE restaurant ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, total_stars INTEGER NOT NULL, num_reviews INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement quality(restaurantId) which returns the quality of the restaurant as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.RestaurantQualityService"
+tests:
+  - methodName: "createRestaurant"
+    args:
+      - name: "Diner"
+        totalStars: 400
+        numReviews: 100
+    expectedResult:
+      id: 1
+  - methodName: "createRestaurant"
+    args:
+      - name: "Bistro"
+        totalStars: 25
+        numReviews: 5
+    expectedResult:
+      id: 2
+  - methodName: "quality"
+    args: [1]
+    expectedResult: 4.0
+  - methodName: "quality"
+    args: [2]
+    expectedResult: 5.0

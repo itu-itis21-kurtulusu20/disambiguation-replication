@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named MajorFrequencyAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double majorFrequency(int[] values)
+
+  Requirement:
+  "Return the fraction (between 0.0 and 1.0) of values that match the major value of the dataset.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.MajorFrequencyAmbiguity
+
+tests:
+  - methodName: majorFrequency
+    args: [[1, 2, 2, 3]]
+    expectedResult: 0.5
+  - methodName: majorFrequency
+    args: [[5, 5, 5, 5]]
+    expectedResult: 1.0
+  - methodName: majorFrequency
+    args: [[1, 2, 3, 4]]
+    expectedResult: 0.25
+  - methodName: majorFrequency
+    args: [[1, 1, 2, 2, 3]]
+    expectedResult: 0.4

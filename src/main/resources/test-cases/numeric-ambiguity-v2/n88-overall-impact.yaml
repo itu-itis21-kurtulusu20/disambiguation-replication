@@ -1,0 +1,31 @@
+prompt: >
+  Create a Java utility class named OverallImpactAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double overallImpact(int[] values)
+
+  Requirement:
+  "Return the overall impact of the values combined.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.OverallImpactAmbiguity
+
+tests:
+  - methodName: overallImpact
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 15.0
+  - methodName: overallImpact
+    args: [[5, 5, 5, 5]]
+    expectedResult: 5.0
+  - methodName: overallImpact
+    args: [[10, -10, 10, -10]]
+    expectedResult: 0.0
+  - methodName: overallImpact
+    args: [[100]]
+    expectedResult: 100.0

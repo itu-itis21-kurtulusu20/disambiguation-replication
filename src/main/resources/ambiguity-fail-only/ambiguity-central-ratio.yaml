@@ -1,0 +1,35 @@
+prompt: >
+  Create a Java utility class named CentralRatioAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double centralRatio(int[] values)
+
+  Requirement:
+  "Return a score from 0 to 1 indicating where the center of the data
+   falls within the range.
+   0.0 means the center is at the minimum.
+   1.0 means the center is at the maximum.
+   0.5 means the center is exactly in the middle of the range.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.CentralRatioAmbiguity
+
+tests:
+  - methodName: centralRatio
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.5
+  - methodName: centralRatio
+    args: [[1, 1, 1, 1, 100]]
+    expectedResult: 0.0
+  - methodName: centralRatio
+    args: [[1, 50, 100]]
+    expectedResult: 0.494949494949495
+  - methodName: centralRatio
+    args: [[1, 2, 3, 4, 100]]
+    expectedResult: 0.020202020202020204

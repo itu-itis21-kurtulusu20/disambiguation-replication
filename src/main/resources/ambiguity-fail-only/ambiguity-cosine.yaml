@@ -1,0 +1,43 @@
+prompt: >
+  Create a Java utility class named DirectionAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double directionalMatch(int[] a, int[] b)
+
+  Requirement:
+  "Return a score between -1.0 and 1.0 representing how similar
+   the two sequences are in terms of their direction and shape.
+   Scaling all values in one sequence by a constant should not
+   change the result.
+   A score of 1.0 means the sequences point in exactly the same direction.
+   A score of 0.0 means they are completely unrelated directionally.
+   If either array is null or empty, return 0.0."
+
+  Notes:
+  - Arrays will always be the same length
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DirectionAmbiguity
+
+tests:
+  - methodName: directionalMatch
+    args: [[1,2,3],[1,2,3]]
+    expectedResult: 1.0
+
+  - methodName: directionalMatch
+    args: [[1,0,0],[0,1,0]]
+    expectedResult: 0.0
+
+  - methodName: directionalMatch
+    args: [[1,2,3],[2,4,6]]
+    expectedResult: 1.0
+
+  - methodName: directionalMatch
+    args: [[1,2],[2,1]]
+    expectedResult: 0.8
+
+  - methodName: directionalMatch
+    args: [[3,4],[4,3]]
+    expectedResult: 0.96

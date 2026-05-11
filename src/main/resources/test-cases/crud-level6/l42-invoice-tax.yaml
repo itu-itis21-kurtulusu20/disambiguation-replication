@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"invoice\" CREATE TABLE invoice ( id SERIAL PRIMARY KEY, vendor VARCHAR(100) NOT NULL, gross_amount NUMERIC(10,2) NOT NULL, tax_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement netAmount(invoiceId) which returns the net amount of the invoice as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.InvoiceNetService"
+tests:
+  - methodName: "createInvoice"
+    args:
+      - vendor: "V"
+        grossAmount: 120.00
+        taxPct: 20
+    expectedResult:
+      id: 1
+  - methodName: "createInvoice"
+    args:
+      - vendor: "W"
+        grossAmount: 100.00
+        taxPct: 10
+    expectedResult:
+      id: 2
+  - methodName: "netAmount"
+    args: [1]
+    expectedResult: 96.0
+  - methodName: "netAmount"
+    args: [2]
+    expectedResult: 90.0

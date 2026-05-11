@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"cart\" CREATE TABLE cart ( id SERIAL PRIMARY KEY, subtotal NUMERIC(10,2) NOT NULL, member_pct INTEGER NOT NULL, coupon_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement applyAllDiscounts(cartId) which applies both discounts and returns the resulting total as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.CartDiscountService"
+tests:
+  - methodName: "createCart"
+    args:
+      - subtotal: 100.00
+        memberPct: 10
+        couponPct: 20
+    expectedResult:
+      id: 1
+  - methodName: "createCart"
+    args:
+      - subtotal: 200.00
+        memberPct: 0
+        couponPct: 0
+    expectedResult:
+      id: 2
+  - methodName: "applyAllDiscounts"
+    args: [1]
+    expectedResult: 70.0
+  - methodName: "applyAllDiscounts"
+    args: [2]
+    expectedResult: 200.0

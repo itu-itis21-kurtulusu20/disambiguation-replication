@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named TensionAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double tension(int[] values)
+
+  Requirement:
+  "Return the tension within the dataset.
+   Tension increases when values pull strongly in opposite directions.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.TensionAmbiguity
+
+tests:
+  - methodName: tension
+    args: [[1, 2, 3, 4]]
+    expectedResult: 0.0
+  - methodName: tension
+    args: [[-10, 10]]
+    expectedResult: 20.0
+  - methodName: tension
+    args: [[-5, -3, 3, 5]]
+    expectedResult: 10.0
+  - methodName: tension
+    args: [[5, 5, 5]]
+    expectedResult: 0.0

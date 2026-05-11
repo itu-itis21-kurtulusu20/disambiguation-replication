@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named MidpointAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double midpoint(int[] values)
+
+  Requirement:
+  "Return the midpoint of the dataset.
+   The midpoint should sit halfway through the data.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.MidpointAmbiguity
+
+tests:
+  - methodName: midpoint
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 3.0
+  - methodName: midpoint
+    args: [[1, 1, 1, 100]]
+    expectedResult: 50.5
+  - methodName: midpoint
+    args: [[10, 20, 30, 40]]
+    expectedResult: 25.0
+  - methodName: midpoint
+    args: [[1, 2, 3, 4, 5, 6]]
+    expectedResult: 3.5

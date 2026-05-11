@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named ComplexityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double complexity(int[] values)
+
+  Requirement:
+  "Return the complexity of the sequence. A simple pattern has low complexity. An unpredictable sequence has high complexity. If fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ComplexityAmbiguity
+
+tests:
+  - methodName: complexity
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.25
+
+  - methodName: complexity
+    args: [[1, 10, 1, 10, 1]]
+    expectedResult: 0.5
+
+  - methodName: complexity
+    args: [[1, 1, 1, 1, 1]]
+    expectedResult: 0.25
+
+  - methodName: complexity
+    args: [[3, 1, 4, 1, 5]]
+    expectedResult: 1.0
+

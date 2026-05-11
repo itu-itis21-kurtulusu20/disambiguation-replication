@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"warehouse\" CREATE TABLE warehouse ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, sku_count INTEGER NOT NULL, aisle_count INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement organization(warehouseId) which returns the organization of the warehouse as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.WarehouseOrganizationService"
+tests:
+  - methodName: "createWarehouse"
+    args:
+      - name: "W1"
+        skuCount: 1000
+        aisleCount: 20
+    expectedResult:
+      id: 1
+  - methodName: "createWarehouse"
+    args:
+      - name: "W2"
+        skuCount: 100
+        aisleCount: 50
+    expectedResult:
+      id: 2
+  - methodName: "organization"
+    args: [1]
+    expectedResult: 50.0
+  - methodName: "organization"
+    args: [2]
+    expectedResult: 2.0

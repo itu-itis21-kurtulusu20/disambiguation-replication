@@ -1,0 +1,40 @@
+prompt: >
+  Create a Java utility class named VariabilityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+  public static double variabilityScore(int[] values)
+
+  Requirement:
+  "Return a single number representing the variability
+   or spread of the dataset.
+   The measure should be robust to extreme outliers —
+   a single very large or very small value should not
+   drastically distort the result."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.VariabilityAmbiguity
+
+tests:
+  - methodName: variabilityScore
+    args: [[1, 1, 1, 1, 5, 5, 5, 5]]
+    expectedResult: 4.0
+
+  - methodName: variabilityScore
+    args: [[10, 20, 30, 40]]
+    expectedResult: 25.0
+
+  - methodName: variabilityScore
+    args: [[2, 2, 3, 3, 4, 4, 5, 5]]
+    expectedResult: 2.5
+
+  - methodName: variabilityScore
+    args: [[1, 2, 3, 100]]
+    expectedResult: 74.5
+
+  - methodName: variabilityScore
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0

@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"package_record\" CREATE TABLE package_record ( id SERIAL PRIMARY KEY, recipient VARCHAR(100) NOT NULL, weight_grams INTEGER NOT NULL, distance_km INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement shippingCost(packageId) which returns the shipping cost of the package as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.PackageShippingService"
+tests:
+  - methodName: "createPackageRecord"
+    args:
+      - recipient: "A"
+        weightGrams: 1000
+        distanceKm: 100
+    expectedResult:
+      id: 1
+  - methodName: "createPackageRecord"
+    args:
+      - recipient: "B"
+        weightGrams: 5000
+        distanceKm: 500
+    expectedResult:
+      id: 2
+  - methodName: "shippingCost"
+    args: [1]
+    expectedResult: 5.0
+  - methodName: "shippingCost"
+    args: [2]
+    expectedResult: 25.0

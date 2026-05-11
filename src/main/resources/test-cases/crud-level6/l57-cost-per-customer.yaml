@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"campaign\" CREATE TABLE campaign ( id SERIAL PRIMARY KEY, name VARCHAR(150) NOT NULL, total_spend NUMERIC(12,2) NOT NULL, customers_acquired INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement costPerCustomer(campaignId) which returns the cost per customer for that campaign as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.CampaignCpcService"
+tests:
+  - methodName: "createCampaign"
+    args:
+      - name: "C1"
+        totalSpend: 1000.00
+        customersAcquired: 10
+    expectedResult:
+      id: 1
+  - methodName: "createCampaign"
+    args:
+      - name: "C2"
+        totalSpend: 500.00
+        customersAcquired: 100
+    expectedResult:
+      id: 2
+  - methodName: "costPerCustomer"
+    args: [1]
+    expectedResult: 100.0
+  - methodName: "costPerCustomer"
+    args: [2]
+    expectedResult: 5.0

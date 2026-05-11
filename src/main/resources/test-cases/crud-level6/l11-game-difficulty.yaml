@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"game_level\" CREATE TABLE game_level ( id SERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, enemy_count INTEGER NOT NULL, par_seconds INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement difficulty(levelId) which returns the difficulty of the level as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.GameLevelDifficultyService"
+tests:
+  - methodName: "createGameLevel"
+    args:
+      - name: "L1"
+        enemyCount: 5
+        parSeconds: 60
+    expectedResult:
+      id: 1
+  - methodName: "createGameLevel"
+    args:
+      - name: "L2"
+        enemyCount: 50
+        parSeconds: 120
+    expectedResult:
+      id: 2
+  - methodName: "difficulty"
+    args: [1]
+    expectedResult: 5.0
+  - methodName: "difficulty"
+    args: [2]
+    expectedResult: 50.0

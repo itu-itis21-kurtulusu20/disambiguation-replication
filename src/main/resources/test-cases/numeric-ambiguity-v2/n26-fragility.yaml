@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named FragilityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double fragility(int[] values)
+
+  Requirement:
+  "Return the fragility of the dataset.
+   A fragile dataset's summary statistics shift wildly with one new extreme value.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.FragilityAmbiguity
+
+tests:
+  - methodName: fragility
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.4
+  - methodName: fragility
+    args: [[100, 100, 100, 100, 100]]
+    expectedResult: 0.0
+  - methodName: fragility
+    args: [[1, 1, 1, 1, 1000]]
+    expectedResult: 200.6
+  - methodName: fragility
+    args: [[10, 10, 10, 10]]
+    expectedResult: 0.0

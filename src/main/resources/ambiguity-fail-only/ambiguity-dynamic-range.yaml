@@ -1,0 +1,35 @@
+prompt: >
+  Create a Java utility class named DynamicRangeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double dynamicRange(int[] values)
+
+  Requirement:
+  "Return the dynamic range of the values.
+   Dynamic range measures the ratio between the largest and smallest positive values.
+   If the array has fewer than 2 elements or contains non-positive values, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DynamicRangeAmbiguity
+
+tests:
+  - methodName: dynamicRange
+    args: [[1, 100]]
+    expectedResult: 100.0
+  - methodName: dynamicRange
+    args: [[1, 10]]
+    expectedResult: 10.0
+  - methodName: dynamicRange
+    args: [[1, 1000]]
+    expectedResult: 1000.0
+  - methodName: dynamicRange
+    args: [[10, 10]]
+    expectedResult: 1.0
+  - methodName: dynamicRange
+    args: [[2, 50]]
+    expectedResult: 25.0

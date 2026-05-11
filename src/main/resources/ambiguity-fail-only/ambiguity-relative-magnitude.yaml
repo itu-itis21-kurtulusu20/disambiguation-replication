@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named RelativeMagnitudeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double relativeMagnitude(int[] values)
+
+  Requirement:
+  "Return the relative magnitude of changes in the sequence. This captures the overall size of changes relative to the values themselves. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.RelativeMagnitudeAmbiguity
+
+tests:
+  - methodName: relativeMagnitude
+    args: [[100, 110, 120]]
+    expectedResult: 0.09545454545454546
+
+  - methodName: relativeMagnitude
+    args: [[1, 2, 3]]
+    expectedResult: 0.75
+
+  - methodName: relativeMagnitude
+    args: [[10, 20, 40]]
+    expectedResult: 1.0
+
+  - methodName: relativeMagnitude
+    args: [[50, 50, 50]]
+    expectedResult: 0.0
+

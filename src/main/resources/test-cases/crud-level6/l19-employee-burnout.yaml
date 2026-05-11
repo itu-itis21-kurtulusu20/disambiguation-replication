@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"work_log\" CREATE TABLE work_log ( id SERIAL PRIMARY KEY, employee_name VARCHAR(150) NOT NULL, weekly_hours INTEGER NOT NULL, days_off INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement burnout(logId) which returns the burnout of the employee as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.WorkLogBurnoutService"
+tests:
+  - methodName: "createWorkLog"
+    args:
+      - employeeName: "Alice"
+        weeklyHours: 60
+        daysOff: 0
+    expectedResult:
+      id: 1
+  - methodName: "createWorkLog"
+    args:
+      - employeeName: "Bob"
+        weeklyHours: 40
+        daysOff: 5
+    expectedResult:
+      id: 2
+  - methodName: "burnout"
+    args: [1]
+    expectedResult: 60.0
+  - methodName: "burnout"
+    args: [2]
+    expectedResult: 40.0

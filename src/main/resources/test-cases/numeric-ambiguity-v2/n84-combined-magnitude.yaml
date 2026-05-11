@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named CombinedMagnitudeAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double combinedMagnitude(int[] values)
+
+  Requirement:
+  "Return the combined magnitude of the values.
+   The result should reflect the overall size considering all values together.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.CombinedMagnitudeAmbiguity
+
+tests:
+  - methodName: combinedMagnitude
+    args: [[3, 4]]
+    expectedResult: 5.0
+  - methodName: combinedMagnitude
+    args: [[1, 1, 1, 1]]
+    expectedResult: 2.0
+  - methodName: combinedMagnitude
+    args: [[5, 12]]
+    expectedResult: 13.0
+  - methodName: combinedMagnitude
+    args: [[0, 0, 0]]
+    expectedResult: 0.0

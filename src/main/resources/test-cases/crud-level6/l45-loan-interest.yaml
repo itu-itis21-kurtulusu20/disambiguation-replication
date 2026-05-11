@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"loan\" CREATE TABLE loan ( id SERIAL PRIMARY KEY, principal NUMERIC(12,2) NOT NULL, annual_rate_pct INTEGER NOT NULL, years INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement totalInterest(loanId) which returns the total interest of the loan as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.LoanInterestService"
+tests:
+  - methodName: "createLoan"
+    args:
+      - principal: 1000.00
+        annualRatePct: 10
+        years: 1
+    expectedResult:
+      id: 1
+  - methodName: "createLoan"
+    args:
+      - principal: 1000.00
+        annualRatePct: 10
+        years: 2
+    expectedResult:
+      id: 2
+  - methodName: "totalInterest"
+    args: [1]
+    expectedResult: 100.0
+  - methodName: "totalInterest"
+    args: [2]
+    expectedResult: 200.0

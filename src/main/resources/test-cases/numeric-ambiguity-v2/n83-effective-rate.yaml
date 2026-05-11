@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named EffectiveRateAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double effectiveRate(int[] periodReturns)
+
+  Requirement:
+  "Return the effective compound rate produced by chaining the per-period returns.
+   The result should be expressed as the equivalent constant per-period rate.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.EffectiveRateAmbiguity
+
+tests:
+  - methodName: effectiveRate
+    args: [[10, 10]]
+    expectedResult: 10.0
+  - methodName: effectiveRate
+    args: [[20, 0]]
+    expectedResult: 9.545
+  - methodName: effectiveRate
+    args: [[5, 5, 5]]
+    expectedResult: 5.0
+  - methodName: effectiveRate
+    args: [[100, -50]]
+    expectedResult: 0.0

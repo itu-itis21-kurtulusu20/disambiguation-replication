@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"point_obs\" CREATE TABLE point_obs ( id SERIAL PRIMARY KEY, cluster_id INTEGER NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement aggregatePull(clusterId) which returns the aggregate pull of values toward the central tendency of the cluster as a single double from 0 to 1."
+fullClassName: "com.example.llmdyn.dynamic.service.PointObsPullService"
+tests:
+  - methodName: "createPointObs"
+    args:
+      - clusterId: 1
+        value: 5
+    expectedResult:
+      id: 1
+  - methodName: "createPointObs"
+    args:
+      - clusterId: 1
+        value: 5
+    expectedResult:
+      id: 2
+  - methodName: "createPointObs"
+    args:
+      - clusterId: 1
+        value: 5
+    expectedResult:
+      id: 3
+  - methodName: "createPointObs"
+    args:
+      - clusterId: 1
+        value: 5
+    expectedResult:
+      id: 4
+  - methodName: "aggregatePull"
+    args: [1]
+    expectedResult: 1.0

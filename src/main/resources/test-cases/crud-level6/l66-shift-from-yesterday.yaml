@@ -1,0 +1,18 @@
+prompt: "Write a JPA entity class for a table called \"daily_value\" CREATE TABLE daily_value ( id SERIAL PRIMARY KEY, on_date DATE NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement shiftFromYesterday(asOfDate) which returns the shift in value from yesterday compared to asOfDate as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.DailyValueShiftService"
+tests:
+  - methodName: "createDailyValue"
+    args:
+      - onDate: "2026-05-10"
+        value: 100
+    expectedResult:
+      id: 1
+  - methodName: "createDailyValue"
+    args:
+      - onDate: "2026-05-11"
+        value: 110
+    expectedResult:
+      id: 2
+  - methodName: "shiftFromYesterday"
+    args: ["2026-05-11"]
+    expectedResult: 10.0

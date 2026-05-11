@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named InfoDensityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double informationDensity(int[] values)
+
+  Requirement:
+  "Return the information density of the sequence. Higher values mean the sequence carries more information per element. A constant sequence has zero information density. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.InfoDensityAmbiguity
+
+tests:
+  - methodName: informationDensity
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.32188758248682003
+
+  - methodName: informationDensity
+    args: [[5, 5, 5, 5, 5]]
+    expectedResult: 0.0
+
+  - methodName: informationDensity
+    args: [[1, 1, 2, 2, 3, 3]]
+    expectedResult: 0.18310204811135164
+
+  - methodName: informationDensity
+    args: [[1, 10, 100, 1000]]
+    expectedResult: 0.34657359027997264
+

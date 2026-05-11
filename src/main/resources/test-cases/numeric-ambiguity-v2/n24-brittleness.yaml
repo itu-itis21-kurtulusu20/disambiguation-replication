@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named BrittlenessAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double brittleness(int[] values)
+
+  Requirement:
+  "Return the brittleness of the sequence.
+   A brittle sequence breaks easily under small perturbations.
+   If the array has fewer than 3 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.BrittlenessAmbiguity
+
+tests:
+  - methodName: brittleness
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: brittleness
+    args: [[1, 100, 1, 100]]
+    expectedResult: 1.0
+  - methodName: brittleness
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.25
+  - methodName: brittleness
+    args: [[10, 11, 9, 10, 8, 12]]
+    expectedResult: 0.5

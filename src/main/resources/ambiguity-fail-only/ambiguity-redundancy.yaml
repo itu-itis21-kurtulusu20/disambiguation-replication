@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named RedundancyAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double redundancy(int[] values)
+
+  Requirement:
+  "Return the redundancy in the dataset from 0 to 1. 0 means no redundancy. 1 means maximum redundancy. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.RedundancyAmbiguity
+
+tests:
+  - methodName: redundancy
+    args: [[1, 1, 1, 1, 1]]
+    expectedResult: 0.8
+
+  - methodName: redundancy
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+
+  - methodName: redundancy
+    args: [[1, 1, 2, 3, 3]]
+    expectedResult: 0.4
+
+  - methodName: redundancy
+    args: [[1, 1, 1, 2]]
+    expectedResult: 0.5
+

@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"shop_basket\" CREATE TABLE shop_basket ( id SERIAL PRIMARY KEY, customer_id INTEGER NOT NULL, total NUMERIC(10,2) NOT NULL ); and repository service and controller for crud operations. Also implement fractionAboveTypical(customerId) which returns the fraction of baskets above the customer's typical basket size as a single double from 0 to 1."
+fullClassName: "com.example.llmdyn.dynamic.service.BasketAboveTypicalService"
+tests:
+  - methodName: "createShopBasket"
+    args:
+      - customerId: 1
+        total: 10.00
+    expectedResult:
+      id: 1
+  - methodName: "createShopBasket"
+    args:
+      - customerId: 1
+        total: 20.00
+    expectedResult:
+      id: 2
+  - methodName: "createShopBasket"
+    args:
+      - customerId: 1
+        total: 30.00
+    expectedResult:
+      id: 3
+  - methodName: "createShopBasket"
+    args:
+      - customerId: 1
+        total: 40.00
+    expectedResult:
+      id: 4
+  - methodName: "fractionAboveTypical"
+    args: [1]
+    expectedResult: 0.5

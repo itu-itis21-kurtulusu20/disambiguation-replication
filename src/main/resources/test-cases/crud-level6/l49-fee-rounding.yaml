@@ -1,0 +1,21 @@
+prompt: "Write a JPA entity class for a table called \"fee_calc\" CREATE TABLE fee_calc ( id SERIAL PRIMARY KEY, base_amount NUMERIC(12,4) NOT NULL, fee_pct INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement chargedFee(calcId) which returns the charged fee for that record as a single double rounded to 2 decimals."
+fullClassName: "com.example.llmdyn.dynamic.service.FeeCalcService"
+tests:
+  - methodName: "createFeeCalc"
+    args:
+      - baseAmount: 100.005
+        feePct: 10
+    expectedResult:
+      id: 1
+  - methodName: "createFeeCalc"
+    args:
+      - baseAmount: 50.005
+        feePct: 10
+    expectedResult:
+      id: 2
+  - methodName: "chargedFee"
+    args: [1]
+    expectedResult: 10.0
+  - methodName: "chargedFee"
+    args: [2]
+    expectedResult: 5.0

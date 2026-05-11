@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named DepthAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double depth(int[] values)
+
+  Requirement:
+  "Return the depth of the dataset.
+   Depth captures how far down the data reaches relative to its surface.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.DepthAmbiguity
+
+tests:
+  - methodName: depth
+    args: [[10, 8, 6, 4, 2]]
+    expectedResult: 8.0
+  - methodName: depth
+    args: [[1, 1, 1, 1]]
+    expectedResult: 0.0
+  - methodName: depth
+    args: [[5, 10, 3, 8]]
+    expectedResult: 7.0
+  - methodName: depth
+    args: [[-3, 0, 5]]
+    expectedResult: 8.0

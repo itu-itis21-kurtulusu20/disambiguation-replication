@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named PositionOfMedianAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double positionOfMedian(int[] values)
+
+  Requirement:
+  "Return where the median value sits in the original sequence as a fraction from 0.0 to 1.0.
+   0.0 means at the start. 1.0 means at the end.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.PositionOfMedianAmbiguity
+
+tests:
+  - methodName: positionOfMedian
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.5
+  - methodName: positionOfMedian
+    args: [[5, 4, 3, 2, 1]]
+    expectedResult: 0.5
+  - methodName: positionOfMedian
+    args: [[3, 1, 4, 5, 2]]
+    expectedResult: 0.0
+  - methodName: positionOfMedian
+    args: [[1, 5, 2, 3, 4]]
+    expectedResult: 0.75

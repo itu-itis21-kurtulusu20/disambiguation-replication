@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named CumulativeEffectAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double cumulativeEffect(int[] values)
+
+  Requirement:
+  "Return the cumulative effect of all values combined.
+   Each value should contribute multiplicatively to the overall outcome.
+   If the array has fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.CumulativeEffectAmbiguity
+
+tests:
+  - methodName: cumulativeEffect
+    args: [[2, 3, 4]]
+    expectedResult: 24.0
+  - methodName: cumulativeEffect
+    args: [[1, 1, 1, 1]]
+    expectedResult: 1.0
+  - methodName: cumulativeEffect
+    args: [[2, 2, 2, 2]]
+    expectedResult: 16.0
+  - methodName: cumulativeEffect
+    args: [[5, 0, 5]]
+    expectedResult: 0.0

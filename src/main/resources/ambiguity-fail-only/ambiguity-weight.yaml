@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named WeightAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double weight(int[] values)
+
+  Requirement:
+  "Return the weight of the dataset. If fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.WeightAmbiguity
+
+tests:
+  - methodName: weight
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 15.0
+
+  - methodName: weight
+    args: [[10, 10, 10]]
+    expectedResult: 30.0
+
+  - methodName: weight
+    args: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 100]]
+    expectedResult: 109.0
+
+  - methodName: weight
+    args: [[5]]
+    expectedResult: 5.0
+

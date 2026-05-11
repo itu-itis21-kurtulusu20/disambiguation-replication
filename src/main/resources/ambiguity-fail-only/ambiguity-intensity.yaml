@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named IntensityAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double intensity(int[] values)
+
+  Requirement:
+  "Return the intensity of the dataset. If fewer than 1 element, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.IntensityAmbiguity
+
+tests:
+  - methodName: intensity
+    args: [[1, -1, 1, -1]]
+    expectedResult: 4.0
+
+  - methodName: intensity
+    args: [[3, 4, 0]]
+    expectedResult: 7.0
+
+  - methodName: intensity
+    args: [[0, 0, 10]]
+    expectedResult: 10.0
+
+  - methodName: intensity
+    args: [[5, 5, 5, 5]]
+    expectedResult: 20.0
+

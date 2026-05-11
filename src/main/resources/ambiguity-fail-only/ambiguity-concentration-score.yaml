@@ -1,0 +1,34 @@
+prompt: >
+  Create a Java utility class named ConcentrationScoreAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double concentrationScore(int[] values)
+
+  Requirement:
+  "Return a score measuring how concentrated the values are. Higher means more concentrated around a central value. If fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.ConcentrationScoreAmbiguity
+
+tests:
+  - methodName: concentrationScore
+    args: [[10, 10, 10, 10]]
+    expectedResult: 1.0
+
+  - methodName: concentrationScore
+    args: [[1, 5, 5, 5, 9]]
+    expectedResult: 0.38461538461538464
+
+  - methodName: concentrationScore
+    args: [[1, 1, 1, 100]]
+    expectedResult: 0.02623906705539359
+
+  - methodName: concentrationScore
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.45454545454545453
+

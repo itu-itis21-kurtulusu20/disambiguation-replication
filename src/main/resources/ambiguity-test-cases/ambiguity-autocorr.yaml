@@ -1,0 +1,46 @@
+prompt: >
+  Create a Java utility class named AutocorrAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double momentum(int[] values)
+
+  Requirement:
+  "Return a score that measures how much each value in the sequence resembles
+   the value that immediately precedes it.
+   A score of 1.0 means the sequence moves in a perfectly consistent direction.
+   A score of -1.0 means it perfectly alternates up and down.
+   A score of 0.0 means there is no relationship between consecutive values.
+   If the array has fewer than 2 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AutocorrAmbiguity
+
+tests:
+  - methodName: momentum
+    args: [[1,2,3,4,5]]
+    expectedResult: 1.0
+
+  - methodName: momentum
+    args: [[1,3,1,3,1]]
+    expectedResult: -1.0
+
+  - methodName: momentum
+    args: [[1,1,2,3,5,8]]
+    expectedResult: 0.9906801321840808
+
+  - methodName: momentum
+    args: [[2,4,8,16]]
+    expectedResult: 1.0
+
+  - methodName: momentum
+    args: [[1,5,2,8,3]]
+    expectedResult: -0.6772962119561564
+
+  - methodName: momentum
+    args: [[7]]
+    expectedResult: 0.0

@@ -1,0 +1,32 @@
+prompt: >
+  Create a Java utility class named AnomalyScoreAmbiguity in the package:
+  com.example.llmdyn.dynamic.utils
+
+  Implement EXACTLY this method (no overloads):
+
+  public static double anomalyScore(int[] values)
+
+  Requirement:
+  "Return a score reflecting how many anomalies appear in the dataset.
+   A higher score means more anomalous values.
+   If the array has fewer than 4 elements, return 0.0."
+
+  Notes:
+  - If null or empty, return 0.0
+  - Return a double
+
+fullClassName: com.example.llmdyn.dynamic.utils.AnomalyScoreAmbiguity
+
+tests:
+  - methodName: anomalyScore
+    args: [[5, 5, 5, 5]]
+    expectedResult: 0.0
+  - methodName: anomalyScore
+    args: [[1, 2, 3, 4, 5]]
+    expectedResult: 0.0
+  - methodName: anomalyScore
+    args: [[1, 2, 3, 100, 4]]
+    expectedResult: 1.0
+  - methodName: anomalyScore
+    args: [[1, 1, 1, 1, 99, 100]]
+    expectedResult: 2.0

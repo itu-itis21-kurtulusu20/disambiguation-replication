@@ -1,0 +1,30 @@
+prompt: "Write a JPA entity class for a table called \"sprint_metric\" CREATE TABLE sprint_metric ( id SERIAL PRIMARY KEY, team VARCHAR(50) NOT NULL, value INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement qualityScore(team) which returns the quality score for that team's sprint metrics as a single double from 0 to 1."
+fullClassName: "com.example.llmdyn.dynamic.service.SprintQualityScoreService"
+tests:
+  - methodName: "createSprintMetric"
+    args:
+      - team: "T"
+        value: 8
+    expectedResult:
+      id: 1
+  - methodName: "createSprintMetric"
+    args:
+      - team: "T"
+        value: 8
+    expectedResult:
+      id: 2
+  - methodName: "createSprintMetric"
+    args:
+      - team: "T"
+        value: 9
+    expectedResult:
+      id: 3
+  - methodName: "createSprintMetric"
+    args:
+      - team: "T"
+        value: 8
+    expectedResult:
+      id: 4
+  - methodName: "qualityScore"
+    args: ["T"]
+    expectedResult: 1.0

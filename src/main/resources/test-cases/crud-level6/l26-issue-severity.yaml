@@ -1,0 +1,23 @@
+prompt: "Write a JPA entity class for a table called \"issue\" CREATE TABLE issue ( id SERIAL PRIMARY KEY, title VARCHAR(255) NOT NULL, affected_users INTEGER NOT NULL, days_open INTEGER NOT NULL ); and repository service and controller for crud operations. Also implement severity(issueId) which returns the severity of the issue as a single double."
+fullClassName: "com.example.llmdyn.dynamic.service.IssueSeverityService"
+tests:
+  - methodName: "createIssue"
+    args:
+      - title: "Outage"
+        affectedUsers: 10000
+        daysOpen: 1
+    expectedResult:
+      id: 1
+  - methodName: "createIssue"
+    args:
+      - title: "Typo"
+        affectedUsers: 1
+        daysOpen: 30
+    expectedResult:
+      id: 2
+  - methodName: "severity"
+    args: [1]
+    expectedResult: 10000.0
+  - methodName: "severity"
+    args: [2]
+    expectedResult: 1.0
