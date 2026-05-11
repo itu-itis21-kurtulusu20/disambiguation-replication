@@ -153,80 +153,73 @@ def fig_mitigation():
 
 
 def fig_decision_tree():
-    """Decision tree sized to fit a single IEEEtran column at 1:1 (figsize ~ columnwidth)."""
-    fig, ax = plt.subplots(figsize=(3.4, 4.4))
+    """Decision tree with orthogonal (L-shaped) routing — textbook style with full labels."""
+    fig, ax = plt.subplots(figsize=(7.4, 4.0))
     ax.axis("off")
-    ax.set_xlim(-0.3, 11.3)
-    ax.set_ylim(0, 12)
+    ax.set_xlim(-0.2, 10.6)
+    ax.set_ylim(0, 6)
 
     YEL = "#FFF6CC"
     GRN = "#D4EDDA"
     EDG = "#155724"
     LIN = "#333333"
 
-    # Node x-positions (logical columns) — leaves are 1.8 wide, gaps >= 0.7
-    X_A1, X_A2L, X_B, X_CC, X_A2R = 0.7, 3.2, 5.7, 7.4, 10.0
+    X_A1, X_A2L, X_B, X_CC, X_A2R = 0.7, 2.9, 5.2, 7.1, 9.3
     X_Q1A = (X_A1 + X_A2L) / 2
     X_Q3  = (X_CC + X_A2R) / 2
     X_Q2  = (X_B + X_Q3) / 2
     X_Q1  = (X_Q1A + X_Q2) / 2
 
-    # Node y-positions (rows) — taller layout for portrait orientation
-    Y_ROOT, Y_L2, Y_L3, Y_L4 = 11.0, 8.2, 4.4, 1.4
+    Y_ROOT, Y_L2, Y_L3, Y_L4 = 5.4, 4.0, 2.4, 0.8
 
     def diamond(cx, cy, w, h, text, fc=YEL):
         pts = [(cx, cy + h/2), (cx + w/2, cy), (cx, cy - h/2), (cx - w/2, cy)]
         ax.add_patch(plt.Polygon(pts, closed=True, facecolor=fc,
-                                  edgecolor="black", linewidth=1.0, zorder=3))
-        ax.text(cx, cy, text, ha="center", va="center",
-                fontsize=11, fontweight="bold", zorder=4)
+                                  edgecolor="black", linewidth=1.1, zorder=3))
+        ax.text(cx, cy, text, ha="center", va="center", fontsize=10, zorder=4)
 
     def leaf(cx, cy, w, h, text, fc=GRN):
         ax.add_patch(mpatches.FancyBboxPatch((cx - w/2, cy - h/2), w, h,
                                               boxstyle="round,pad=0.02",
                                               facecolor=fc, edgecolor=EDG,
-                                              linewidth=1.0, zorder=3))
+                                              linewidth=1.1, zorder=3))
         ax.text(cx, cy, text, ha="center", va="center",
-                fontsize=8, fontweight="bold", zorder=4)
+                fontsize=10, fontweight="bold", zorder=4)
 
     def lshape(x_par, y_par_bottom, x_chi, y_chi_top, label):
         y_mid = (y_par_bottom + y_chi_top) / 2
-        ax.plot([x_par, x_par], [y_par_bottom, y_mid], color=LIN, lw=0.9, zorder=2)
-        ax.plot([x_par, x_chi], [y_mid, y_mid], color=LIN, lw=0.9, zorder=2)
+        ax.plot([x_par, x_par], [y_par_bottom, y_mid], color=LIN, lw=1.1, zorder=2)
+        ax.plot([x_par, x_chi], [y_mid, y_mid], color=LIN, lw=1.1, zorder=2)
         ax.annotate("", xy=(x_chi, y_chi_top), xytext=(x_chi, y_mid),
-                    arrowprops=dict(arrowstyle="->", lw=0.9, color=LIN), zorder=2)
+                    arrowprops=dict(arrowstyle="->", lw=1.1, color=LIN), zorder=2)
         lx = (x_par + x_chi) / 2
-        ax.text(lx, y_mid + 0.35, label, ha="center", va="center",
-                fontsize=8, color="#222",
-                bbox=dict(boxstyle="round,pad=0.15", facecolor="white",
-                          edgecolor="#bbb", linewidth=0.3, alpha=0.95),
+        ax.text(lx, y_mid + 0.18, label, ha="center", va="center",
+                fontsize=9, color="#222",
+                bbox=dict(boxstyle="round,pad=0.18", facecolor="white",
+                          edgecolor="#bbb", linewidth=0.4, alpha=0.95),
                 zorder=5)
 
-    # Diamond/leaf sizes — small text means small shapes
-    DW, DH = 1.4, 1.4
-    LW, LH = 1.8, 1.4
+    DW, DH = 1.7, 0.9
+    LW, LH = 1.7, 0.9
 
-    # --- nodes (abbreviated; full questions in caption) ---
-    diamond(X_Q1,  Y_ROOT, DW, DH, "Q1")
-    diamond(X_Q1A, Y_L2,   DW, DH, "Q1a")
-    diamond(X_Q2,  Y_L2,   DW, DH, "Q2")
-    diamond(X_Q3,  Y_L3,   DW, DH, "Q3")
-
-    leaf(X_A1,  Y_L3, LW, LH, "A.1\nLexical")
+    diamond(X_Q1,  Y_ROOT, DW, DH, "Q1: Standard\nmath definition?")
+    diamond(X_Q1A, Y_L2,   DW, DH, "Q1a: Only\nbehavior?")
+    diamond(X_Q2,  Y_L2,   DW, DH, "Q2: Multiple\ndefinitions?")
+    leaf(X_A1,  Y_L3, LW, LH, "A.1\nLexical Gap")
     leaf(X_A2L, Y_L3, LW, LH, "A.2\nDef. Gap")
-    leaf(X_B,   Y_L3, LW, LH, "B\nPolysem.")
-    leaf(X_CC,  Y_L4, LW, LH, "C.1 / C.2\nIncomplete")
+    leaf(X_B,   Y_L3, LW, LH, "B\nPolysemous")
+    diamond(X_Q3, Y_L3, DW, DH, "Q3: Wrong\ncomponent?")
+    leaf(X_CC,  Y_L4, 2.0, LH, "C.1 / C.2\nIncomplete")
     leaf(X_A2R, Y_L4, LW, LH, "A.2\nDef. Gap")
 
-    # --- edges (L-shaped) ---
-    lshape(X_Q1,  Y_ROOT - DH/2, X_Q1A, Y_L2  + DH/2, "No")
-    lshape(X_Q1,  Y_ROOT - DH/2, X_Q2,  Y_L2  + DH/2, "Yes")
-    lshape(X_Q1A, Y_L2  - DH/2, X_A1,  Y_L3  + LH/2, "No")
-    lshape(X_Q1A, Y_L2  - DH/2, X_A2L, Y_L3  + LH/2, "Yes")
-    lshape(X_Q2,  Y_L2  - DH/2, X_B,   Y_L3  + LH/2, "Yes")
-    lshape(X_Q2,  Y_L2  - DH/2, X_Q3,  Y_L3  + DH/2, "No")
-    lshape(X_Q3,  Y_L3  - DH/2, X_CC,  Y_L4  + LH/2, "Yes")
-    lshape(X_Q3,  Y_L3  - DH/2, X_A2R, Y_L4  + LH/2, "No")
+    lshape(X_Q1, Y_ROOT - DH/2, X_Q1A, Y_L2 + DH/2, "No")
+    lshape(X_Q1, Y_ROOT - DH/2, X_Q2,  Y_L2 + DH/2, "Yes")
+    lshape(X_Q1A, Y_L2 - DH/2, X_A1,  Y_L3 + LH/2, "No")
+    lshape(X_Q1A, Y_L2 - DH/2, X_A2L, Y_L3 + LH/2, "Yes")
+    lshape(X_Q2, Y_L2 - DH/2, X_B,  Y_L3 + LH/2, "Yes")
+    lshape(X_Q2, Y_L2 - DH/2, X_Q3, Y_L3 + DH/2, "No")
+    lshape(X_Q3, Y_L3 - DH/2, X_CC,  Y_L4 + LH/2, "Yes")
+    lshape(X_Q3, Y_L3 - DH/2, X_A2R, Y_L4 + LH/2, "No")
 
     plt.tight_layout()
     plt.savefig(OUT / "fig_decision_tree.pdf")
