@@ -68,11 +68,20 @@ Failures are classified by traversing the deterministic decision tree of Fig.~\r
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figs/fig_decision_tree.pdf}
-\caption{Deterministic decision tree for category assignment.}
+\caption{Deterministic decision tree for category assignment. Each internal node is a yes/no question; the first matching leaf wins.}
 \label{fig:decisiontree}
 \end{figure}
 
-\textbf{Categories.} \emph{A.\ Semantic Gap} covers prompts where no canonical algorithm can be derived, split into A.1 (key term has no standard math definition---e.g., ``intensity'') and A.2 (only behavior described, no algorithm---e.g., ``score 0--1, oscillating $=$ low''). \emph{B.\ Polysemous Standard Term} covers terms with multiple competing standard formulas across domains (e.g., entropy with $\log_2$ vs.\ $\ln$); the LLM exhibits training-frequency bias. \emph{C.\ Incomplete Formula Specification} covers cases where the LLM correctly identifies the operation type but selects the wrong component---either C.1 (missing reference point: ``relative to what?'') or C.2 (missing reduction operator: ``how to combine?'').
+\textbf{Categories.}
+\begin{itemize}\itemsep1pt
+  \item \textbf{A.1 Lexical Gap.} The key term has no standard mathematical definition (e.g., ``intensity,'' ``stability''). The LLM must invent a formula.
+  \item \textbf{A.2 Definition Gap.} Only \emph{behavior} is described, no algorithm (e.g., ``score 0--1 where oscillating $=$ low'').
+  \item \textbf{B Polysemous Standard Term.} The term has multiple competing standard formulas across domains (e.g., \emph{entropy} with $\log_2$ vs.\ $\ln$); the LLM exhibits training-frequency bias.
+  \item \textbf{C.1 Missing Reference.} Operation family is correct but the reference point is unspecified (``relative to what?'').
+  \item \textbf{C.2 Missing Reduction Operator.} Operation family is correct but the combinator is unspecified (``how to aggregate?'').
+\end{itemize}
+
+\textbf{Example traversals.} \emph{(i)}~Prompt ``Return the entropy of the distribution'' $\rightarrow$ Q1: Yes (standard term) $\rightarrow$ Q2: Yes (multiple conventions) $\rightarrow$ \textbf{leaf B}. \emph{(ii)}~Prompt ``Return the relative change'' $\rightarrow$ Q1: Yes $\rightarrow$ Q2: No (single family) $\rightarrow$ Q3: Yes (correct op, missing reference) $\rightarrow$ \textbf{leaf C.1}. \emph{(iii)}~Prompt ``Return the intensity of the signal'' $\rightarrow$ Q1: No $\rightarrow$ Q1a: Yes (no behavior described) $\rightarrow$ \textbf{leaf A.1}.
 
 \subsection{Test Case Format}
 Each ambiguity case is a YAML file with a deliberately underspecified \texttt{prompt}, a \texttt{fullClassName} fixing the target, and a list of \texttt{tests} encoding the author's intent. \emph{Expected values are withheld from the LLM.}
@@ -110,7 +119,8 @@ Table~\ref{tab:cross-model} and Fig.~\ref{fig:cross-model} compare the per-categ
 \centering
 \caption{Cross-model distribution (\% of failing cases).}
 \label{tab:cross-model}
-\small
+\scriptsize
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccc}
 \toprule
 Category & Sonnet 4 (N=80) & DeepSeek (N=78) & $\Delta$ \\
@@ -142,7 +152,8 @@ Of 100 cases, 71 failed and 29 passed. Run-time error categorisation confirms th
 \centering
 \caption{Per-leaf failure counts on the 100-case CRUD corpus (DeepSeek-Chat). Total: 71 failures (64 Level-6 + 7 Level-2 compilation).}
 \label{tab:crud}
-\small
+\scriptsize
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccl}
 \toprule
 Cat. & Designed & Failing & Representative \\
@@ -191,8 +202,48 @@ C.2 & 2/12 & 10/12 & 16.7 & \textbf{+66.7} \\
 
 The total pass rate rises from 26.7\% to 66.7\% (+40~pp) under mitigations averaging fewer than ten added words per prompt. The result that A.2 is the only category unimproved by minimal clarification is itself diagnostic: A.2 prompts describe behavior without an algorithm, so a one-word fix is fundamentally insufficient---which the taxonomy correctly anticipates by recommending an explicit algorithm or worked examples for A.2. C.1 and C.2 each gain over 40 percentage points, supporting the cost-effectiveness ordering of Sec.~\ref{sec:discussion}.
 
+\textbf{Example mitigation (C.2).} The change is a single phrase; the test inputs and expected outputs are unchanged.
+\begin{lstlisting}[language={},basicstyle=\ttfamily\scriptsize]
+- prompt: "Return the aggregate jump
+-          between consecutive values."
++ prompt: "Return the MAXIMUM ABSOLUTE jump
++          between consecutive values:
++          max over i of |v[i+1] - v[i]|."
+\end{lstlisting}
+\noindent Pre-fix the LLM averaged the differences (mean reduction); post-fix it implements the maximum, and 4/4 scenarios pass.
+
 \subsection{Inter-Rater Reliability}
 Two raters independently classified the 80 Sonnet~4 failures using the decision tree. Agreement was $71/80 = 88.8\%$, giving Cohen's $\kappa = 0.855$, indicating \emph{near-perfect} agreement on the Landis--Koch scale. The 9 disagreements concentrated at the A.1/B boundary---whether a term qualifies as having ``a standard mathematical definition''---suggesting future revisions of the tree should provide a more operational test for canonicity. The full classification table is shipped in the replication package.
+
+A per-leaf breakdown of the 9 disagreements (Table~\ref{tab:disagreements}) shows that A.2, B, and C.1 leaves are highly stable, while the A.1/B boundary accounts for 4 of 9 disputes---a localised tree-refinement target rather than a systemic threat to the taxonomy.
+
+\begin{table}[t]
+\centering
+\caption{Inter-rater disagreements by paper-rater leaf ($N{=}80$).}
+\label{tab:disagreements}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccl}
+\toprule
+Cat. & N & Agree & Disag. & Disagreement edge \\
+\midrule
+A.1 & 26 & 22 &  4 & A.1$\leftrightarrow$B (3), A.1$\leftrightarrow$C.1 (1) \\
+A.2 &  7 &  6 &  1 & A.2$\leftrightarrow$B \\
+B   & 13 & 12 &  1 & B$\leftrightarrow$A.1 \\
+C.1 & 17 & 15 &  2 & C.1$\leftrightarrow$\{A.1,C.2\} \\
+C.2 & 17 & 16 &  1 & C.2$\leftrightarrow$A.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Practitioner Heuristics for In-Loop Detection}
+The decision tree is back-traversable from prompt text alone, suggesting lightweight pre-flight checks. We extracted three lexical heuristics that each correlate strongly with one leaf in the combined 158-failure corpus:
+\begin{itemize}\itemsep1pt
+  \item \textbf{Bare nominalisations} (``the intensity of \dots,'' ``the stability of \dots'') with no adjacent formula $\Rightarrow$ likely A.1 (precision 0.81, recall 0.74).
+  \item \textbf{Multi-domain terms} (\emph{entropy, mean, distance, correlation}) with no convention modifier $\Rightarrow$ likely B (precision 0.86).
+  \item \textbf{Comparative phrases} without anchor (``relative,'' ``deviation from,'' ``compared to'') $\Rightarrow$ likely C.1 (precision 0.78).
+\end{itemize}
+These heuristics are not a classifier; they are cheap-to-compute prompt smells. Even a regex-level pre-flight pass on the original 93-case corpus flags 64\% of prompts that subsequently failed, suggesting a viable path for IDE-side prompt linting.
 
 \section{Discussion}\label{sec:discussion}
 
