@@ -67,31 +67,7 @@ Failures are classified by traversing the deterministic decision tree of Fig.~\r
 
 \begin{figure}[t]
 \centering
-\resizebox{\columnwidth}{!}{%
-\begin{tikzpicture}[
-  node distance=10mm and 6mm,
-  q/.style={diamond,draw,thick,aspect=1.6,fill=yellow!15,minimum height=8mm,inner sep=1pt,font=\scriptsize},
-  leaf/.style={rectangle,draw,rounded corners,fill=green!15,minimum height=6mm,font=\scriptsize\bfseries,inner sep=2pt}
-]
-\node[q] (q1) {Q1: Standard math definition?};
-\node[q,below left=of q1,xshift=-3mm] (q1a) {Q1a: Only behavior?};
-\node[q,below right=of q1,xshift=3mm] (q2) {Q2: Multiple definitions?};
-\node[leaf,below left=of q1a,xshift=-2mm] (a1) {A.1\\Lexical Gap};
-\node[leaf,below right=of q1a,xshift=2mm] (a2a) {A.2\\Def. Gap};
-\node[leaf,below=of q2] (b) {B\\Polysemous};
-\node[q,below right=of q2,xshift=4mm] (q3) {Q3: Wrong component?};
-\node[leaf,below left=of q3,xshift=-2mm] (c) {C\\Incomplete};
-\node[leaf,below right=of q3,xshift=2mm] (a2b) {A.2\\Def. Gap};
-
-\draw[->] (q1) -- node[left,font=\tiny]{No} (q1a);
-\draw[->] (q1) -- node[right,font=\tiny]{Yes} (q2);
-\draw[->] (q1a) -- node[left,font=\tiny]{No} (a1);
-\draw[->] (q1a) -- node[right,font=\tiny]{Yes} (a2a);
-\draw[->] (q2) -- node[left,font=\tiny]{Yes} (b);
-\draw[->] (q2) -- node[right,font=\tiny]{No} (q3);
-\draw[->] (q3) -- node[left,font=\tiny]{Yes} (c);
-\draw[->] (q3) -- node[right,font=\tiny]{No} (a2b);
-\end{tikzpicture}}
+\includegraphics[width=\columnwidth]{figs/fig_decision_tree.pdf}
 \caption{Deterministic decision tree for category assignment.}
 \label{fig:decisiontree}
 \end{figure}

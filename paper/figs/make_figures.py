@@ -148,7 +148,62 @@ def fig_mitigation():
     print("wrote fig_mitigation.{pdf,png}")
 
 
+def fig_decision_tree():
+    """Render the decision tree as a clean matplotlib figure (PDF-embeddable)."""
+    fig, ax = plt.subplots(figsize=(5.5, 3.0))
+    ax.axis("off")
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+
+    def diamond(cx, cy, w, h, text, fc="#FFF6CC"):
+        pts = [(cx, cy + h/2), (cx + w/2, cy), (cx, cy - h/2), (cx - w/2, cy)]
+        ax.add_patch(plt.Polygon(pts, closed=True, facecolor=fc,
+                                  edgecolor="black", linewidth=1.0))
+        ax.text(cx, cy, text, ha="center", va="center", fontsize=8)
+
+    def leaf(cx, cy, w, h, text, fc="#D4EDDA"):
+        ax.add_patch(plt.Rectangle((cx - w/2, cy - h/2), w, h,
+                                    facecolor=fc, edgecolor="#155724",
+                                    linewidth=1.0))
+        ax.text(cx, cy, text, ha="center", va="center",
+                fontsize=8, fontweight="bold")
+
+    def edge(x1, y1, x2, y2, label="", side="left"):
+        ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
+                    arrowprops=dict(arrowstyle="->", lw=0.8, color="#444"))
+        if label:
+            mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+            dx = -0.025 if side == "left" else 0.025
+            ax.text(mx + dx, my, label, ha="center", va="center",
+                    fontsize=7, color="#333")
+
+    diamond(0.50, 0.92, 0.30, 0.10, "Q1: Standard\nmath definition?")
+    diamond(0.20, 0.65, 0.26, 0.10, "Q1a: Only\nbehavior?")
+    diamond(0.72, 0.65, 0.26, 0.10, "Q2: Multiple\ndefinitions?")
+    leaf(0.07, 0.30, 0.16, 0.10, "A.1\nLexical Gap")
+    leaf(0.27, 0.30, 0.16, 0.10, "A.2\nDef. Gap")
+    leaf(0.55, 0.42, 0.14, 0.10, "B\nPolysemous")
+    diamond(0.80, 0.30, 0.26, 0.10, "Q3: Wrong\ncomponent?")
+    leaf(0.66, 0.05, 0.16, 0.10, "C\nIncomplete")
+    leaf(0.92, 0.05, 0.16, 0.10, "A.2\nDef. Gap")
+
+    edge(0.43, 0.89, 0.27, 0.70, "No",  "left")
+    edge(0.57, 0.89, 0.65, 0.70, "Yes", "right")
+    edge(0.13, 0.60, 0.07, 0.36, "No",  "left")
+    edge(0.27, 0.60, 0.27, 0.36, "Yes", "right")
+    edge(0.65, 0.60, 0.55, 0.48, "Yes", "left")
+    edge(0.78, 0.60, 0.80, 0.36, "No",  "right")
+    edge(0.73, 0.25, 0.66, 0.11, "Yes", "left")
+    edge(0.87, 0.25, 0.92, 0.11, "No",  "right")
+
+    plt.tight_layout()
+    plt.savefig(OUT / "fig_decision_tree.pdf")
+    plt.savefig(OUT / "fig_decision_tree.png", dpi=150)
+    plt.close()
+    print("wrote fig_decision_tree.{pdf,png}")
+
+
 if __name__ == "__main__":
+    fig_decision_tree()
     fig_cross_model()
     fig_crud_bridge()
     fig_mitigation()
