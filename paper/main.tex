@@ -69,12 +69,12 @@ The taxonomy is a sub-classification of \emph{Level 6}—\emph{Test \& Specifica
 \subsection{Decision Tree}\label{sec:decisiontree}
 Failures are classified by traversing the deterministic decision tree of Fig.~\ref{fig:decisiontree} top-down; the first matching leaf wins. The three top-level questions partition the design space along a clear axis: \emph{what kind of information was missing from the prompt that caused the wrong interpretation?}
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.78\textwidth]{figs/fig_decision_tree.pdf}
+\includegraphics[width=\columnwidth]{figs/fig_decision_tree.pdf}
 \caption{Deterministic decision tree for category assignment. Each internal node is a yes/no question; the first matching leaf wins. The combined \textsf{C.1\,/\,C.2} leaf splits by inspection of which component is missing (reference vs.\ reduction operator).}
 \label{fig:decisiontree}
-\end{figure*}
+\end{figure}
 
 \textbf{Categories.}
 \begin{itemize}\itemsep1pt
@@ -271,10 +271,16 @@ The ordering matches \emph{cost-effectiveness}: clarifying components yields the
 \end{itemize}
 
 \section{Related Work}\label{sec:related}
-HumanEval~\cite{chen2021codex}, MBPP~\cite{austin2021mbpp}, and EvalPlus~\cite{liu2023evalplus} provide unambiguous specifications and therefore do not exercise the failure mode studied here. Pipeline-oriented taxonomies~\cite{song2023empirical,tambon2025bugs} treat the semantically-incorrect-but-running class as a single undifferentiated category; we refine it. Berry's nocuous-ambiguity work~\cite{berry2008nocuous} frames the human-reader case; we transpose it to LLMs as readers. Repository-context~\cite{shrivastava2024repolevel} and agentic refinement~\cite{yang2024sweagent} are orthogonal: they improve generation; we explain why it fails.
+HumanEval~\cite{chen2021codex}, MBPP~\cite{austin2021mbpp}, and EvalPlus~\cite{liu2023evalplus} provide unambiguous specifications and therefore do not exercise the failure mode studied here. Pipeline-oriented taxonomies~\cite{song2023empirical,tambon2025bugs} treat the semantically-incorrect-but-running class as a single undifferentiated category; we refine it. Berry's classical work on nocuous ambiguity~\cite{berry2008nocuous} frames the human-reader case; we transpose the framing to LLMs as readers. Repository-context~\cite{shrivastava2024repolevel} and agentic refinement~\cite{yang2024sweagent} are orthogonal: they improve generation; we explain post-hoc why generation fails.
 
 \section{Conclusion \& Future Work}\label{sec:conclusion}
-We presented a deterministic taxonomy of LLM disambiguation failures, validated across two LLMs and two domains ($\kappa{=}0.86$; +40~pp pass-rate lift from minimal clarification). Three follow-ups: \textbf{(i)~pre-flight ambiguity linter}---promote the three lexical heuristics (Sec.~\ref{sec:results}-F) into a static prompt-lint pass with confidence scores, trained on the 158-failure corpus; \textbf{(ii)~in-loop targeted re-prompting}---extend execution-centered platforms~\cite{anonymizedphd} so Level-6 failures trigger a category-keyed mitigation rewrite (e.g., C.1 auto-injects ``relative to the median''); \textbf{(iii)~cross-paradigm replication}---apply the tree to UI, SQL, and concurrency domains.
+We presented a deterministic, root-cause taxonomy of LLM disambiguation failures, validated across two LLMs (Claude Sonnet~4, DeepSeek-Chat) and two domains (numeric utilities, Spring Boot CRUD), with $\kappa{=}0.86$ inter-rater agreement and a +40~pp pass-rate lift from minimal prompt clarification. Three follow-up directions appear most promising:
+
+\begin{itemize}\itemsep1pt
+  \item \textbf{Pre-flight ambiguity linter.} Generalise the three lexical heuristics (Sec.~\ref{sec:results}-F) into a static prompt-lint pass returning a category label with a confidence score; train a small model on the released 158-failure corpus to push precision past 0.9 on the A.1/B boundary.
+  \item \textbf{In-loop targeted re-prompting.} Extend execution-centered platforms~\cite{anonymizedphd} so that a Level-6 failure triggers an automatic mitigation rewrite keyed by the inferred category---e.g., a C.1 failure auto-injects ``relative to the median.'' The mitigation experiment in Sec.~\ref{sec:mitigation} establishes the upper bound this loop could reach.
+  \item \textbf{Cross-paradigm replication.} Apply the tree to UI specifications, SQL query generation, and concurrency primitives; each domain is likely to surface new leaves while preserving the top-level Q1--Q3 structure.
+\end{itemize}
 
 \begin{thebibliography}{00}
 \bibitem{anonymizedphd} Anonymous, ``A Context-Aware Platform for Evaluating LLM-Generated Backend Applications,'' under review, 2026.
