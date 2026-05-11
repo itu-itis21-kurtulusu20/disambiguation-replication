@@ -153,63 +153,90 @@ def fig_mitigation():
 
 
 def fig_decision_tree():
-    """Render the decision tree as a clean, airy matplotlib figure."""
-    fig, ax = plt.subplots(figsize=(7.5, 4.6))
+    """Decision tree with orthogonal (L-shaped) routing — textbook style."""
+    fig, ax = plt.subplots(figsize=(7.4, 4.0))
     ax.axis("off")
-    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+    ax.set_xlim(-0.2, 10.6)
+    ax.set_ylim(0, 6)
 
-    def diamond(cx, cy, w, h, text, fc="#FFF6CC"):
+    YEL = "#FFF6CC"
+    GRN = "#D4EDDA"
+    EDG = "#155724"
+    LIN = "#333333"
+
+    # Node x-positions (logical columns) — gaps >= 2.0 so 1.7-wide boxes don't touch
+    X_A1, X_A2L, X_B, X_CC, X_A2R = 0.7, 2.9, 5.2, 7.1, 9.3
+    X_Q1A = (X_A1 + X_A2L) / 2          # 1.8
+    X_Q3  = (X_CC + X_A2R) / 2          # 8.0
+    X_Q2  = (X_B + X_Q3) / 2            # 6.6
+    X_Q1  = (X_Q1A + X_Q2) / 2          # 4.2
+
+    # Node y-positions (logical rows)
+    Y_ROOT, Y_L2, Y_L3, Y_L4 = 5.4, 4.0, 2.4, 0.8
+
+    def diamond(cx, cy, w, h, text, fc=YEL):
         pts = [(cx, cy + h/2), (cx + w/2, cy), (cx, cy - h/2), (cx - w/2, cy)]
         ax.add_patch(plt.Polygon(pts, closed=True, facecolor=fc,
-                                  edgecolor="black", linewidth=1.1))
-        ax.text(cx, cy, text, ha="center", va="center", fontsize=10)
-        return cx, cy, w, h
-
-    def leaf(cx, cy, w, h, text, fc="#D4EDDA"):
-        ax.add_patch(mpatches.FancyBboxPatch((cx - w/2, cy - h/2), w, h,
-                                              boxstyle="round,pad=0.005",
-                                              facecolor=fc, edgecolor="#155724",
-                                              linewidth=1.1))
+                                  edgecolor="black", linewidth=1.1, zorder=3))
         ax.text(cx, cy, text, ha="center", va="center",
-                fontsize=10, fontweight="bold")
+                fontsize=10, zorder=4)
 
-    def edge(x1, y1, x2, y2, label="", t=0.45):
-        # t controls where along the arrow the label is anchored
-        ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
-                    arrowprops=dict(arrowstyle="->", lw=1.0, color="#333"))
-        if label:
-            lx = x1 + t * (x2 - x1)
-            ly = y1 + t * (y2 - y1)
-            ax.text(lx, ly, label, ha="center", va="center",
-                    fontsize=9, color="#222",
-                    bbox=dict(boxstyle="round,pad=0.18",
-                              facecolor="white", edgecolor="#bbb",
-                              linewidth=0.4, alpha=0.95))
+    def leaf(cx, cy, w, h, text, fc=GRN):
+        ax.add_patch(mpatches.FancyBboxPatch((cx - w/2, cy - h/2), w, h,
+                                              boxstyle="round,pad=0.02",
+                                              facecolor=fc, edgecolor=EDG,
+                                              linewidth=1.1, zorder=3))
+        ax.text(cx, cy, text, ha="center", va="center",
+                fontsize=10, fontweight="bold", zorder=4)
 
-    # Root (more headroom)
-    diamond(0.50, 0.92, 0.30, 0.10, "Q1: Standard\nmath definition?")
-    # Level 2 — pulled outward for breathing room
-    diamond(0.16, 0.65, 0.26, 0.10, "Q1a: Only\nbehavior?")
-    diamond(0.72, 0.65, 0.26, 0.10, "Q2: Multiple\ndefinitions?")
-    # Leaves under Q1a — wider gap
-    leaf(0.05, 0.28, 0.17, 0.11, "A.1\nLexical Gap")
-    leaf(0.27, 0.28, 0.17, 0.11, "A.2\nDef. Gap")
-    # Mid level: B leaf (Q2-Yes) and Q3 (Q2-No)
-    leaf(0.54, 0.45, 0.17, 0.11, "B\nPolysemous")
-    diamond(0.88, 0.45, 0.22, 0.10, "Q3: Wrong\ncomponent?")
-    # Bottom leaves under Q3 (C splits into C.1 / C.2 by which component is missing)
-    leaf(0.74, 0.10, 0.20, 0.11, "C.1 / C.2\nIncomplete")
-    leaf(0.96, 0.10, 0.17, 0.11, "A.2\nDef. Gap")
+    def lshape(x_par, y_par_bottom, x_chi, y_chi_top, label, label_side="left"):
+        """L-shaped connector: down from parent, horizontal at mid, down to child."""
+        y_mid = (y_par_bottom + y_chi_top) / 2
+        # vertical segment 1
+        ax.plot([x_par, x_par], [y_par_bottom, y_mid], color=LIN, lw=1.1, zorder=2)
+        # horizontal segment
+        ax.plot([x_par, x_chi], [y_mid, y_mid], color=LIN, lw=1.1, zorder=2)
+        # vertical segment 2 (with arrow head)
+        ax.annotate("", xy=(x_chi, y_chi_top), xytext=(x_chi, y_mid),
+                    arrowprops=dict(arrowstyle="->", lw=1.1, color=LIN), zorder=2)
+        # label on the horizontal segment, just above
+        lx = (x_par + x_chi) / 2
+        ax.text(lx, y_mid + 0.18, label, ha="center", va="center",
+                fontsize=9, color="#222",
+                bbox=dict(boxstyle="round,pad=0.18", facecolor="white",
+                          edgecolor="#bbb", linewidth=0.4, alpha=0.95),
+                zorder=5)
 
-    # Edges (start outside parent shape, end outside child shape)
-    edge(0.42, 0.90, 0.25, 0.69, "No",  t=0.5)
-    edge(0.58, 0.90, 0.63, 0.69, "Yes", t=0.5)
-    edge(0.09, 0.60, 0.05, 0.34, "No",  t=0.55)
-    edge(0.23, 0.60, 0.27, 0.34, "Yes", t=0.55)
-    edge(0.65, 0.62, 0.56, 0.51, "Yes", t=0.5)
-    edge(0.79, 0.62, 0.85, 0.50, "No",  t=0.5)
-    edge(0.83, 0.40, 0.76, 0.16, "Yes", t=0.5)
-    edge(0.93, 0.40, 0.96, 0.16, "No",  t=0.55)
+    # Shape sizes
+    DW, DH = 1.7, 0.9    # diamond w, h
+    LW, LH = 1.7, 0.9    # leaf w, h
+
+    # --- nodes ---
+    diamond(X_Q1,  Y_ROOT, DW, DH, "Q1: Standard\nmath definition?")
+    diamond(X_Q1A, Y_L2,   DW, DH, "Q1a: Only\nbehavior?")
+    diamond(X_Q2,  Y_L2,   DW, DH, "Q2: Multiple\ndefinitions?")
+
+    leaf(X_A1,  Y_L3, LW, LH, "A.1\nLexical Gap")
+    leaf(X_A2L, Y_L3, LW, LH, "A.2\nDef. Gap")
+    leaf(X_B,   Y_L3, LW, LH, "B\nPolysemous")
+    diamond(X_Q3, Y_L3, DW, DH, "Q3: Wrong\ncomponent?")
+
+    leaf(X_CC,  Y_L4, 2.0, LH, "C.1 / C.2\nIncomplete")
+    leaf(X_A2R, Y_L4, LW, LH, "A.2\nDef. Gap")
+
+    # --- edges (L-shaped) ---
+    # Q1 -> Q1a (No)  / Q1 -> Q2 (Yes)
+    lshape(X_Q1, Y_ROOT - DH/2, X_Q1A, Y_L2 + DH/2, "No")
+    lshape(X_Q1, Y_ROOT - DH/2, X_Q2,  Y_L2 + DH/2, "Yes")
+    # Q1a -> A.1 (No) / Q1a -> A.2 (Yes)
+    lshape(X_Q1A, Y_L2 - DH/2, X_A1,  Y_L3 + LH/2, "No")
+    lshape(X_Q1A, Y_L2 - DH/2, X_A2L, Y_L3 + LH/2, "Yes")
+    # Q2 -> B (Yes)  / Q2 -> Q3 (No)
+    lshape(X_Q2, Y_L2 - DH/2, X_B,  Y_L3 + LH/2, "Yes")
+    lshape(X_Q2, Y_L2 - DH/2, X_Q3, Y_L3 + DH/2, "No")
+    # Q3 -> C.1/C.2 (Yes) / Q3 -> A.2 (No)
+    lshape(X_Q3, Y_L3 - DH/2, X_CC,  Y_L4 + LH/2, "Yes")
+    lshape(X_Q3, Y_L3 - DH/2, X_A2R, Y_L4 + LH/2, "No")
 
     plt.tight_layout()
     plt.savefig(OUT / "fig_decision_tree.pdf")
