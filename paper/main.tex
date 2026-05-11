@@ -69,12 +69,12 @@ The taxonomy is a sub-classification of \emph{Level 6}—\emph{Test \& Specifica
 \subsection{Decision Tree}\label{sec:decisiontree}
 Failures are classified by traversing the deterministic decision tree of Fig.~\ref{fig:decisiontree} top-down; the first matching leaf wins. The three top-level questions partition the design space along a clear axis: \emph{what kind of information was missing from the prompt that caused the wrong interpretation?}
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=\columnwidth]{figs/fig_decision_tree.pdf}
+\includegraphics[width=0.78\textwidth]{figs/fig_decision_tree.pdf}
 \caption{Deterministic decision tree for category assignment. Each internal node is a yes/no question; the first matching leaf wins. The combined \textsf{C.1\,/\,C.2} leaf splits by inspection of which component is missing (reference vs.\ reduction operator).}
 \label{fig:decisiontree}
-\end{figure}
+\end{figure*}
 
 \textbf{Categories.}
 \begin{itemize}\itemsep1pt
