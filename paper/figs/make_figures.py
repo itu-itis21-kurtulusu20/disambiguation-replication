@@ -51,53 +51,56 @@ def fig_cross_model():
 
 def fig_crud_bridge():
     """100-case CRUD-Level-6 corpus -> 71 failures -> 5 leaves (Run #6 data)."""
-    fig, ax = plt.subplots(figsize=(5.5, 3.0))
+    fig, ax = plt.subplots(figsize=(6.2, 3.4))
     ax.axis("off")
 
+    # title (kept inside the figure box, top centred)
+    ax.text(0.50, 0.97, "Cross-domain mapping (CRUD-Level-6 corpus)",
+            ha="center", va="center", fontsize=11, fontweight="bold")
+
     # left: 100 CRUD cases
-    ax.add_patch(plt.Rectangle((0.02, 0.35), 0.20, 0.30,
+    ax.add_patch(plt.Rectangle((0.02, 0.40), 0.18, 0.26,
                                facecolor="#E8E8E8", edgecolor="black"))
-    ax.text(0.12, 0.50, "100 CRUD\ncases", ha="center", va="center",
+    ax.text(0.11, 0.53, "100 CRUD\ncases", ha="center", va="center",
             fontsize=10, fontweight="bold")
 
     # arrows to two outcomes
-    ax.annotate("", xy=(0.40, 0.78), xytext=(0.22, 0.55),
+    ax.annotate("", xy=(0.36, 0.78), xytext=(0.20, 0.60),
                 arrowprops=dict(arrowstyle="->", lw=1.2, color="#888"))
-    ax.annotate("", xy=(0.40, 0.22), xytext=(0.22, 0.45),
+    ax.annotate("", xy=(0.36, 0.24), xytext=(0.20, 0.46),
                 arrowprops=dict(arrowstyle="->", lw=1.5, color="#444"))
 
     # passes box (greyed)
-    ax.add_patch(plt.Rectangle((0.40, 0.66), 0.30, 0.24,
+    ax.add_patch(plt.Rectangle((0.36, 0.66), 0.28, 0.22,
                                facecolor="#F5F5F5", edgecolor="grey", linestyle="--"))
-    ax.text(0.55, 0.83, "29 passing", ha="center", va="center",
+    ax.text(0.50, 0.82, "29 passing", ha="center", va="center",
             fontsize=10, color="grey", fontweight="bold")
-    ax.text(0.55, 0.73, "(LLM resolved\nambiguity\ncorrectly)",
+    ax.text(0.50, 0.72, "(LLM resolved\nambiguity correctly)",
             ha="center", va="center", fontsize=8, color="grey", style="italic")
 
     # Failures box (highlighted)
-    ax.add_patch(plt.Rectangle((0.40, 0.06), 0.30, 0.34,
+    ax.add_patch(plt.Rectangle((0.36, 0.08), 0.28, 0.32,
                                facecolor="#FFE8B8", edgecolor="#B07000", linewidth=1.2))
-    ax.text(0.55, 0.34, "71 failures", ha="center", va="center",
+    ax.text(0.50, 0.34, "71 failures", ha="center", va="center",
             fontsize=11, fontweight="bold")
-    ax.text(0.55, 0.22, "64 Level 6 (90.1%)\n+ 7 compilation",
+    ax.text(0.50, 0.23, "64 Level 6 (90.1%)\n+ 7 compilation",
             ha="center", va="center", fontsize=8, style="italic")
-    ax.text(0.55, 0.10, "(EXEC\\_ASSERTION\\_MISMATCH)".replace("\\_","_"),
+    ax.text(0.50, 0.12, "(EXEC_ASSERTION_MISMATCH)",
             ha="center", va="center", fontsize=7, color="#553000")
 
-    # right: 5 leaf categories with actual counts
-    leaves = [("A.1", 29, 0.88), ("A.2", 6, 0.71), ("B", 10, 0.54),
-              ("C.1", 11, 0.37), ("C.2", 15, 0.20)]
+    # right: 5 leaf categories - pulled inward, narrower, evenly spaced
+    leaves = [("A.1", 29, 0.84), ("A.2", 6, 0.69), ("B", 10, 0.54),
+              ("C.1", 11, 0.39), ("C.2", 15, 0.24)]
     for cat, cnt, y in leaves:
-        ax.add_patch(plt.Rectangle((0.82, y - 0.06), 0.14, 0.12,
+        ax.add_patch(plt.Rectangle((0.74, y - 0.055), 0.13, 0.11,
                                    facecolor="#D4EDDA", edgecolor="#155724"))
-        ax.text(0.89, y, f"{cat}\n{cnt}", ha="center", va="center",
-                fontsize=8, fontweight="bold")
-        ax.annotate("", xy=(0.82, y), xytext=(0.70, 0.23),
+        ax.text(0.805, y, f"{cat}: {cnt}", ha="center", va="center",
+                fontsize=9, fontweight="bold")
+        ax.annotate("", xy=(0.74, y), xytext=(0.64, 0.24),
                     arrowprops=dict(arrowstyle="->", lw=0.7, color="#155724"))
 
-    ax.text(0.55, 0.96, "Cross-domain mapping (CRUD-Level-6 corpus)",
-            ha="center", va="center", fontsize=11, fontweight="bold")
-    ax.text(0.89, 0.04, "5 taxonomy\nleaves",
+    # caption under the leaf stack, kept well inside x=1.0
+    ax.text(0.805, 0.10, "5 taxonomy leaves",
             ha="center", va="center", fontsize=8, style="italic", color="#155724")
 
     ax.set_xlim(0, 1)
@@ -151,7 +154,7 @@ def fig_mitigation():
 
 def fig_decision_tree():
     """Render the decision tree as a clean, airy matplotlib figure."""
-    fig, ax = plt.subplots(figsize=(7.0, 4.2))
+    fig, ax = plt.subplots(figsize=(7.5, 4.6))
     ax.axis("off")
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
 
@@ -160,6 +163,7 @@ def fig_decision_tree():
         ax.add_patch(plt.Polygon(pts, closed=True, facecolor=fc,
                                   edgecolor="black", linewidth=1.1))
         ax.text(cx, cy, text, ha="center", va="center", fontsize=10)
+        return cx, cy, w, h
 
     def leaf(cx, cy, w, h, text, fc="#D4EDDA"):
         ax.add_patch(mpatches.FancyBboxPatch((cx - w/2, cy - h/2), w, h,
@@ -169,41 +173,43 @@ def fig_decision_tree():
         ax.text(cx, cy, text, ha="center", va="center",
                 fontsize=10, fontweight="bold")
 
-    def edge(x1, y1, x2, y2, label="", side="left"):
+    def edge(x1, y1, x2, y2, label="", t=0.45):
+        # t controls where along the arrow the label is anchored
         ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
                     arrowprops=dict(arrowstyle="->", lw=1.0, color="#333"))
         if label:
-            mx, my = (x1 + x2) / 2, (y1 + y2) / 2
-            dx = -0.030 if side == "left" else 0.030
-            ax.text(mx + dx, my, label, ha="center", va="center",
+            lx = x1 + t * (x2 - x1)
+            ly = y1 + t * (y2 - y1)
+            ax.text(lx, ly, label, ha="center", va="center",
                     fontsize=9, color="#222",
-                    bbox=dict(boxstyle="round,pad=0.15", facecolor="white",
-                              edgecolor="none", alpha=0.85))
+                    bbox=dict(boxstyle="round,pad=0.18",
+                              facecolor="white", edgecolor="#bbb",
+                              linewidth=0.4, alpha=0.95))
 
-    # Root
-    diamond(0.50, 0.93, 0.34, 0.11, "Q1: Standard\nmath definition?")
-    # Level 2: Q1a (left) and Q2 (right)
-    diamond(0.18, 0.66, 0.28, 0.11, "Q1a: Only\nbehavior?")
-    diamond(0.74, 0.66, 0.28, 0.11, "Q2: Multiple\ndefinitions?")
-    # Level 3 leaves under Q1a
-    leaf(0.05, 0.30, 0.17, 0.11, "A.1\nLexical Gap")
-    leaf(0.27, 0.30, 0.17, 0.11, "A.2\nDef. Gap")
-    # Level 3: B leaf (under Q2-Yes) and Q3 (under Q2-No)
-    leaf(0.55, 0.45, 0.16, 0.11, "B\nPolysemous")
-    diamond(0.85, 0.42, 0.28, 0.11, "Q3: Wrong\ncomponent?")
-    # Level 4 leaves under Q3
-    leaf(0.71, 0.10, 0.17, 0.11, "C\nIncomplete")
-    leaf(0.95, 0.10, 0.17, 0.11, "A.2\nDef. Gap")
+    # Root (more headroom)
+    diamond(0.50, 0.92, 0.30, 0.10, "Q1: Standard\nmath definition?")
+    # Level 2 — pulled outward for breathing room
+    diamond(0.16, 0.65, 0.26, 0.10, "Q1a: Only\nbehavior?")
+    diamond(0.72, 0.65, 0.26, 0.10, "Q2: Multiple\ndefinitions?")
+    # Leaves under Q1a — wider gap
+    leaf(0.05, 0.28, 0.17, 0.11, "A.1\nLexical Gap")
+    leaf(0.27, 0.28, 0.17, 0.11, "A.2\nDef. Gap")
+    # Mid level: B leaf (Q2-Yes) and Q3 (Q2-No)
+    leaf(0.54, 0.45, 0.17, 0.11, "B\nPolysemous")
+    diamond(0.88, 0.45, 0.22, 0.10, "Q3: Wrong\ncomponent?")
+    # Bottom leaves under Q3 (C splits into C.1 / C.2 by which component is missing)
+    leaf(0.74, 0.10, 0.20, 0.11, "C.1 / C.2\nIncomplete")
+    leaf(0.96, 0.10, 0.17, 0.11, "A.2\nDef. Gap")
 
-    # Edges
-    edge(0.42, 0.90, 0.26, 0.71, "No",  "left")
-    edge(0.58, 0.90, 0.66, 0.71, "Yes", "right")
-    edge(0.10, 0.61, 0.05, 0.36, "No",  "left")
-    edge(0.26, 0.61, 0.27, 0.36, "Yes", "right")
-    edge(0.66, 0.61, 0.55, 0.51, "Yes", "left")
-    edge(0.82, 0.61, 0.85, 0.48, "No",  "right")
-    edge(0.78, 0.37, 0.71, 0.16, "Yes", "left")
-    edge(0.92, 0.37, 0.95, 0.16, "No",  "right")
+    # Edges (start outside parent shape, end outside child shape)
+    edge(0.42, 0.90, 0.25, 0.69, "No",  t=0.5)
+    edge(0.58, 0.90, 0.63, 0.69, "Yes", t=0.5)
+    edge(0.09, 0.60, 0.05, 0.34, "No",  t=0.55)
+    edge(0.23, 0.60, 0.27, 0.34, "Yes", t=0.55)
+    edge(0.65, 0.62, 0.56, 0.51, "Yes", t=0.5)
+    edge(0.79, 0.62, 0.85, 0.50, "No",  t=0.5)
+    edge(0.83, 0.40, 0.76, 0.16, "Yes", t=0.5)
+    edge(0.93, 0.40, 0.96, 0.16, "No",  t=0.55)
 
     plt.tight_layout()
     plt.savefig(OUT / "fig_decision_tree.pdf")

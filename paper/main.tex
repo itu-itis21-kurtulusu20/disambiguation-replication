@@ -72,7 +72,7 @@ Failures are classified by traversing the deterministic decision tree of Fig.~\r
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figs/fig_decision_tree.pdf}
-\caption{Deterministic decision tree for category assignment. Each internal node is a yes/no question; the first matching leaf wins.}
+\caption{Deterministic decision tree for category assignment. Each internal node is a yes/no question; the first matching leaf wins. The combined \textsf{C.1\,/\,C.2} leaf splits by inspection of which component is missing (reference vs.\ reduction operator).}
 \label{fig:decisiontree}
 \end{figure}
 
@@ -85,7 +85,7 @@ Failures are classified by traversing the deterministic decision tree of Fig.~\r
   \item \textbf{C.2 Missing Reduction Operator.} Operation family is correct but the combinator is unspecified (``how to aggregate?'').
 \end{itemize}
 
-\textbf{Example traversals.} \emph{(i)}~Prompt ``Return the entropy of the distribution'' $\rightarrow$ Q1: Yes (standard term) $\rightarrow$ Q2: Yes (multiple conventions) $\rightarrow$ \textbf{leaf B}. \emph{(ii)}~Prompt ``Return the relative change'' $\rightarrow$ Q1: Yes $\rightarrow$ Q2: No (single family) $\rightarrow$ Q3: Yes (correct op, missing reference) $\rightarrow$ \textbf{leaf C.1}. \emph{(iii)}~Prompt ``Return the intensity of the signal'' $\rightarrow$ Q1: No $\rightarrow$ Q1a: Yes (no behavior described) $\rightarrow$ \textbf{leaf A.1}.
+\textbf{Example traversals.} \emph{(i)}~Prompt ``Return the entropy of the distribution'' $\rightarrow$ Q1: Yes (standard term) $\rightarrow$ Q2: Yes (multiple conventions) $\rightarrow$ \textbf{leaf B}. \emph{(ii)}~Prompt ``Return the relative change'' $\rightarrow$ Q1: Yes $\rightarrow$ Q2: No (single family) $\rightarrow$ Q3: Yes (correct op, missing reference) $\rightarrow$ \textbf{leaf C.1}. \emph{(iii)}~Prompt ``Return the intensity of the signal'' $\rightarrow$ Q1: No $\rightarrow$ Q1a: No (no behavior described) $\rightarrow$ \textbf{leaf A.1}.
 
 \subsection{Test Case Format}
 Each ambiguity case is a YAML file with a deliberately underspecified \texttt{prompt}, a \texttt{fullClassName} fixing the target, and a list of \texttt{tests} encoding the author's intent. \emph{Expected values are withheld from the LLM.}
@@ -100,7 +100,7 @@ tests:
 \section{Empirical Study}\label{sec:results}
 
 \subsection{Setup}
-We conducted three studies on the GenTest platform~\cite{anonymizedphd} (Spring Boot~3.2 + Java~17 + PostgreSQL~16). LLMs were queried with temperature~0.1 to minimize stochastic variation.
+We conducted four studies on the GenTest platform~\cite{anonymizedphd} (Spring Boot~3.2 + Java~17 + PostgreSQL~16). LLMs were queried with temperature~0.1 to minimize stochastic variation.
 \begin{itemize}\itemsep0pt
 \item \textbf{Study~1 (original):} 93 numeric ambiguity cases on \textbf{Claude Sonnet~4} (\texttt{claude-sonnet-4-20250514}).
 \item \textbf{Study~2 (cross-model):} 100 fresh ambiguity cases on \textbf{DeepSeek-Chat}.
@@ -256,7 +256,7 @@ Each category corresponds to a different mitigation effort:
 \begin{itemize}\itemsep0pt
   \item \textbf{C.1, C.2 (43\%):} name the missing component (``signed differences,'' ``median'')---one word.
   \item \textbf{B (16\%):} specify the convention (``Shannon entropy with $\ln$'').
-  \item \textbf{A.1 (33\%):} provide the explicit formula (``intensity = $\sum |v_i|$'').
+  \item \textbf{A.1 (33\%):} provide the explicit formula (e.g., \emph{intensity} as the sum of absolute values).
   \item \textbf{A.2 (9\%):} provide the algorithm or worked examples.
 \end{itemize}
 The ordering matches \emph{cost-effectiveness}: clarifying components yields the highest failure reduction per character of added specification.
