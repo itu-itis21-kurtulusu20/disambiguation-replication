@@ -32,7 +32,7 @@ Replication package: \url{https://anonymous.4open.science/r/disambig-ase26-nier/
 \maketitle
 
 \begin{abstract}
-Large Language Models (LLMs) increasingly generate executable code from natural-language requirements. While syntactic and compilation-level failures have been studied extensively, a distinct class remains under-investigated: \emph{silent disambiguation failures}—code that compiles, runs without exceptions, yet returns semantically wrong results because the LLM resolved a prompt ambiguity differently from the author's unstated intent. We propose a three-category taxonomy (Semantic Gap, Polysemous Standard Term, Incomplete Formula Specification) governed by a deterministic decision tree that assigns each Level-6 (test \& specification) failure to exactly one leaf. We empirically validate the taxonomy through (a) 93 numeric test cases on Claude Sonnet~4 (80 failures, original corpus, inter-rater $\kappa{=}0.86$), (b) cross-model replication on DeepSeek-Chat with a fresh corpus of 100 cases (78 failures, distribution within $\pm 5\%$ of the original), and (c) cross-domain validation on a controlled 100-case Spring Boot CRUD corpus (71 failures, 90.14\% reaching Level 6, distributing across the same five leaves). A mitigation experiment on 15 representative failing cases lifts pass rate from 27\% to 67\% (+40 percentage points), with single-word reference/operator clarifications driving the largest gains. The work positions the taxonomy as a reusable diagnostic instrument for prompt engineering and post-hoc failure analysis.
+Large Language Models (LLMs) increasingly generate executable code from natural-language requirements. While syntactic and compilation-level failures have been studied extensively, a distinct class remains under-investigated: \emph{silent disambiguation failures}—code that compiles, runs without exceptions, yet returns semantically wrong results because the LLM resolved a prompt ambiguity differently from the author's unstated intent. We propose a three-category taxonomy (Semantic Gap, Polysemous Standard Term, Incomplete Formula Specification) governed by a deterministic decision tree that assigns each Level-6 (test \& specification) failure to exactly one leaf. We empirically validate the taxonomy through (a) 93 numeric test cases on Claude Sonnet~4 (80 failures, original corpus, inter-rater $\kappa{=}0.86$), (b) cross-model replication on DeepSeek-Chat with a fresh corpus of 100 cases (78 failures, distribution within $\pm 5\%$ of the original), and (c) cross-domain validation on a controlled 100-case Spring Boot CRUD corpus (71 failures, 90.14\% reaching Level 6, distributing across the same five leaves). A mitigation experiment on 15 representative failing cases lifts pass rate from 27\% to 67\% (+40 percentage points), with single-word reference/operator clarifications driving the largest gains. Three lexical heuristics derived from the tree flag 64\% of subsequently-failing prompts at the regex level---a low-cost path to in-IDE prompt linting. The taxonomy is offered as a reusable diagnostic instrument for prompt engineering, root-cause analysis, and pre-flight ambiguity detection.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -44,6 +44,10 @@ LLM, code generation, taxonomy, prompt engineering, ambiguity, software testing
 LLMs are now routine collaborators for code generation. Benchmarks such as HumanEval~\cite{chen2021codex} and MBPP~\cite{austin2021mbpp} demonstrate strong performance on \emph{precisely specified} programming tasks. Real-world requirements, however, are seldom precise: they are written in ambiguous natural language, assume domain knowledge, and omit details the author considers obvious~\cite{berry2008nocuous}.
 
 A silent failure mode emerges in this gap. The LLM produces code that compiles, passes type checks, runs without exceptions, and looks plausible---yet returns semantically wrong results because its default interpretation of an ambiguous term diverged from the author's unstated intent. Unlike syntax errors, these \emph{disambiguation failures} are invisible to static analysis and surface only when execution-centered evaluation~\cite{anonymizedphd} confronts the generated code with input--output scenarios encoding the author's true intent.
+
+\textbf{Motivating example.} Consider the one-line prompt
+\emph{``Return the entropy of the distribution.''}
+DeepSeek-Chat returns a syntactically valid Java method that computes Shannon entropy with $\log_2$; the author's withheld test expects the natural-log convention. The code compiles, runs, and returns $1.443$ where $1.000$ was expected---a 44\% silent error that no compiler, type checker, or linter can catch. We observe 158 such failures across two LLMs and two domains in our corpora; this paper provides a deterministic vocabulary for naming and mitigating their root causes.
 
 \textbf{Research question.} \emph{When an LLM produces semantically incorrect code from an underspecified requirement, what is the root cause of the misinterpretation?}
 
@@ -258,16 +262,28 @@ Each category corresponds to a different mitigation effort:
 The ordering matches \emph{cost-effectiveness}: clarifying components yields the highest failure reduction per character of added specification.
 
 \subsection{Threats to Validity}
-\textbf{LLM diversity.} We replicated across two models; broader replication (GPT-4, Gemini) is needed.
-\textbf{Domain.} Cross-domain validation on CRUD reduces but does not eliminate the threat; UI generation, query languages, and concurrency primitives remain untested.
-\textbf{Single-run.} Each test case was run once at temperature~0.1; rare borderline cases could flip across runs.
-\textbf{Classification subjectivity.} Mitigated by inter-rater reliability ($\kappa$ above) and a publicly released decision tree.
+\begin{itemize}\itemsep1pt
+  \item \textbf{LLM diversity.} We replicated across two models (Sonnet~4, DeepSeek-Chat); broader replication on GPT-4 and Gemini remains future work.
+  \item \textbf{Domain.} Cross-domain validation on CRUD reduces but does not eliminate the threat; UI generation, query languages, and concurrency primitives remain untested.
+  \item \textbf{Single-run.} Each test case was run once at temperature~0.1; rare borderline cases could flip across runs. Stability across multiple seeds is part of planned follow-up work.
+  \item \textbf{Classification subjectivity.} Mitigated by inter-rater reliability ($\kappa{=}0.86$) and a publicly released, deterministic decision tree.
+  \item \textbf{Mitigation generalisability.} The 15-case mitigation cohort was stratified across categories but small; a larger replication is needed to confirm the per-category effect sizes.
+\end{itemize}
 
 \section{Related Work}\label{sec:related}
 HumanEval~\cite{chen2021codex}, MBPP~\cite{austin2021mbpp}, and EvalPlus~\cite{liu2023evalplus} provide unambiguous specifications and therefore do not exercise the failure mode studied here. Pipeline-oriented taxonomies~\cite{song2023empirical,tambon2025bugs} treat the semantically-incorrect-but-running class as a single undifferentiated category; we refine it. Berry's classical work on nocuous ambiguity~\cite{berry2008nocuous} frames the human-reader case; we transpose the framing to LLMs as readers. Repository-context~\cite{shrivastava2024repolevel} and agentic refinement~\cite{yang2024sweagent} are orthogonal: they improve generation; we explain post-hoc why generation fails.
 
 \section{Conclusion \& Future Work}\label{sec:conclusion}
-We presented a deterministic, root-cause taxonomy of LLM disambiguation failures, validated across two LLMs and two domains. Future directions include (i)~automated detection of likely failure category from a prompt before invoking the LLM, (ii)~integration with execution-centered platforms for in-loop targeted re-prompting, and (iii)~broader replication on UI, query, and concurrency domains.
+We presented a deterministic, root-cause taxonomy of LLM disambiguation failures, validated across two LLMs (Claude Sonnet~4, DeepSeek-Chat) and two domains (numeric utilities, Spring Boot CRUD), with $\kappa{=}0.86$ inter-rater agreement and a +40~pp pass-rate lift from minimal prompt clarification. Three follow-up directions appear most promising:
+
+\begin{itemize}\itemsep1pt
+  \item \textbf{Pre-flight ambiguity linter.} Generalise the three lexical heuristics (Sec.~\ref{sec:results}-F) into a static prompt-lint pass returning a category label with a confidence score; train a small model on the released 158-failure corpus to push precision past 0.9 on the A.1/B boundary.
+  \item \textbf{In-loop targeted re-prompting.} Extend execution-centered platforms~\cite{anonymizedphd} so that a Level-6 failure triggers an automatic mitigation rewrite keyed by the inferred category---e.g., a C.1 failure auto-injects ``relative to the median.'' The mitigation experiment in Sec.~\ref{sec:mitigation} establishes the upper bound this loop could reach.
+  \item \textbf{Cross-paradigm replication.} Apply the tree to UI specifications, SQL query generation, and concurrency primitives; each domain is likely to surface new leaves while preserving the top-level Q1--Q3 structure.
+\end{itemize}
+
+\subsection*{Reproducibility}
+The full replication package---all 308 test cases (\texttt{ambiguity-fail-only/}, \texttt{numeric-ambiguity-v2/}, \texttt{crud-level6/}, \texttt{mitigation-fix/}), the deterministic classifier, the dual-rater spreadsheet, and the figure-generation script---is available at the anonymous URL on the title page and re-runs end-to-end against the GenTest platform with two API keys.
 
 \begin{thebibliography}{00}
 \bibitem{anonymizedphd} Anonymous, ``A Context-Aware Platform for Evaluating LLM-Generated Backend Applications,'' under review, 2026.
